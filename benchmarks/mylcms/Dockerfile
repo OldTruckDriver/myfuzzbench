@@ -31,14 +31,14 @@ RUN (mkdir LPM && cd LPM && cmake ../libprotobuf-mutator -GNinja -DLIB_PROTO_MUT
 RUN wget -qO $OUT/cms_transform_fuzzer.dict \
     https://raw.githubusercontent.com/google/fuzzing/master/dictionaries/icc.dict
 
-RUN mkdir $SRC/seeds && \
-    cd $SRC/seeds && \
-    cp $SRC/lcms/testbed/bad.icc . && \
-    cp $SRC/lcms/testbed/toosmall.icc . && \
-    cp $SRC/lcms/testbed/test1.icc . && \
-    cp $SRC/lcms/testbed/crayons.icc . && \
-    cp $SRC/lcms/testbed/ibm-t61.icc . && \
-    zip -rj $SRC/seed_corpus.zip $SRC/seeds/*
+# RUN mkdir $SRC/seeds && \
+#     cd $SRC/seeds && \
+#     cp $SRC/lcms/testbed/bad.icc . && \
+#     cp $SRC/lcms/testbed/toosmall.icc . && \
+#     cp $SRC/lcms/testbed/test1.icc . && \
+#     cp $SRC/lcms/testbed/crayons.icc . && \
+#     cp $SRC/lcms/testbed/ibm-t61.icc . && \
+#     zip -rj $SRC/seed_corpus.zip $SRC/seeds/*
 COPY build.sh *.c *.cc *.h lcms.proto *.options *.dict $SRC/
 COPY cms_transform_fuzzer_proto_bin.cc build.sh $SRC/
 ADD seeds /opt/seeds
