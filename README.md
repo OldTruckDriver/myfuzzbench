@@ -1,3 +1,7 @@
+git push --set-upstream origin master
+
+
+
 # FuzzBench: Fuzzer Benchmarking As a Service
 
 FuzzBench is a free service that evaluates fuzzers on a wide variety of

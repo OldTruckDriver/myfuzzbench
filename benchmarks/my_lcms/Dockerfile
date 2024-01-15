@@ -27,5 +27,5 @@ RUN git clone https://github.com/mm2/Little-CMS.git
 
 RUN wget -qO $OUT/cms_transform_fuzzer.dict \
     https://raw.githubusercontent.com/google/fuzzing/master/dictionaries/icc.dict
-COPY cms_transform_fuzzer.cc build.sh $SRC/
+COPY cms_transform_fuzzer_proto_bin.cc build.sh $SRC/
 ADD seeds /opt/seeds
