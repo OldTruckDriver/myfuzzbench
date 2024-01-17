@@ -14,31 +14,55 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-builder@sha256:87ca1e9e19235e731fac8de8d1892ebe8d55caf18e7aa131346fc582a2034fdd
+FROM gcr.io/oss-fuzz-base/base-builder
 
 RUN apt-get update && \
     apt-get install -y \
     make \
     automake \
     libtool \
-    wget binutils cmake ninja-build liblzma-dev \
-    libz-dev pkg-config zlib1g-dev iptables
+    wget autoconf binutils cmake ninja-build liblzma-dev \
+    libz-dev pkg-config zlib1g-dev 
+    # iptables curl unzip
 
-RUN git clone https://github.com/mm2/Little-CMS.git
+# Download and install Protocol Buffers 3.20.3
+# RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.20.3/protobuf-all-3.20.3.zip && \
+#     unzip protobuf-all-3.20.3.zip && \
+#     cd protobuf-3.20.3 && \
+#     ./configure && \
+#     make && \
+#     make check && \
+#     make install
+
+# # Cleanup
+# RUN rm -rf protobuf-all-3.20.3.zip protobuf-3.20.3
+
+# # Set the environment variable for the protobuf compiler
+# ENV LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+
+
+
+RUN git clone https://github.com/mm2/Little-CMS.git lcms
 RUN git clone --depth 1 https://github.com/google/libprotobuf-mutator.git
+
 RUN (mkdir LPM && cd LPM && cmake ../libprotobuf-mutator -GNinja -DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON -DLIB_PROTO_MUTATOR_TESTING=OFF -DCMAKE_BUILD_TYPE=Release && ninja)
 
 RUN wget -qO $OUT/cms_transform_fuzzer.dict \
     https://raw.githubusercontent.com/google/fuzzing/master/dictionaries/icc.dict
 
-# RUN mkdir $SRC/seeds && \
-#     cd $SRC/seeds && \
-#     cp $SRC/lcms/testbed/bad.icc . && \
-#     cp $SRC/lcms/testbed/toosmall.icc . && \
-#     cp $SRC/lcms/testbed/test1.icc . && \
-#     cp $SRC/lcms/testbed/crayons.icc . && \
-#     cp $SRC/lcms/testbed/ibm-t61.icc . && \
-#     zip -rj $SRC/seed_corpus.zip $SRC/seeds/*
+# ADD seeds /opt/seeds
+RUN mkdir $SRC/seeds
+ADD seeds $SRC/seeds
+
+RUN cd $SRC/seeds && \
+    cp $SRC/lcms/testbed/bad.icc . && \
+    cp $SRC/lcms/testbed/toosmall.icc . && \
+    cp $SRC/lcms/testbed/test1.icc . && \
+    cp $SRC/lcms/testbed/crayons.icc . && \
+    cp $SRC/lcms/testbed/ibm-t61.icc . && \
+    zip -rj $SRC/seed_corpus.zip $SRC/seeds/*
 COPY build.sh *.c *.cc *.h lcms.proto *.options *.dict $SRC/
 COPY cms_transform_fuzzer_proto_bin.cc build.sh $SRC/
-ADD seeds /opt/seeds
+
+# RUN protoc --cpp_out=. lcms.proto
+
