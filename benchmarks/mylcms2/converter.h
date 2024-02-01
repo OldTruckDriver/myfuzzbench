@@ -13,4 +13,3 @@ void Proto2CmsProfileID(const cmsProfileIDProto* input, cmsProfileID* result);
 void CmsICCPROFILE2Proto(_cmsICCPROFILE* input, cmsICCPROFILEProto* result);
 
 bool Proto2CmsICCPROFILE(const cmsICCPROFILEProto* input, _cmsICCPROFILE*& result);
-
