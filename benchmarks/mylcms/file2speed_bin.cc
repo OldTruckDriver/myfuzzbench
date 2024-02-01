@@ -14,7 +14,9 @@ int main(int argc, char *argv[])
         std::cout << "Open failed! Not convert to proto..." << std::endl;
         cmsCloseProfile(hInputProfile);
         return 0;
-    } // cmsSaveProfileToFile cmsICCPROFILEProto result; CmsICCPROFILE2Proto(hInputProfile, &result);
+    } // cmsSaveProfileToFile 
+    cmsICCPROFILEProto result; 
+    CmsICCPROFILE2Proto(hInputProfile, &result);
     std::ofstream outputStream(outputFileName, std::ios::out);
     result.SerializeToOstream(&outputStream);
     outputStream.close();
