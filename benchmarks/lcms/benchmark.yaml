@@ -13,7 +13,7 @@
 # limitations under the License.
 
 fuzz_target: cms_transform_fuzzer_proto_bin
-project: proto_lcms
+project: protolcms
 unsupported_fuzzers:
   - symcc_afl
   - symcc_afl_single
