@@ -5,7 +5,7 @@ sudo docker build -t io/library/self/dispatcher-image:latest .
 PYTHONPATH=. python3 experiment/run_experiment.py \
 --experiment-config experiment-config.yaml \
 --benchmarks lcms_cms_transform_fuzzer \
---experiment-name fuzzbench_lcms \
+--experiment-name lcms \
 --fuzzers libfuzzer \
 --no-seeds --no-dictionaries
 
