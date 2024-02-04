@@ -6,7 +6,8 @@ PYTHONPATH=. python3 experiment/run_experiment.py \
 --experiment-config experiment-config.yaml \
 --benchmarks curl_curl_fuzzer_http \
 --experiment-name curl \
---fuzzers libfuzzer
+--fuzzers libfuzzer \
+--no-seeds --no-dictionaries
 
 
 git reset --hard HEAD

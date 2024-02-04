@@ -15,7 +15,7 @@
 commit: f0d963261b28253999e239a844ac74d5a8960f40
 commit_date: 2023-01-25T18:20:28+0000
 fuzz_target: cms_transform_fuzzer
-project: lcms
+project: fuzzbench_lcms
 unsupported_fuzzers:
   - symcc_afl
   - symcc_afl_single
