@@ -31,7 +31,7 @@
  * Fuzzing entry point. This function is passed a buffer containing a test
  * case.  This test case should drive the CURL API into making a request.
  */
-extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
+extern "C" int DEFINE_BINARY_PROTO_FUZZER(const uint8_t *data, size_t size)
 {
   int rc = 0;
   int tlv_rc;

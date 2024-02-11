@@ -16,22 +16,23 @@
 
 FROM gcr.io/oss-fuzz-base/base-builder@sha256:87ca1e9e19235e731fac8de8d1892ebe8d55caf18e7aa131346fc582a2034fdd
 
-RUN apt-get update && \
+RUN apt-get update &&  \
+    apt-get upgrade -y && \
     apt-get install -y \
     make \
-    automake \
     autoconf \
+    libtool \
+    wget \
     libtool cmake ninja-build libbrotli-dev liblzma-dev libz-dev \
-    pkg-config zlib1g-dev iptables libc++-dev libc++abi-dev libpthread-stubs0-dev
+    pkg-config zlib1g-dev iptables libc++-dev libc++abi-dev libpthread-stubs0-dev meson
+
+RUN git clone git://git.sv.nongnu.org/freetype/freetype2.git
+
+# RUN (cd freetype2 && meson build && cd build && ninja && cd ..)
 
 
-RUN git clone https://github.com/google/brotli.git && \
-    git -C brotli checkout 3a9032ba8733532a6cd6727970bade7f7c0e2f52
-
-RUN git clone https://github.com/google/woff2.git && \
-    (cd woff2 && mkdir build && cd build && cmake .. && make && make install)
-
-
+RUN git clone https://github.com/unicode-org/text-rendering-tests.git TRT
+RUN wget https://github.com/libarchive/libarchive/releases/download/v3.4.3/libarchive-3.4.3.tar.xz
 
 RUN git clone --depth 1 https://github.com/google/libprotobuf-mutator.git 
 # proto_mutator
@@ -41,13 +42,4 @@ RUN (mkdir LPM && \
     -DLIB_PROTO_MUTATOR_TESTING=OFF -DCMAKE_BUILD_TYPE=Release && \
     ninja)
 
-
-# Get seeds
-RUN git clone https://github.com/google/oss-fuzz.git && \
-    git -C oss-fuzz checkout e8ffee4077b59e35824a2e97aa214ee95d39ed13 && \
-    mkdir -p $OUT/seeds && \
-    cp oss-fuzz/projects/woff2/corpus/* $OUT/seeds
-
-COPY target.cc build.sh *.cc *.h woff2.proto $SRC/
-
-# WORKDIR woff2
+COPY * $SRC/
