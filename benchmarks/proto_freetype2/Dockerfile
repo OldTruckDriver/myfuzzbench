@@ -24,11 +24,15 @@ RUN apt-get update &&  \
     libtool \
     wget \
     libtool cmake ninja-build libbrotli-dev liblzma-dev libz-dev \
-    pkg-config zlib1g-dev iptables libc++-dev libc++abi-dev libpthread-stubs0-dev meson
+    pkg-config zlib1g-dev iptables libc++-dev libc++abi-dev libpthread-stubs0-dev python3-pip
+
+RUN pip install -U meson
+
+
 
 RUN git clone git://git.sv.nongnu.org/freetype/freetype2.git
 
-# RUN (cd freetype2 && meson build && cd build && ninja && cd ..)
+RUN (cd freetype2 && meson build && cd build && ninja && cd ..)
 
 
 RUN git clone https://github.com/unicode-org/text-rendering-tests.git TRT
