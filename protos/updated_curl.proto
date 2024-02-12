@@ -1,0 +1,2922 @@
+syntax = "proto3";
+
+package structured_data;
+
+message prcs {
+    int64 prereq_retcode = 1;
+    int64 ipv6 = 2;
+}
+
+message xcharp_u {
+    string tchar_ptr = 1;
+    string const_tchar_ptr = 2;
+    string tbyte_ptr = 3;
+    string const_tbyte_ptr = 4;
+}
+
+message OutStruct {
+    string filename = 1;
+    bool alloc_filename = 2;
+    bool is_cd_filename = 3;
+    bool s_isreg = 4;
+    bool fopened = 5;
+    string stream = 6;
+    int64 bytes = 7;
+    int64 init = 8;
+}
+
+message getout {
+    structgetout*Pointer next = 1;
+    string url = 2;
+    string outfile = 3;
+    string infile = 4;
+    int64 flags = 5;
+    int64 num = 6;
+}
+
+message URLPattern {
+    URLPatternType type = 1;
+    int64 globindex = 2;
+    unionURLPattern::(unnamedat/data/tfk/study/PUT/curl/src/tool_urlglob.h:38:3) content = 3;
+}
+
+message _data_tfk_study_PUT_curl_src_tool_urlglob_h:38:3 {
+    structURLPattern::(unnamedat/data/tfk/study/PUT/curl/src/tool_urlglob.h:39:5) set = 1;
+    structURLPattern::(unnamedat/data/tfk/study/PUT/curl/src/tool_urlglob.h:44:5) charrange = 2;
+    structURLPattern::(unnamedat/data/tfk/study/PUT/curl/src/tool_urlglob.h:50:5) numrange = 3;
+}
+
+message _data_tfk_study_PUT_curl_src_tool_urlglob_h:39:5 {
+    string elements = 1;
+    int64 size = 2;
+    int64 ptr_s = 3;
+}
+
+message _data_tfk_study_PUT_curl_src_tool_urlglob_h:44:5 {
+    char min_c = 1;
+    char max_c = 2;
+    char ptr_c = 3;
+    int64 step = 4;
+}
+
+message _data_tfk_study_PUT_curl_src_tool_urlglob_h:50:5 {
+    int64 min_n = 1;
+    int64 max_n = 2;
+    int64 padlength = 3;
+    int64 ptr_n = 4;
+    int64 step = 5;
+}
+
+message URLGlob {
+    structURLPattern[100] pattern = 1;
+    int64 size = 2;
+    int64 urllen = 3;
+    string glob_buffer = 4;
+    char beenhere = 5;
+    string error = 6;
+    int64 pos = 7;
+}
+
+message dynbuf {
+    string bufr = 1;
+    int64 leng = 2;
+    int64 allc = 3;
+    int64 toobig = 4;
+}
+
+message var {
+    structvar*Pointer next = 1;
+    string name = 2;
+    string content = 3;
+    int64 clen = 4;
+}
+
+message State {
+    structgetout*Pointer urlnode = 1;
+    structURLGlob*Pointer inglob = 2;
+    structURLGlob*Pointer urls = 3;
+    string outfiles = 4;
+    string httpgetfields = 5;
+    string uploadfile = 6;
+    int64 infilenum = 7;
+    int64 up = 8;
+    int64 urlnum = 9;
+    int64 li = 10;
+}
+
+message OperationConfig {
+    bool remote_time = 1;
+    string useragent = 2;
+    structcurl_slist*Pointer cookies = 3;
+    string cookiejar = 4;
+    structcurl_slist*Pointer cookiefiles = 5;
+    string altsvc = 6;
+    string hsts = 7;
+    bool cookiesession = 8;
+    bool encoding = 9;
+    bool tr_encoding = 10;
+    int64 authtype = 11;
+    bool use_resume = 12;
+    bool resume_from_current = 13;
+    bool disable_epsv = 14;
+    bool disable_eprt = 15;
+    bool ftp_pret = 16;
+    string proto_str = 17;
+    bool proto_present = 18;
+    string proto_redir_str = 19;
+    bool proto_redir_present = 20;
+    string proto_default = 21;
+    int64 resume_from = 22;
+    string postfields = 23;
+    structdynbuf postdata = 24;
+    string referer = 25;
+    string query = 26;
+    int64 timeout_ms = 27;
+    int64 connecttimeout_ms = 28;
+    int64 maxredirs = 29;
+    int64 max_filesize = 30;
+    string output_dir = 31;
+    string headerfile = 32;
+    string ftpport = 33;
+    string iface = 34;
+    int64 localport = 35;
+    int64 localportrange = 36;
+    unsignedshort porttouse = 37;
+    string range = 38;
+    int64 low_speed_limit = 39;
+    int64 low_speed_time = 40;
+    string dns_servers = 41;
+    string dns_interface = 42;
+    string dns_ipv4_addr = 43;
+    string dns_ipv6_addr = 44;
+    string userpwd = 45;
+    string login_options = 46;
+    string tls_username = 47;
+    string tls_password = 48;
+    string tls_authtype = 49;
+    string proxy_tls_username = 50;
+    string proxy_tls_password = 51;
+    string proxy_tls_authtype = 52;
+    string proxyuserpwd = 53;
+    string proxy = 54;
+    int64 proxyver = 55;
+    string noproxy = 56;
+    string mail_from = 57;
+    structcurl_slist*Pointer mail_rcpt = 58;
+    string mail_auth = 59;
+    bool mail_rcpt_allowfails = 60;
+    string sasl_authzid = 61;
+    bool sasl_ir = 62;
+    bool proxytunnel = 63;
+    bool ftp_append = 64;
+    bool use_ascii = 65;
+    bool autoreferer = 66;
+    bool failonerror = 67;
+    bool failwithbody = 68;
+    bool show_headers = 69;
+    bool no_body = 70;
+    bool dirlistonly = 71;
+    bool followlocation = 72;
+    bool unrestricted_auth = 73;
+    bool netrc_opt = 74;
+    bool netrc = 75;
+    string netrc_file = 76;
+    structgetout*Pointer url_list = 77;
+    structgetout*Pointer url_last = 78;
+    structgetout*Pointer url_get = 79;
+    structgetout*Pointer url_out = 80;
+    structgetout*Pointer url_ul = 81;
+    string ipfs_gateway = 82;
+    string doh_url = 83;
+    string cipher_list = 84;
+    string proxy_cipher_list = 85;
+    string cipher13_list = 86;
+    string proxy_cipher13_list = 87;
+    string cert = 88;
+    string proxy_cert = 89;
+    string cert_type = 90;
+    string proxy_cert_type = 91;
+    string cacert = 92;
+    string proxy_cacert = 93;
+    string capath = 94;
+    string proxy_capath = 95;
+    string crlfile = 96;
+    string proxy_crlfile = 97;
+    string pinnedpubkey = 98;
+    string proxy_pinnedpubkey = 99;
+    string key = 100;
+    string proxy_key = 101;
+    string key_type = 102;
+    string proxy_key_type = 103;
+    string key_passwd = 104;
+    string proxy_key_passwd = 105;
+    string pubkey = 106;
+    string hostpubmd5 = 107;
+    string hostpubsha256 = 108;
+    string engine = 109;
+    string etag_save_file = 110;
+    string etag_compare_file = 111;
+    bool crlf = 112;
+    string customrequest = 113;
+    string ssl_ec_curves = 114;
+    string krblevel = 115;
+    string request_target = 116;
+    int64 httpversion = 117;
+    bool http09_allowed = 118;
+    bool nobuffer = 119;
+    bool readbusy = 120;
+    bool globoff = 121;
+    bool use_httpget = 122;
+    bool insecure_ok = 123;
+    bool doh_insecure_ok = 124;
+    bool proxy_insecure_ok = 125;
+    bool terminal_binary_ok = 126;
+    bool verifystatus = 127;
+    bool doh_verifystatus = 128;
+    bool create_dirs = 129;
+    bool ftp_create_dirs = 130;
+    bool ftp_skip_ip = 131;
+    bool proxynegotiate = 132;
+    bool proxyntlm = 133;
+    bool proxydigest = 134;
+    bool proxybasic = 135;
+    bool proxyanyauth = 136;
+    bool jsoned = 137;
+    string writeout = 138;
+    structcurl_slist*Pointer quote = 139;
+    structcurl_slist*Pointer postquote = 140;
+    structcurl_slist*Pointer prequote = 141;
+    int64 ssl_version = 142;
+    int64 ssl_version_max = 143;
+    int64 proxy_ssl_version = 144;
+    int64 ip_version = 145;
+    int64 create_file_mode = 146;
+    curl_TimeCond timecond = 147;
+    int64 condtime = 148;
+    structcurl_slist*Pointer headers = 149;
+    structcurl_slist*Pointer proxyheaders = 150;
+    structtool_mime*Pointer mimeroot = 151;
+    structtool_mime*Pointer mimecurrent = 152;
+    structcurl_mime*Pointer mimepost = 153;
+    structcurl_slist*Pointer telnet_options = 154;
+    structcurl_slist*Pointer resolve = 155;
+    structcurl_slist*Pointer connect_to = 156;
+    HttpReq httpreq = 157;
+    int64 sendpersecond = 158;
+    int64 recvpersecond = 159;
+    bool ftp_ssl = 160;
+    bool ftp_ssl_reqd = 161;
+    bool ftp_ssl_control = 162;
+    bool ftp_ssl_ccc = 163;
+    int64 ftp_ssl_ccc_mode = 164;
+    string preproxy = 165;
+    bool socks5_gssapi_nec = 166;
+    int64 socks5_auth = 167;
+    string proxy_service_name = 168;
+    string service_name = 169;
+    bool tcp_nodelay = 170;
+    bool tcp_fastopen = 171;
+    int64 req_retry = 172;
+    bool retry_all_errors = 173;
+    bool retry_connrefused = 174;
+    int64 retry_delay = 175;
+    int64 retry_maxtime = 176;
+    string ftp_account = 177;
+    string ftp_alternative_to_user = 178;
+    int64 ftp_filemethod = 179;
+    int64 mime_options = 180;
+    int64 tftp_blksize = 181;
+    bool tftp_no_options = 182;
+    bool ignorecl = 183;
+    bool disable_sessionid = 184;
+    bool raw = 185;
+    bool post301 = 186;
+    bool post302 = 187;
+    bool post303 = 188;
+    bool nokeepalive = 189;
+    int64 alivetime = 190;
+    bool content_disposition = 191;
+    int64 default_node_flags = 192;
+    bool xattr = 193;
+    int64 gssapi_delegation = 194;
+    bool ssl_allow_beast = 195;
+    bool proxy_ssl_allow_beast = 196;
+    bool ssl_no_revoke = 197;
+    bool ssl_revoke_best_effort = 198;
+    bool native_ca_store = 199;
+    bool proxy_native_ca_store = 200;
+    bool ssl_auto_client_cert = 201;
+    bool proxy_ssl_auto_client_cert = 202;
+    string oauth_bearer = 203;
+    bool noalpn = 204;
+    string unix_socket_path = 205;
+    bool abstract_unix_socket = 206;
+    bool falsestart = 207;
+    bool path_as_is = 208;
+    int64 expect100timeout_ms = 209;
+    bool suppress_connect_headers = 210;
+    bool synthetic_error = 211;
+    bool ssh_compression = 212;
+    int64 happy_eyeballs_timeout_ms = 213;
+    bool haproxy_protocol = 214;
+    string haproxy_clientip = 215;
+    bool disallow_username_in_url = 216;
+    string aws_sigv4 = 217;
+    enumOperationConfig::(unnamedat/data/tfk/study/PUT/curl/src/tool_cfgable.h:286:3) file_clobber_mode = 218;
+    structGlobalConfig*Pointer global = 219;
+    structOperationConfig*Pointer prev = 220;
+    structOperationConfig*Pointer next = 221;
+    structState state = 222;
+    bool rm_partial = 223;
+}
+
+message GlobalConfig {
+    bool showerror = 1;
+    bool silent = 2;
+    bool noprogress = 3;
+    bool isatty = 4;
+    string trace_dump = 5;
+    string trace_stream = 6;
+    bool trace_fopened = 7;
+    trace tracetype = 8;
+    bool tracetime = 9;
+    bool traceids = 10;
+    int64 progressmode = 11;
+    string libcurl = 12;
+    bool fail_early = 13;
+    bool styled_output = 14;
+    int64 ms_per_transfer = 15;
+    bool parallel = 16;
+    unsignedshort parallel_max = 17;
+    bool parallel_connect = 18;
+    string help_category = 19;
+    structvar*Pointer variables = 20;
+    structOperationConfig*Pointer first = 21;
+    structOperationConfig*Pointer current = 22;
+    structOperationConfig*Pointer last = 23;
+}
+
+message WriteThis {
+    string readptr = 1;
+    int64 sizeleft = 2;
+}
+
+message transfer_status {
+    structCurl_easy*Pointer easy = 1;
+    int64 halted = 2;
+    int64 counter = 3;
+    int64 please = 4;
+}
+
+message Cookie {
+    structCookie*Pointer next = 1;
+    string name = 2;
+    string value = 3;
+    string path = 4;
+    string spath = 5;
+    string domain = 6;
+    int64 expires = 7;
+    bool tailmatch = 8;
+    bool secure = 9;
+    bool livecookie = 10;
+    bool httponly = 11;
+    int64 creationtime = 12;
+    unsignedchar prefix = 13;
+}
+
+message CookieInfo {
+    structCookie*[63]Pointer cookies = 1;
+    int64 next_expiration = 2;
+    int64 numcookies = 3;
+    int64 lastct = 4;
+    bool running = 5;
+    bool newsession = 6;
+}
+
+message FormInfo {
+    string name = 1;
+    int64 namelength = 2;
+    string value = 3;
+    int64 contentslength = 4;
+    string contenttype = 5;
+    int64 flags = 6;
+    string buffer = 7;
+    int64 bufferlength = 8;
+    string showfilename = 9;
+    string userp = 10;
+    structcurl_slist*Pointer contentheader = 11;
+    structFormInfo*Pointer more = 12;
+    bool name_alloc = 13;
+    bool value_alloc = 14;
+    bool contenttype_alloc = 15;
+    bool showfilename_alloc = 16;
+}
+
+message curltime {
+    int64 tv_sec = 1;
+    int64 tv_usec = 2;
+}
+
+message Curl_chunker {
+    int64 datasize = 1;
+    ChunkyState state = 2;
+    CHUNKcode last_code = 3;
+    structdynbuf trailer = 4;
+    unsignedchar hexindex = 5;
+    char[17] hexbuffer = 6;
+    int64 ignore_body = 7;
+}
+
+message Curl_llist_element {
+    void*Pointer ptr = 1;
+    structCurl_llist_element*Pointer prev = 2;
+    structCurl_llist_element*Pointer next = 3;
+}
+
+message Curl_llist {
+    structCurl_llist_element*Pointer head = 1;
+    structCurl_llist_element*Pointer tail = 2;
+    void(*)(void*,void*) dtor = 3;
+    int64 size = 4;
+}
+
+message Curl_hash {
+    structCurl_llist*Pointer table = 1;
+    int64 hash_func = 2;
+    int64 comp_func = 3;
+    void(*)(void*) dtor = 4;
+    int64 slots = 5;
+    int64 size = 6;
+}
+
+message Curl_hash_element {
+    structCurl_llist_element list = 1;
+    void*Pointer ptr = 2;
+    int64 key_len = 3;
+    char[1] key = 4;
+}
+
+message Curl_hash_iterator {
+    structCurl_hash*Pointer hash = 1;
+    int64 slot_index = 2;
+    structCurl_llist_element*Pointer current_element = 3;
+}
+
+message Curl_addrinfo {
+    int64 ai_flags = 1;
+    int64 ai_family = 2;
+    int64 ai_socktype = 3;
+    int64 ai_protocol = 4;
+    int64 ai_addrlen = 5;
+    string ai_canonname = 6;
+    structsockaddr*Pointer ai_addr = 7;
+    structCurl_addrinfo*Pointer ai_next = 8;
+}
+
+message Curl_dns_entry {
+    structCurl_addrinfo*Pointer addr = 1;
+    int64 timestamp = 2;
+    int64 inuse = 3;
+    int64 hostport = 4;
+    char[1] hostname = 5;
+}
+
+message Curl_tree {
+    structCurl_tree*Pointer smaller = 1;
+    structCurl_tree*Pointer larger = 2;
+    structCurl_tree*Pointer samen = 3;
+    structCurl_tree*Pointer samep = 4;
+    structcurltime key = 5;
+    void*Pointer payload = 6;
+}
+
+message dynhds_entry {
+    string name = 1;
+    string value = 2;
+    int64 namelen = 3;
+    int64 valuelen = 4;
+}
+
+message dynhds {
+    structdynhds_entry**Pointer hds = 1;
+    int64 hds_len = 2;
+    int64 hds_allc = 3;
+    int64 max_entries = 4;
+    int64 strs_len = 5;
+    int64 max_strs_size = 6;
+    int64 opts = 7;
+}
+
+message mime_encoder {
+    string name = 1;
+    int64 encodefunc = 2;
+    int64 sizefunc = 3;
+}
+
+message mime_encoder_state {
+    int64 pos = 1;
+    int64 bufbeg = 2;
+    int64 bufend = 3;
+    char[256] buf = 4;
+}
+
+message mime_state {
+    enummimestate state = 1;
+    void*Pointer ptr = 2;
+    int64 offset = 3;
+}
+
+message curl_mime {
+    structcurl_mimepart*Pointer parent = 1;
+    structcurl_mimepart*Pointer firstpart = 2;
+    structcurl_mimepart*Pointer lastpart = 3;
+    char[47] boundary = 4;
+    structmime_state state = 5;
+}
+
+message curl_mimepart {
+    structcurl_mime*Pointer parent = 1;
+    structcurl_mimepart*Pointer nextpart = 2;
+    enummimekind kind = 3;
+    int64 flags = 4;
+    string data = 5;
+    int64 readfunc = 6;
+    int64 seekfunc = 7;
+    void(*)(void*) freefunc = 8;
+    void*Pointer arg = 9;
+    string fp = 10;
+    structcurl_slist*Pointer curlheaders = 11;
+    structcurl_slist*Pointer userheaders = 12;
+    string mimetype = 13;
+    string filename = 14;
+    string name = 15;
+    int64 datasize = 16;
+    structmime_state state = 17;
+    conststructmime_encoder*Pointer encoder = 18;
+    structmime_encoder_state encstate = 19;
+    int64 lastreadstatus = 20;
+}
+
+message pingpong {
+    int64 nread_resp = 1;
+    bool pending_resp = 2;
+    string sendthis = 3;
+    int64 sendleft = 4;
+    int64 sendsize = 5;
+    structcurltime response = 6;
+    int64 response_time = 7;
+    structdynbuf sendbuf = 8;
+    structdynbuf recvbuf = 9;
+    int64 overflow = 10;
+    int64 nfinal = 11;
+    CURLcode(*)(structCurl_easy*,structconnectdata*)Pointer statemachine = 12;
+    int64 endofresp = 13;
+}
+
+message bufref {
+    void(*)(void*)Pointer dtor = 1;
+    string ptr = 2;
+    int64 len = 3;
+}
+
+message SASLproto {
+    string service = 1;
+    string sendauth = 2;
+    string contauth = 3;
+    string cancelauth = 4;
+    CURLcode(*)(structCurl_easy*,structbufref*)Pointer getmessage = 5;
+    int64 maxirlen = 6;
+    int64 contcode = 7;
+    int64 finalcode = 8;
+    unsignedshort defmechs = 9;
+    unsignedshort flags = 10;
+}
+
+message SASL {
+    conststructSASLproto*Pointer params = 1;
+    saslstate state = 2;
+    string curmech = 3;
+    unsignedshort authmechs = 4;
+    unsignedshort prefmech = 5;
+    unsignedshort authused = 6;
+    int64 resetprefs = 7;
+    int64 mutual_auth = 8;
+    int64 force_ir = 9;
+}
+
+message IMAP {
+    curl_pp_transfer transfer = 1;
+    string mailbox = 2;
+    string uidvalidity = 3;
+    string uid = 4;
+    string mindex = 5;
+    string section = 6;
+    string partial = 7;
+    string query = 8;
+    string custom = 9;
+    string custom_params = 10;
+}
+
+message imap_conn {
+    structpingpong pp = 1;
+    structSASL sasl = 2;
+    structdynbuf dyn = 3;
+    string mailbox = 4;
+    string mailbox_uidvalidity = 5;
+    imapstate state = 6;
+    char[5] resptag = 7;
+    unsignedchar preftype = 8;
+    unsignedchar cmdid = 9;
+    int64 ssldone = 10;
+    int64 preauth = 11;
+    int64 tls_supported = 12;
+    int64 login_disabled = 13;
+    int64 ir_supported = 14;
+}
+
+message POP3 {
+    curl_pp_transfer transfer = 1;
+    string id = 2;
+    string custom = 3;
+}
+
+message pop3_conn {
+    structpingpong pp = 1;
+    pop3state state = 2;
+    int64 eob = 3;
+    int64 strip = 4;
+    structSASL sasl = 5;
+    string apoptimestamp = 6;
+    unsignedchar authtypes = 7;
+    unsignedchar preftype = 8;
+    int64 ssldone = 9;
+    int64 tls_supported = 10;
+}
+
+message SMTP {
+    curl_pp_transfer transfer = 1;
+    string custom = 2;
+    structcurl_slist*Pointer rcpt = 3;
+    int64 rcpt_last_error = 4;
+    int64 eob = 5;
+    int64 rcpt_had_ok = 6;
+    int64 trailing_crlf = 7;
+}
+
+message smtp_conn {
+    structpingpong pp = 1;
+    structSASL sasl = 2;
+    smtpstate state = 3;
+    string domain = 4;
+    int64 ssldone = 5;
+    int64 tls_supported = 6;
+    int64 size_supported = 7;
+    int64 utf8_supported = 8;
+    int64 auth_supported = 9;
+}
+
+message ftp_wc {
+    structftp_parselist_data*Pointer parser = 1;
+    structftp_wc::(unnamedat/data/tfk/study/PUT/curl/lib/ftp.h:91:3) backup = 2;
+}
+
+message _data_tfk_study_PUT_curl_lib_ftp_h:91:3 {
+    int64 write_function = 1;
+    string file_descriptor = 2;
+}
+
+message FTP {
+    string path = 1;
+    string pathalloc = 2;
+    curl_pp_transfer transfer = 3;
+    int64 downloadsize = 4;
+}
+
+message ftp_conn {
+    structpingpong pp = 1;
+    string account = 2;
+    string alternative_to_user = 3;
+    string entrypath = 4;
+    string file = 5;
+    string dirs = 6;
+    string newhost = 7;
+    string prevpath = 8;
+    char transfertype = 9;
+    int64 retr_size_saved = 10;
+    string server_os = 11;
+    int64 known_filesize = 12;
+    int64 dirdepth = 13;
+    int64 cwdcount = 14;
+    int64 count1 = 15;
+    int64 count2 = 16;
+    int64 count3 = 17;
+    unsignedshort newport = 18;
+    unsignedchar state = 19;
+    unsignedchar state_saved = 20;
+    unsignedchar use_ssl = 21;
+    unsignedchar ccc = 22;
+    int64 ftp_trying_alternative = 23;
+    int64 dont_check = 24;
+    int64 ctl_valid = 25;
+    int64 cwddone = 26;
+    int64 cwdfail = 27;
+    int64 wait_data_conn = 28;
+}
+
+message FILEPROTO {
+    string path = 1;
+    string freepath = 2;
+    int64 fd = 3;
+}
+
+message SSHPROTO {
+    string path = 1;
+}
+
+message ssh_conn {
+    string authlist = 1;
+    string passphrase = 2;
+    string rsa_pub = 3;
+    string rsa = 4;
+    bool authed = 5;
+    bool acceptfail = 6;
+    sshstate state = 7;
+    sshstate nextstate = 8;
+    CURLcode actualcode = 9;
+    structcurl_slist*Pointer quote_item = 10;
+    string quote_path1 = 11;
+    string quote_path2 = 12;
+    string homedir = 13;
+    int64 secondcreatedirs = 14;
+    int64 orig_waitfor = 15;
+    string slash_pos = 16;
+}
+
+message buf_chunk {
+    structbuf_chunk*Pointer next = 1;
+    int64 dlen = 2;
+    int64 r_offset = 3;
+    int64 w_offset = 4;
+    unionbuf_chunk::(unnamedat/data/tfk/study/PUT/curl/lib/bufq.h:40:3) x = 5;
+}
+
+message _data_tfk_study_PUT_curl_lib_bufq_h:40:3 {
+    unsignedchar[1] data = 1;
+    void*Pointer dummy = 2;
+}
+
+message bufc_pool {
+    structbuf_chunk*Pointer spare = 1;
+    int64 chunk_size = 2;
+    int64 spare_count = 3;
+    int64 spare_max = 4;
+}
+
+message bufq {
+    structbuf_chunk*Pointer head = 1;
+    structbuf_chunk*Pointer tail = 2;
+    structbuf_chunk*Pointer spare = 3;
+    structbufc_pool*Pointer pool = 4;
+    int64 chunk_count = 5;
+    int64 max_chunks = 6;
+    int64 chunk_size = 7;
+    int64 opts = 8;
+}
+
+message HTTP {
+    int64 postsize = 1;
+    string postdata = 2;
+    structback backup = 3;
+    enumHTTP::(unnamedat/data/tfk/study/PUT/curl/lib/http.h:211:3) sending = 4;
+    void*Pointer h2_ctx = 5;
+    void*Pointer h3_ctx = 6;
+    structdynbuf send_buffer = 7;
+}
+
+message back {
+    int64 fread_func = 1;
+    void*Pointer fread_in = 2;
+    string postdata = 3;
+    int64 postsize = 4;
+    structCurl_easy*Pointer data = 5;
+}
+
+message httpreq {
+    char[24] method = 1;
+    string scheme = 2;
+    string authority = 3;
+    string path = 4;
+    structdynhds headers = 5;
+    structdynhds trailers = 6;
+}
+
+message http_resp {
+    int64 status = 1;
+    string description = 2;
+    structdynhds headers = 3;
+    structdynhds trailers = 4;
+    structhttp_resp*Pointer prev = 5;
+}
+
+message rtsp_conn {
+    structdynbuf buf = 1;
+    int64 rtp_channel = 2;
+    int64 rtp_len = 3;
+    rtp_parse_st state = 4;
+    int64 in_header = 5;
+}
+
+message RTSP {
+    structHTTP http_wrapper = 1;
+    int64 cseq_sent = 2;
+    int64 cseq_recv = 3;
+}
+
+message smb_conn {
+    enumsmb_conn_state state = 1;
+    string user = 2;
+    string domain = 3;
+    string share = 4;
+    unsignedchar[8] challenge = 5;
+    int64 session_key = 6;
+    unsignedshort uid = 7;
+    string recv_buf = 8;
+    int64 upload_size = 9;
+    int64 send_size = 10;
+    int64 sent = 11;
+    int64 got = 12;
+}
+
+message mqtt_conn {
+    enummqttstate state = 1;
+    enummqttstate nextstate = 2;
+    int64 packetid = 3;
+}
+
+message MQTT {
+    string sendleftovers = 1;
+    int64 nsend = 2;
+    int64 npacket = 3;
+    unsignedchar firstbyte = 4;
+    int64 remaining_length = 5;
+    structdynbuf recvbuf = 6;
+    unsignedchar[4] pkt_hd = 7;
+}
+
+message WildcardData {
+    string path = 1;
+    string pattern = 2;
+    structCurl_llist filelist = 3;
+    structftp_wc*Pointer ftpwc = 4;
+    void(*)(void*) dtor = 5;
+    unsignedchar state = 6;
+}
+
+message conncache {
+    structCurl_hash hash = 1;
+    int64 num_conn = 2;
+    int64 next_connection_id = 3;
+    int64 next_easy_id = 4;
+    structcurltime last_cleanup = 5;
+    structCurl_easy*Pointer closure_handle = 6;
+}
+
+message connectbundle {
+    int64 multiuse = 1;
+    int64 num_connections = 2;
+    structCurl_llist conn_list = 3;
+}
+
+message Curl_message {
+    structCurl_llist_element list = 1;
+    structCURLMsg extmsg = 2;
+}
+
+message Curl_multi {
+    int64 magic = 1;
+    structCurl_easy*Pointer easyp = 2;
+    structCurl_easy*Pointer easylp = 3;
+    int64 num_easy = 4;
+    int64 num_alive = 5;
+    structCurl_llist msglist = 6;
+    structCurl_llist pending = 7;
+    structCurl_llist msgsent = 8;
+    int64 socket_cb = 9;
+    void*Pointer socket_userp = 10;
+    int64 push_cb = 11;
+    void*Pointer push_userp = 12;
+    structCurl_hash hostcache = 13;
+    structCurl_tree*Pointer timetree = 14;
+    structmulti_ssl_backend_data*Pointer ssl_backend_data = 15;
+    structCurl_hash sockhash = 16;
+    structconncache conn_cache = 17;
+    int64 max_host_connections = 18;
+    int64 max_total_connections = 19;
+    int64 timer_cb = 20;
+    void*Pointer timer_userp = 21;
+    structcurltime timer_lastcall = 22;
+    int64 wakeup_pair = 23;
+    int64 max_concurrent_streams = 24;
+    int64 maxconnects = 25;
+    unsignedchar ipv6_up = 26;
+    int64 multiplexing = 27;
+    int64 recheckstate = 28;
+    int64 in_callback = 29;
+    int64 ssl_seeded = 30;
+    int64 dead = 31;
+}
+
+message Curl_sockaddr_storage {
+    unionCurl_sockaddr_storage::(unnamedat/data/tfk/study/PUT/curl/lib/sockaddr.h:30:3) buffer = 1;
+}
+
+message _data_tfk_study_PUT_curl_lib_sockaddr_h:30:3 {
+    structsockaddr sa = 1;
+    structsockaddr_in sa_in = 2;
+    structsockaddr_in6 sa_in6 = 3;
+    structsockaddr_storage sa_stor = 4;
+}
+
+message Curl_sockaddr_ex {
+    int64 family = 1;
+    int64 socktype = 2;
+    int64 protocol = 3;
+    int64 addrlen = 4;
+    unionCurl_sockaddr_ex::(unnamedat/data/tfk/study/PUT/curl/lib/cf-socket.h:49:3) _sa_ex_u = 5;
+}
+
+message _data_tfk_study_PUT_curl_lib_cf-socket_h:49:3 {
+    structsockaddr addr = 1;
+    structCurl_sockaddr_storage buff = 2;
+}
+
+message ssl_peer {
+    string hostname = 1;
+    string dispname = 2;
+    string sni = 3;
+    int64 is_ip_address = 4;
+}
+
+message ssl_primary_config {
+    string capath = 1;
+    string cafile = 2;
+    string issuercert = 3;
+    string clientcert = 4;
+    string cipher_list = 5;
+    string cipher_list13 = 6;
+    string pinned_key = 7;
+    string crlfile = 8;
+    structcurl_blob*Pointer cert_blob = 9;
+    structcurl_blob*Pointer ca_info_blob = 10;
+    structcurl_blob*Pointer issuercert_blob = 11;
+    string username = 12;
+    string password = 13;
+    string curves = 14;
+    unsignedchar ssl_options = 15;
+    int64 version_max = 16;
+    unsignedchar version = 17;
+    int64 verifypeer = 18;
+    int64 verifyhost = 19;
+    int64 verifystatus = 20;
+    int64 sessionid = 21;
+}
+
+message ssl_config_data {
+    structssl_primary_config primary = 1;
+    int64 certverifyresult = 2;
+    CURLcode(*)(structCurl_easy*,void*,void*) fsslctx = 3;
+    void*Pointer fsslctxp = 4;
+    string cert_type = 5;
+    string key = 6;
+    structcurl_blob*Pointer key_blob = 7;
+    string key_type = 8;
+    string key_passwd = 9;
+    int64 certinfo = 10;
+    int64 falsestart = 11;
+    int64 enable_beast = 12;
+    int64 no_revoke = 13;
+    int64 no_partialchain = 14;
+    int64 revoke_best_effort = 15;
+    int64 native_ca_store = 16;
+    int64 auto_client_cert = 17;
+}
+
+message ssl_general_config {
+    int64 max_ssl_sessions = 1;
+    int64 ca_cache_timeout = 2;
+}
+
+message Curl_ssl_session {
+    string name = 1;
+    string conn_to_host = 2;
+    string scheme = 3;
+    void*Pointer sessionid = 4;
+    int64 idsize = 5;
+    int64 age = 6;
+    int64 remote_port = 7;
+    int64 conn_to_port = 8;
+    structssl_primary_config ssl_config = 9;
+}
+
+message digestdata {
+    string nonce = 1;
+    string cnonce = 2;
+    string realm = 3;
+    string opaque = 4;
+    string qop = 5;
+    string algorithm = 6;
+    int64 nc = 7;
+    unsignedchar algo = 8;
+    int64 stale = 9;
+    int64 userhash = 10;
+}
+
+message ntlmdata {
+    int64 flags = 1;
+    unsignedchar[8] nonce = 2;
+    int64 target_info_len = 3;
+    void*Pointer target_info = 4;
+}
+
+message ConnectBits {
+    int64 httpproxy = 1;
+    int64 socksproxy = 2;
+    int64 proxy_user_passwd = 3;
+    int64 tunnel_proxy = 4;
+    int64 proxy_connect_closed = 5;
+    int64 proxy = 6;
+    int64 close = 7;
+    int64 reuse = 8;
+    int64 altused = 9;
+    int64 conn_to_host = 10;
+    int64 conn_to_port = 11;
+    int64 ipv6_ip = 12;
+    int64 ipv6 = 13;
+    int64 do_more = 14;
+    int64 protoconnstart = 15;
+    int64 retry = 16;
+    int64 authneg = 17;
+    int64 ftp_use_epsv = 18;
+    int64 ftp_use_eprt = 19;
+    int64 ftp_use_data_ssl = 20;
+    int64 ftp_use_control_ssl = 21;
+    int64 netrc = 22;
+    int64 bound = 23;
+    int64 multiplex = 24;
+    int64 tcp_fastopen = 25;
+    int64 tls_enable_alpn = 26;
+    int64 doh = 27;
+    int64 abstract_unix_socket = 28;
+    int64 tls_upgraded = 29;
+    int64 sock_accepted = 30;
+    int64 parallel_connect = 31;
+}
+
+message hostname {
+    string rawalloc = 1;
+    string encalloc = 2;
+    string name = 3;
+    string dispname = 4;
+}
+
+message Curl_async {
+    string hostname = 1;
+    structCurl_dns_entry*Pointer dns = 2;
+    structthread_data*Pointer tdata = 3;
+    void*Pointer resolver = 4;
+    int64 port = 5;
+    int64 status = 6;
+    int64 done = 7;
+}
+
+message easy_pollset {
+    int64 sockets = 1;
+    int64 num = 2;
+    unsignedchar[5] actions = 3;
+}
+
+message SingleRequest {
+    int64 size = 1;
+    int64 maxdownload = 2;
+    int64 bytecount = 3;
+    int64 writebytecount = 4;
+    int64 pendingheader = 5;
+    structcurltime start = 6;
+    int64 headerbytecount = 7;
+    int64 allheadercount = 8;
+    int64 deductheadercount = 9;
+    int64 headerline = 10;
+    int64 offset = 11;
+    int64 httpcode = 12;
+    int64 keepon = 13;
+    structcurltime start100 = 14;
+    enumexpect100 exp100 = 15;
+    enumupgrade101 upgr101 = 16;
+    structCurl_cwriter*Pointer writer_stack = 17;
+    int64 timeofdoc = 18;
+    int64 bodywrites = 19;
+    string location = 20;
+    string newurl = 21;
+    int64 upload_present = 22;
+    string upload_fromhere = 23;
+    unionSingleRequest::(unnamedat/data/tfk/study/PUT/curl/lib/urldata.h:708:3) p = 24;
+    structdohdata*Pointer doh = 25;
+    char[2] fread_eof = 26;
+    unsignedchar setcookies = 27;
+    int64 header = 28;
+    int64 content_range = 29;
+    int64 download_done = 30;
+    int64 eos_written = 31;
+    int64 upload_done = 32;
+    int64 ignorebody = 33;
+    int64 http_bodyless = 34;
+    int64 chunk = 35;
+    int64 ignore_cl = 36;
+    int64 upload_chunky = 37;
+    int64 getheader = 38;
+    int64 forbidchunk = 39;
+    int64 no_body = 40;
+}
+
+message _data_tfk_study_PUT_curl_lib_urldata_h:708:3 {
+    structFILEPROTO*Pointer file = 1;
+    structFTP*Pointer ftp = 2;
+    structHTTP*Pointer http = 3;
+    structIMAP*Pointer imap = 4;
+    structldapreqinfo*Pointer ldap = 5;
+    structMQTT*Pointer mqtt = 6;
+    structPOP3*Pointer pop3 = 7;
+    structRTSP*Pointer rtsp = 8;
+    structsmb_request*Pointer smb = 9;
+    structSMTP*Pointer smtp = 10;
+    structSSHPROTO*Pointer ssh = 11;
+    structTELNET*Pointer telnet = 12;
+}
+
+message Curl_handler {
+    string scheme = 1;
+    CURLcode(*)(structCurl_easy*,structconnectdata*)Pointer setup_connection = 2;
+    bool do_it = 3;
+    bool done = 4;
+    int64 do_more = 5;
+    bool connect_it = 6;
+    bool connecting = 7;
+    bool doing = 8;
+    int64 proto_getsock = 9;
+    int64 doing_getsock = 10;
+    int64 domore_getsock = 11;
+    int64 perform_getsock = 12;
+    bool disconnect = 13;
+    int64 write_resp = 14;
+    int64 connection_check = 15;
+    void(*)(structCurl_easy*,structconnectdata*)Pointer attach = 16;
+    int64 defport = 17;
+    int64 protocol = 18;
+    int64 family = 19;
+    int64 flags = 20;
+}
+
+message proxy_info {
+    structhostname host = 1;
+    int64 port = 2;
+    unsignedchar proxytype = 3;
+    string user = 4;
+    string passwd = 5;
+}
+
+message connectdata {
+    structCurl_llist_element bundle_node = 1;
+    int64 fclosesocket = 2;
+    void*Pointer closesocket_client = 3;
+    int64 connection_id = 4;
+    structCurl_dns_entry*Pointer dns_entry = 5;
+    conststructCurl_sockaddr_ex*Pointer remote_addr = 6;
+    structhostname host = 7;
+    string hostname_resolve = 8;
+    string secondaryhostname = 9;
+    structhostname conn_to_host = 10;
+    structproxy_info socks_proxy = 11;
+    structproxy_info http_proxy = 12;
+    char[46] primary_ip = 13;
+    string user = 14;
+    string passwd = 15;
+    string options = 16;
+    string sasl_authzid = 17;
+    string oauth_bearer = 18;
+    structcurltime now = 19;
+    structcurltime created = 20;
+    structcurltime lastused = 21;
+    int64 sock = 22;
+    int64 recv = 23;
+    int64 send = 24;
+    structCurl_cfilter*[2]Pointer cfilter = 25;
+    structssl_primary_config ssl_config = 26;
+    structssl_primary_config proxy_ssl_config = 27;
+    structConnectBits bits = 28;
+    conststructCurl_handler*Pointer handler = 29;
+    conststructCurl_handler*Pointer given = 30;
+    structcurltime keepalive = 31;
+    int64 sockfd = 32;
+    int64 writesockfd = 33;
+    structCurl_llist easyq = 34;
+    int64 seek_func = 35;
+    void*Pointer seek_client = 36;
+    curlntlm http_ntlm_state = 37;
+    curlntlm proxy_ntlm_state = 38;
+    structntlmdata ntlm = 39;
+    structntlmdata proxyntlm = 40;
+    unionconnectdata::(unnamedat/data/tfk/study/PUT/curl/lib/urldata.h:1023:3) proto = 41;
+    structconnectbundle*Pointer bundle = 42;
+    string unix_domain_socket = 43;
+    string localdev = 44;
+    unsignedshort localportrange = 45;
+    int64 waitfor = 46;
+    int64 port = 47;
+    int64 remote_port = 48;
+    int64 conn_to_port = 49;
+    int64 scope_id = 50;
+    unsignedshort localport = 51;
+    unsignedshort secondary_port = 52;
+    unsignedchar alpn = 53;
+    unsignedchar proxy_alpn = 54;
+    unsignedchar transport = 55;
+    unsignedchar ip_version = 56;
+    unsignedchar httpversion = 57;
+    unsignedchar connect_only = 58;
+    unsignedchar gssapi_delegation = 59;
+}
+
+message _data_tfk_study_PUT_curl_lib_urldata_h:1023:3 {
+    structftp_conn ftpc = 1;
+    structtftp_state_data*Pointer tftpc = 2;
+    structimap_conn imapc = 3;
+    structpop3_conn pop3c = 4;
+    structsmtp_conn smtpc = 5;
+    structrtsp_conn rtspc = 6;
+    structsmb_conn smbc = 7;
+    structmqtt_conn mqtt = 8;
+    int64 unused = 9;
+}
+
+message PureInfo {
+    int64 httpcode = 1;
+    int64 httpproxycode = 2;
+    int64 httpversion = 3;
+    int64 filetime = 4;
+    int64 request_size = 5;
+    int64 proxyauthavail = 6;
+    int64 httpauthavail = 7;
+    int64 numconnects = 8;
+    string contenttype = 9;
+    string wouldredirect = 10;
+    int64 retry_after = 11;
+    int64 header_size = 12;
+    char[46] conn_primary_ip = 13;
+    int64 conn_primary_port = 14;
+    int64 conn_remote_port = 15;
+    char[46] conn_local_ip = 16;
+    int64 conn_local_port = 17;
+    string conn_scheme = 18;
+    int64 conn_protocol = 19;
+    structcurl_certinfo certs = 20;
+    CURLproxycode pxcode = 21;
+    int64 timecond = 22;
+}
+
+message Progress {
+    int64 lastshow = 1;
+    int64 size_dl = 2;
+    int64 size_ul = 3;
+    int64 downloaded = 4;
+    int64 uploaded = 5;
+    int64 current_speed = 6;
+    int64 width = 7;
+    int64 flags = 8;
+    int64 timespent = 9;
+    int64 dlspeed = 10;
+    int64 ulspeed = 11;
+    int64 t_postqueue = 12;
+    int64 t_nslookup = 13;
+    int64 t_connect = 14;
+    int64 t_appconnect = 15;
+    int64 t_pretransfer = 16;
+    int64 t_starttransfer = 17;
+    int64 t_redirect = 18;
+    structcurltime start = 19;
+    structcurltime t_startsingle = 20;
+    structcurltime t_startop = 21;
+    structcurltime t_acceptdata = 22;
+    structcurltime ul_limit_start = 23;
+    int64 ul_limit_size = 24;
+    structcurltime dl_limit_start = 25;
+    int64 dl_limit_size = 26;
+    int64 speeder = 27;
+    structcurltime[6] speeder_time = 28;
+    int64 speeder_c = 29;
+    int64 callback = 30;
+    int64 is_t_startransfer_set = 31;
+}
+
+message auth {
+    int64 want = 1;
+    int64 picked = 2;
+    int64 avail = 3;
+    int64 done = 4;
+    int64 multipass = 5;
+    int64 iestyle = 6;
+}
+
+message Curl_data_priority {
+    int64 weight = 1;
+}
+
+message tempbuf {
+    structdynbuf b = 1;
+    int64 type = 2;
+    int64 paused_body = 3;
+}
+
+message time_node {
+    structCurl_llist_element list = 1;
+    structcurltime time = 2;
+    expire_id eid = 3;
+}
+
+message urlpieces {
+    string scheme = 1;
+    string hostname = 2;
+    string port = 3;
+    string user = 4;
+    string password = 5;
+    string options = 6;
+    string path = 7;
+    string query = 8;
+}
+
+message UrlState {
+    structconncache*Pointer conn_cache = 1;
+    structcurltime keeps_speed = 2;
+    int64 lastconnect_id = 3;
+    int64 recent_conn_id = 4;
+    structdynbuf headerb = 5;
+    structcurl_slist*Pointer hstslist = 6;
+    string buffer = 7;
+    string ulbuf = 8;
+    int64 current_speed = 9;
+    string first_host = 10;
+    int64 first_remote_port = 11;
+    int64 first_remote_protocol = 12;
+    int64 retrycount = 13;
+    structCurl_ssl_session*Pointer session = 14;
+    int64 sessionage = 15;
+    structtempbuf[3] tempwrite = 16;
+    int64 tempcount = 17;
+    int64 os_errno = 18;
+    string scratch = 19;
+    int64 followlocation = 20;
+    int64 requests = 21;
+    int64 prev_signal = 22;
+    structdigestdata digest = 23;
+    structdigestdata proxydigest = 24;
+    structauth authhost = 25;
+    structauth authproxy = 26;
+    structCurl_async async = 27;
+    void*Pointer engine = 28;
+    structcurltime expiretime = 29;
+    structCurl_tree timenode = 30;
+    structCurl_llist timeoutlist = 31;
+    structtime_node[15] expires = 32;
+    string most_recent_ftp_entrypath = 33;
+    int64 prev_block_had_trailing_cr = 34;
+    int64 crlf_conversions = 35;
+    string range = 36;
+    int64 resume_from = 37;
+    int64 rtsp_next_client_cseq = 38;
+    int64 rtsp_next_server_cseq = 39;
+    int64 rtsp_cseq_recv = 40;
+    unsignedchar[32] rtp_channel_mask = 41;
+    int64 infilesize = 42;
+    int64 fread_func = 43;
+    void*Pointer in = 44;
+    structCurl_URL*Pointer uh = 45;
+    structurlpieces up = 46;
+    string url = 47;
+    string referer = 48;
+    structcurl_slist*Pointer resolve = 49;
+    structcurl_mimepart*Pointer mimepost = 50;
+    structcurl_mimepart*Pointer formp = 51;
+    int64 trailers_bytes_sent = 52;
+    structdynbuf trailers_buf = 53;
+    structCurl_llist httphdrs = 54;
+    structcurl_header[2] headerout = 55;
+    structCurl_header_store*Pointer prevhead = 56;
+    trailers_state trailers_state = 57;
+    structcurl_slist*Pointer cookielist = 58;
+    structdynamically_allocated_data aptr = 59;
+    unsignedchar httpwant = 60;
+    unsignedchar httpversion = 61;
+    unsignedchar httpreq = 62;
+    unsignedchar select_bits = 63;
+    int64 multi_owned_by_easy = 64;
+    int64 this_is_a_follow = 65;
+    int64 refused_stream = 66;
+    int64 errorbuf = 67;
+    int64 allow_port = 68;
+    int64 authproblem = 69;
+    int64 wildcardmatch = 70;
+    int64 expect100header = 71;
+    int64 disableexpect = 72;
+    int64 use_range = 73;
+    int64 rangestringalloc = 74;
+    int64 done = 75;
+    int64 previouslypending = 76;
+    int64 cookie_engine = 77;
+    int64 prefer_ascii = 78;
+    int64 list_only = 79;
+    int64 url_alloc = 80;
+    int64 referer_alloc = 81;
+    int64 wildcard_resolve = 82;
+    int64 rewindbeforesend = 83;
+    int64 upload = 84;
+    int64 internal = 85;
+}
+
+message dynamically_allocated_data {
+    string proxyuserpwd = 1;
+    string uagent = 2;
+    string accept_encoding = 3;
+    string userpwd = 4;
+    string rangeline = 5;
+    string ref = 6;
+    string host = 7;
+    string cookiehost = 8;
+    string rtsp_transport = 9;
+    string te = 10;
+    string user = 11;
+    string passwd = 12;
+    string proxyuser = 13;
+    string proxypasswd = 14;
+}
+
+message UserDefined {
+    string err = 1;
+    void*Pointer debugdata = 2;
+    string errorbuffer = 3;
+    void*Pointer out = 4;
+    void*Pointer in_set = 5;
+    void*Pointer writeheader = 6;
+    unsignedshort use_port = 7;
+    int64 httpauth = 8;
+    int64 proxyauth = 9;
+    int64 maxredirs = 10;
+    void*Pointer postfields = 11;
+    int64 seek_func = 12;
+    int64 postfieldsize = 13;
+    unsignedshort localport = 14;
+    unsignedshort localportrange = 15;
+    int64 fwrite_func = 16;
+    int64 fwrite_header = 17;
+    int64 fwrite_rtp = 18;
+    int64 fread_func_set = 19;
+    int64 fprogress = 20;
+    int64 fxferinfo = 21;
+    int64 fdebug = 22;
+    int64 ioctl_func = 23;
+    int64 fsockopt = 24;
+    void*Pointer sockopt_client = 25;
+    int64 fopensocket = 26;
+    void*Pointer opensocket_client = 27;
+    int64 fclosesocket = 28;
+    void*Pointer closesocket_client = 29;
+    int64 fprereq = 30;
+    void*Pointer prereq_userp = 31;
+    void*Pointer seek_client = 32;
+    CURLSTScode(*)(structCurl_easy*,structcurl_hstsentry*,void*) hsts_read = 33;
+    void*Pointer hsts_read_userp = 34;
+    CURLSTScode(*)(structCurl_easy*,structcurl_hstsentry*,structcurl_index*,void*) hsts_write = 35;
+    void*Pointer hsts_write_userp = 36;
+    void*Pointer progress_client = 37;
+    void*Pointer ioctl_client = 38;
+    int64 timeout = 39;
+    int64 connecttimeout = 40;
+    int64 happy_eyeballs_timeout = 41;
+    int64 server_response_timeout = 42;
+    int64 maxage_conn = 43;
+    int64 maxlifetime_conn = 44;
+    int64 tftp_blksize = 45;
+    int64 filesize = 46;
+    int64 low_speed_limit = 47;
+    int64 low_speed_time = 48;
+    int64 max_send_speed = 49;
+    int64 max_recv_speed = 50;
+    int64 set_resume_from = 51;
+    structcurl_slist*Pointer headers = 52;
+    structcurl_httppost*Pointer httppost = 53;
+    structcurl_mimepart mimepost = 54;
+    structcurl_slist*Pointer telnet_options = 55;
+    structcurl_slist*Pointer resolve = 56;
+    structcurl_slist*Pointer connect_to = 57;
+    int64 timevalue = 58;
+    unsignedchar timecondition = 59;
+    unsignedchar method = 60;
+    unsignedchar httpwant = 61;
+    structssl_config_data ssl = 62;
+    structssl_config_data proxy_ssl = 63;
+    structcurl_slist*Pointer proxyheaders = 64;
+    unsignedshort proxyport = 65;
+    unsignedchar proxytype = 66;
+    unsignedchar socks5auth = 67;
+    structssl_general_config general_ssl = 68;
+    int64 dns_cache_timeout = 69;
+    int64 buffer_size = 70;
+    int64 upload_buffer_size = 71;
+    void*Pointer private_data = 72;
+    structcurl_slist*Pointer http200aliases = 73;
+    unsignedchar ipver = 74;
+    int64 max_filesize = 75;
+    unsignedchar ftp_filemethod = 76;
+    unsignedchar ftpsslauth = 77;
+    unsignedchar ftp_ccc = 78;
+    int64 accepttimeout = 79;
+    structcurl_slist*Pointer quote = 80;
+    structcurl_slist*Pointer postquote = 81;
+    structcurl_slist*Pointer prequote = 82;
+    unsignedchar ftp_create_missing_dirs = 83;
+    unsignedchar use_netrc = 84;
+    int64 new_file_perms = 85;
+    string str = 86;
+    structcurl_blob*[8]Pointer blobs = 87;
+    int64 scope_id = 88;
+    int64 allowed_protocols = 89;
+    int64 redir_protocols = 90;
+    void*Pointer rtp_out = 91;
+    Curl_RtspReq rtspreq = 92;
+    int64 chunk_bgn = 93;
+    int64 chunk_end = 94;
+    int64 fnmatch = 95;
+    void*Pointer fnmatch_data = 96;
+    void*Pointer wildcardptr = 97;
+    unsignedchar gssapi_delegation = 98;
+    int64 tcp_keepidle = 99;
+    int64 tcp_keepintvl = 100;
+    int64 expect_100_timeout = 101;
+    int64 resolver_start = 102;
+    void*Pointer resolver_start_client = 103;
+    int64 upkeep_interval_ms = 104;
+    int64 fmultidone = 105;
+    structCurl_easy*Pointer dohfor = 106;
+    structCurl_URL*Pointer uh = 107;
+    void*Pointer trailer_data = 108;
+    int64 trailer_callback = 109;
+    char keep_post = 110;
+    structcurl_slist*Pointer mail_rcpt = 111;
+    int64 mail_rcpt_allowfails = 112;
+    int64 maxconnects = 113;
+    unsignedchar use_ssl = 114;
+    unsignedchar connect_only = 115;
+    int64 mime_formescape = 116;
+    int64 is_fread_set = 117;
+    int64 tftp_no_options = 118;
+    int64 sep_headers = 119;
+    int64 cookiesession = 120;
+    int64 crlf = 121;
+    int64 ssh_compression = 122;
+    int64 quick_exit = 123;
+    int64 get_filetime = 124;
+    int64 tunnel_thru_httpproxy = 125;
+    int64 prefer_ascii = 126;
+    int64 remote_append = 127;
+    int64 list_only = 128;
+    int64 ftp_use_port = 129;
+    int64 ftp_use_epsv = 130;
+    int64 ftp_use_eprt = 131;
+    int64 ftp_use_pret = 132;
+    int64 ftp_skip_ip = 133;
+    int64 wildcard_enabled = 134;
+    int64 hide_progress = 135;
+    int64 http_fail_on_error = 136;
+    int64 http_keep_sending_on_error = 137;
+    int64 http_follow_location = 138;
+    int64 http_transfer_encoding = 139;
+    int64 allow_auth_to_other_hosts = 140;
+    int64 include_header = 141;
+    int64 http_set_referer = 142;
+    int64 http_auto_referer = 143;
+    int64 opt_no_body = 144;
+    int64 verbose = 145;
+    int64 krb = 146;
+    int64 reuse_forbid = 147;
+    int64 reuse_fresh = 148;
+    int64 no_signal = 149;
+    int64 tcp_nodelay = 150;
+    int64 ignorecl = 151;
+    int64 http_te_skip = 152;
+    int64 http_ce_skip = 153;
+    int64 proxy_transfer_mode = 154;
+    int64 sasl_ir = 155;
+    int64 tcp_keepalive = 156;
+    int64 tcp_fastopen = 157;
+    int64 ssl_enable_alpn = 158;
+    int64 path_as_is = 159;
+    int64 pipewait = 160;
+    int64 suppress_connect_headers = 161;
+    int64 dns_shuffle_addresses = 162;
+    int64 haproxyprotocol = 163;
+    int64 abstract_unix_socket = 164;
+    int64 disallow_username_in_url = 165;
+    int64 doh = 166;
+    int64 doh_verifypeer = 167;
+    int64 doh_verifyhost = 168;
+    int64 doh_verifystatus = 169;
+    int64 http09_allowed = 170;
+}
+
+message Names {
+    structCurl_hash*Pointer hostcache = 1;
+    enumNames::(unnamedat/data/tfk/study/PUT/curl/lib/urldata.h:1938:3) hostcachetype = 2;
+}
+
+message Curl_easy {
+    int64 magic = 1;
+    int64 id = 2;
+    structCurl_easy*Pointer next = 3;
+    structCurl_easy*Pointer prev = 4;
+    structconnectdata*Pointer conn = 5;
+    structCurl_llist_element connect_queue = 6;
+    structCurl_llist_element conn_queue = 7;
+    CURLMstate mstate = 8;
+    CURLcode result = 9;
+    structCurl_message msg = 10;
+    structeasy_pollset last_poll = 11;
+    structNames dns = 12;
+    structCurl_multi*Pointer multi = 13;
+    structCurl_multi*Pointer multi_easy = 14;
+    structCurl_share*Pointer share = 15;
+    structSingleRequest req = 16;
+    structUserDefined set = 17;
+    structCookieInfo*Pointer cookies = 18;
+    structhsts*Pointer hsts = 19;
+    structaltsvcinfo*Pointer asi = 20;
+    structProgress progress = 21;
+    structUrlState state = 22;
+    structWildcardData*Pointer wildcard = 23;
+    structPureInfo info = 24;
+    structcurl_tlssessioninfo tsi = 25;
+}
+
+message Curl_cwtype {
+    string name = 1;
+    string alias = 2;
+    CURLcode(*)(structCurl_easy*,structCurl_cwriter*)Pointer do_init = 3;
+    int64 do_write = 4;
+    void(*)(structCurl_easy*,structCurl_cwriter*)Pointer do_close = 5;
+    int64 cwriter_size = 6;
+}
+
+message Curl_cwriter {
+    conststructCurl_cwtype*Pointer cwt = 1;
+    structCurl_cwriter*Pointer next = 2;
+    Curl_cwriter_phase phase = 3;
+}
+
+message Curl_cftype {
+    string name = 1;
+    int64 flags = 2;
+    int64 log_level = 3;
+    void(*)(structCurl_cfilter*,structCurl_easy*)Pointer destroy = 4;
+    bool do_connect = 5;
+    void(*)(structCurl_cfilter*,structCurl_easy*)Pointer do_close = 6;
+    int64 get_host = 7;
+    void(*)(structCurl_cfilter*,structCurl_easy*,structeasy_pollset*)Pointer adjust_pollset = 8;
+    bool has_data_pending = 9;
+    int64 do_send = 10;
+    int64 do_recv = 11;
+    int64 cntrl = 12;
+    bool is_alive = 13;
+    CURLcode(*)(structCurl_cfilter*,structCurl_easy*)Pointer keep_alive = 14;
+    int64 query = 15;
+}
+
+message Curl_cfilter {
+    conststructCurl_cftype*Pointer cft = 1;
+    structCurl_cfilter*Pointer next = 2;
+    void*Pointer ctx = 3;
+    structconnectdata*Pointer conn = 4;
+    int64 sockindex = 5;
+    int64 connected = 6;
+}
+
+message cf_call_data {
+    structCurl_easy*Pointer data = 1;
+}
+
+message alpn_spec {
+    constchar[3][10] entries = 1;
+    int64 count = 2;
+}
+
+message alpn_proto_buf {
+    unsignedchar[33] data = 1;
+    int64 len = 2;
+}
+
+message ssl_connect_data {
+    ssl_connection_state state = 1;
+    ssl_connect_state connecting_state = 2;
+    structssl_peer peer = 3;
+    conststructalpn_spec*Pointer alpn = 4;
+    void*Pointer backend = 5;
+    structcf_call_data call_data = 6;
+    structcurltime handshake_done = 7;
+    int64 port = 8;
+    int64 use_alpn = 9;
+    int64 reused_session = 10;
+}
+
+message Curl_ssl {
+    structcurl_ssl_backend info = 1;
+    int64 supports = 2;
+    int64 sizeof_ssl_backend_data = 3;
+    int64 init = 4;
+    void(*)(void)Pointer cleanup = 5;
+    int64 version = 6;
+    int64 check_cxn = 7;
+    int64 shut_down = 8;
+    bool data_pending = 9;
+    int64 random = 10;
+    bool cert_status_request = 11;
+    CURLcode(*)(structCurl_cfilter*,structCurl_easy*)Pointer connect_blocking = 12;
+    bool connect_nonblocking = 13;
+    void(*)(structCurl_cfilter*,structCurl_easy*,structeasy_pollset*)Pointer adjust_pollset = 14;
+    void*(*)(structssl_connect_data*,CURLINFO)Pointer get_internals = 15;
+    void(*)(structCurl_cfilter*,structCurl_easy*)Pointer close = 16;
+    void(*)(structCurl_easy*)Pointer close_all = 17;
+    void(*)(void*)Pointer session_free = 18;
+    string set_engine = 19;
+    CURLcode(*)(structCurl_easy*)Pointer set_engine_default = 20;
+    structcurl_slist*(*)(structCurl_easy*)Pointer engines_list = 21;
+    bool false_start = 22;
+    int64 sha256sum = 23;
+    bool attach_data = 24;
+    void(*)(structCurl_cfilter*,structCurl_easy*)Pointer detach_data = 25;
+    void(*)(structmulti_ssl_backend_data*)Pointer free_multi_ssl_backend_data = 26;
+    int64 recv_plain = 27;
+    int64 send_plain = 28;
+}
+
+message ossl_ssl_backend_data {
+    structssl_ctx_st*Pointer ctx = 1;
+    structssl_st*Pointer handle = 2;
+    structx509_st*Pointer server_cert = 3;
+    structbio_method_st*Pointer bio_method = 4;
+    CURLcode io_result = 5;
+    bool x509_store_setup = 6;
+}
+
+message multi_ssl_backend_data {
+    string cafile = 1;
+    structx509_store_st*Pointer store = 2;
+    structcurltime time = 3;
+}
+
+message _data_tfk_study_PUT_curl_lib_vtls_openssl_c:1350:9 {
+    string cert_id = 1;
+    structx509_st*Pointer cert = 2;
+}
+
+message tool_mime {
+    toolmimekind kind = 1;
+    structtool_mime*Pointer parent = 2;
+    structtool_mime*Pointer prev = 3;
+    string data = 4;
+    string name = 5;
+    string filename = 6;
+    string type = 7;
+    string encoder = 8;
+    structcurl_slist*Pointer headers = 9;
+    structtool_mime*Pointer subparts = 10;
+    int64 origin = 11;
+    int64 size = 12;
+    int64 curpos = 13;
+    structGlobalConfig*Pointer config = 14;
+}
+
+message NameValue {
+    string name = 1;
+    int64 value = 2;
+}
+
+message NameValueUnsigned {
+    string name = 1;
+    int64 value = 2;
+}
+
+message slist_wc {
+    structcurl_slist*Pointer first = 1;
+    structcurl_slist*Pointer last = 2;
+}
+
+message HdrCbData {
+    structGlobalConfig*Pointer global = 1;
+    structOperationConfig*Pointer config = 2;
+    structOutStruct*Pointer outs = 3;
+    structOutStruct*Pointer heads = 4;
+    structOutStruct*Pointer etag_save = 5;
+    bool honor_cd_filename = 6;
+}
+
+message ProgressData {
+    int64 calls = 1;
+    int64 prev = 2;
+    structtimeval prevtime = 3;
+    int64 width = 4;
+    string out = 5;
+    int64 initial_size = 6;
+    int64 tick = 7;
+    int64 bar = 8;
+    int64 barmove = 9;
+}
+
+message per_transfer {
+    structper_transfer*Pointer next = 1;
+    structper_transfer*Pointer prev = 2;
+    structOperationConfig*Pointer config = 3;
+    structcurl_certinfo*Pointer certinfo = 4;
+    structCurl_easy*Pointer curl = 5;
+    int64 retry_numretries = 6;
+    int64 retry_sleep_default = 7;
+    int64 retry_sleep = 8;
+    structtimeval start = 9;
+    structtimeval retrystart = 10;
+    string this_url = 11;
+    int64 urlnum = 12;
+    string outfile = 13;
+    bool infdopen = 14;
+    int64 infd = 15;
+    bool noprogress = 16;
+    structProgressData progressbar = 17;
+    structOutStruct outs = 18;
+    structOutStruct heads = 19;
+    structOutStruct etag_save = 20;
+    structHdrCbData hdrcbdata = 21;
+    int64 num_headers = 22;
+    bool was_last_header_empty = 23;
+    bool added = 24;
+    int64 startat = 25;
+    bool abort = 26;
+    int64 dltotal = 27;
+    int64 dlnow = 28;
+    int64 ultotal = 29;
+    int64 ulnow = 30;
+    int64 uploadfilesize = 31;
+    int64 uploadedsofar = 32;
+    bool dltotal_added = 33;
+    bool ultotal_added = 34;
+    string uploadfile = 35;
+    string errorbuffer = 36;
+}
+
+message Curl_share {
+    int64 magic = 1;
+    int64 specifier = 2;
+    int64 dirty = 3;
+    void(*)(structCurl_easy*,curl_lock_data,curl_lock_access,void*) lockfunc = 4;
+    void(*)(structCurl_easy*,curl_lock_data,void*) unlockfunc = 5;
+    void*Pointer clientdata = 6;
+    structconncache conn_cache = 7;
+    structCurl_hash hostcache = 8;
+    structCookieInfo*Pointer cookies = 9;
+    structhsts*Pointer hsts = 10;
+    structCurl_ssl_session*Pointer sslsession = 11;
+    int64 max_ssl_sessions = 12;
+    int64 sessionage = 13;
+}
+
+message srvr_sockaddr_union_t {
+    structsockaddr sa = 1;
+    structsockaddr_in sa4 = 2;
+    structsockaddr_in6 sa6 = 3;
+    structsockaddr_un sau = 4;
+}
+
+message httprequest {
+    char[2097152] reqbuf = 1;
+    bool connect_request = 2;
+    unsignedshort connect_port = 3;
+    int64 checkindex = 4;
+    int64 offset = 5;
+    int64 testno = 6;
+    int64 partno = 7;
+    bool open = 8;
+    bool auth_req = 9;
+    bool auth = 10;
+    int64 cl = 11;
+    bool digest = 12;
+    bool ntlm = 13;
+    int64 delay = 14;
+    int64 writedelay = 15;
+    int64 skip = 16;
+    int64 rcmd = 17;
+    int64 prot_version = 18;
+    int64 callcount = 19;
+    bool skipall = 20;
+    bool noexpect = 21;
+    bool connmon = 22;
+    bool upgrade = 23;
+    bool upgrade_request = 24;
+    bool close = 25;
+    int64 done_processing = 26;
+}
+
+message finder {
+    string env = 1;
+    string append = 2;
+    _Bool withoutdot = 3;
+}
+
+message Tdata {
+    structCurl_share*Pointer share = 1;
+    string url = 2;
+}
+
+message userdata {
+    string text = 1;
+    int64 counter = 2;
+}
+
+message HMAC_params {
+    CURLcode(*)(void*) hmac_hinit = 1;
+    int64 hmac_hupdate = 2;
+    string hmac_hfinal = 3;
+    int64 hmac_ctxtsize = 4;
+    int64 hmac_maxkeylen = 5;
+    int64 hmac_resultlen = 6;
+}
+
+message HMAC_context {
+    conststructHMAC_params*Pointer hmac_hash = 1;
+    void*Pointer hmac_hashctxt1 = 2;
+    void*Pointer hmac_hashctxt2 = 3;
+}
+
+message MD5_params {
+    CURLcode(*)(void*) md5_init_func = 1;
+    int64 md5_update_func = 2;
+    string md5_final_func = 3;
+    int64 md5_ctxtsize = 4;
+    int64 md5_resultlen = 5;
+}
+
+message MD5_context {
+    conststructMD5_params*Pointer md5_hash = 1;
+    void*Pointer md5_hashctx = 2;
+}
+
+message libtest_trace_cfg {
+    int64 tracetime = 1;
+    int64 nohex = 2;
+}
+
+message smb_header {
+    unsignedchar nbt_type = 1;
+    unsignedchar nbt_flags = 2;
+    unsignedshort nbt_length = 3;
+    unsignedchar[4] magic = 4;
+    unsignedchar command = 5;
+    int64 status = 6;
+    unsignedchar flags = 7;
+    unsignedshort flags2 = 8;
+    unsignedshort pid_high = 9;
+    unsignedchar[8] signature = 10;
+    unsignedshort pad = 11;
+    unsignedshort tid = 12;
+    unsignedshort pid = 13;
+    unsignedshort uid = 14;
+    unsignedshort mid = 15;
+}
+
+message smb_negotiate_response {
+    structsmb_header h = 1;
+    unsignedchar word_count = 2;
+    unsignedshort dialect_index = 3;
+    unsignedchar security_mode = 4;
+    unsignedshort max_mpx_count = 5;
+    unsignedshort max_number_vcs = 6;
+    int64 max_buffer_size = 7;
+    int64 max_raw_size = 8;
+    int64 session_key = 9;
+    int64 capabilities = 10;
+    int64 system_time_low = 11;
+    int64 system_time_high = 12;
+    unsignedshort server_time_zone = 13;
+    unsignedchar encryption_key_length = 14;
+    unsignedshort byte_count = 15;
+    char[1] bytes = 16;
+}
+
+message andx {
+    unsignedchar command = 1;
+    unsignedchar pad = 2;
+    unsignedshort offset = 3;
+}
+
+message smb_setup {
+    unsignedchar word_count = 1;
+    structandx andx = 2;
+    unsignedshort max_buffer_size = 3;
+    unsignedshort max_mpx_count = 4;
+    unsignedshort vc_number = 5;
+    int64 session_key = 6;
+    unsignedshort[2] lengths = 7;
+    int64 pad = 8;
+    int64 capabilities = 9;
+    unsignedshort byte_count = 10;
+    char[1024] bytes = 11;
+}
+
+message smb_tree_connect {
+    unsignedchar word_count = 1;
+    structandx andx = 2;
+    unsignedshort flags = 3;
+    unsignedshort pw_len = 4;
+    unsignedshort byte_count = 5;
+    char[1024] bytes = 6;
+}
+
+message smb_nt_create {
+    unsignedchar word_count = 1;
+    structandx andx = 2;
+    unsignedchar pad = 3;
+    unsignedshort name_length = 4;
+    int64 flags = 5;
+    int64 root_fid = 6;
+    int64 access = 7;
+    int64 allocation_size = 8;
+    int64 ext_file_attributes = 9;
+    int64 share_access = 10;
+    int64 create_disposition = 11;
+    int64 create_options = 12;
+    int64 impersonation_level = 13;
+    unsignedchar security_flags = 14;
+    unsignedshort byte_count = 15;
+    char[1024] bytes = 16;
+}
+
+message smb_nt_create_response {
+    structsmb_header h = 1;
+    unsignedchar word_count = 2;
+    structandx andx = 3;
+    unsignedchar op_lock_level = 4;
+    unsignedshort fid = 5;
+    int64 create_disposition = 6;
+    int64 create_time = 7;
+    int64 last_access_time = 8;
+    int64 last_write_time = 9;
+    int64 last_change_time = 10;
+    int64 ext_file_attributes = 11;
+    int64 allocation_size = 12;
+    int64 end_of_file = 13;
+}
+
+message smb_read {
+    unsignedchar word_count = 1;
+    structandx andx = 2;
+    unsignedshort fid = 3;
+    int64 offset = 4;
+    unsignedshort max_bytes = 5;
+    unsignedshort min_bytes = 6;
+    int64 timeout = 7;
+    unsignedshort remaining = 8;
+    int64 offset_high = 9;
+    unsignedshort byte_count = 10;
+}
+
+message smb_write {
+    structsmb_header h = 1;
+    unsignedchar word_count = 2;
+    structandx andx = 3;
+    unsignedshort fid = 4;
+    int64 offset = 5;
+    int64 timeout = 6;
+    unsignedshort write_mode = 7;
+    unsignedshort remaining = 8;
+    unsignedshort pad = 9;
+    unsignedshort data_length = 10;
+    unsignedshort data_offset = 11;
+    int64 offset_high = 12;
+    unsignedshort byte_count = 13;
+    unsignedchar pad2 = 14;
+}
+
+message smb_close {
+    unsignedchar word_count = 1;
+    unsignedshort fid = 2;
+    int64 last_mtime = 3;
+    unsignedshort byte_count = 4;
+}
+
+message smb_tree_disconnect {
+    unsignedchar word_count = 1;
+    unsignedshort byte_count = 2;
+}
+
+message smb_request {
+    enumsmb_req_state state = 1;
+    string path = 2;
+    unsignedshort tid = 3;
+    unsignedshort fid = 4;
+    CURLcode result = 5;
+}
+
+message Curl_header_store {
+    structCurl_llist_element node = 1;
+    string name = 2;
+    string value = 3;
+    int64 request = 4;
+    unsignedchar type = 5;
+    char[1] buffer = 6;
+}
+
+message cf_socket_ctx {
+    int64 transport = 1;
+    structCurl_sockaddr_ex addr = 2;
+    int64 sock = 3;
+    structbufq recvbuf = 4;
+    char[46] r_ip = 5;
+    int64 r_port = 6;
+    char[46] l_ip = 7;
+    int64 l_port = 8;
+    structcurltime started_at = 9;
+    structcurltime connected_at = 10;
+    structcurltime first_byte_at = 11;
+    int64 error = 12;
+    int64 got_first_byte = 13;
+    int64 accepted = 14;
+    int64 sock_connected = 15;
+    int64 active = 16;
+    int64 buffer_recv = 17;
+}
+
+message reader_ctx {
+    structCurl_cfilter*Pointer cf = 1;
+    structCurl_easy*Pointer data = 2;
+}
+
+message sigpipe_ignore {
+    structsigaction old_pipe_act = 1;
+    _Bool no_signal = 2;
+}
+
+message fileinfo {
+    structcurl_fileinfo info = 1;
+    structCurl_llist_element list = 2;
+    structdynbuf buf = 3;
+}
+
+message writeoutvar {
+    string name = 1;
+    writeoutid id = 2;
+    CURLINFO ci = 3;
+    int64 writefunc = 4;
+}
+
+message helptxt {
+    string opt = 1;
+    string desc = 2;
+    int64 categories = 3;
+}
+
+message _data_tfk_study_PUT_curl_lib_curl_sasl_c:61:14 {
+    string name = 1;
+    int64 len = 2;
+    unsignedshort bit = 3;
+}
+
+message va_input {
+    FormatType type = 1;
+    int64 val = 2;
+}
+
+message _data_tfk_study_PUT_curl_lib_mprintf_c:149:3 {
+    string str = 1;
+    void*Pointer ptr = 2;
+    int64 nums = 3;
+    int64 numu = 4;
+    double dnum = 5;
+}
+
+message outsegment {
+    int64 width = 1;
+    int64 precision = 2;
+    int64 flags = 3;
+    int64 input = 4;
+    string start = 5;
+    int64 outlen = 6;
+}
+
+message nsprintf {
+    string buffer = 1;
+    int64 length = 2;
+    int64 max = 3;
+}
+
+message asprintf {
+    structdynbuf*Pointer b = 1;
+    char merr = 2;
+}
+
+message stsentry {
+    structCurl_llist_element node = 1;
+    string host = 2;
+    bool includesubdomains = 3;
+    int64 expires = 4;
+}
+
+message hsts {
+    structCurl_llist list = 1;
+    string filename = 2;
+    int64 flags = 3;
+}
+
+message althost {
+    string host = 1;
+    unsignedshort port = 2;
+    enumalpnid alpnid = 3;
+}
+
+message altsvc {
+    structalthost src = 1;
+    structalthost dst = 2;
+    int64 expires = 3;
+    bool persist = 4;
+    int64 prio = 5;
+    structCurl_llist_element node = 6;
+}
+
+message altsvcinfo {
+    string filename = 1;
+    structCurl_llist list = 2;
+    int64 flags = 3;
+}
+
+message name_const {
+    string name = 1;
+    int64 namelen = 2;
+}
+
+message connfind {
+    int64 id_tofind = 1;
+    structconnectdata*Pointer found = 2;
+}
+
+message eyeballer {
+    string name = 1;
+    conststructCurl_addrinfo*Pointer first = 2;
+    conststructCurl_addrinfo*Pointer addr = 3;
+    int64 ai_family = 4;
+    int64 cf_create = 5;
+    structCurl_cfilter*Pointer cf = 6;
+    structeyeballer*Pointer primary = 7;
+    int64 delay_ms = 8;
+    structcurltime started = 9;
+    int64 timeoutms = 10;
+    expire_id timeout_id = 11;
+    CURLcode result = 12;
+    int64 error = 13;
+    int64 rewinded = 14;
+    int64 has_started = 15;
+    int64 is_done = 16;
+    int64 connected = 17;
+    int64 inconclusive = 18;
+}
+
+message cf_he_ctx {
+    int64 transport = 1;
+    int64 cf_create = 2;
+    conststructCurl_dns_entry*Pointer remotehost = 3;
+    cf_connect_state state = 4;
+    structeyeballer*[2]Pointer baller = 5;
+    structeyeballer*Pointer winner = 6;
+    structcurltime started = 7;
+}
+
+message transport_provider {
+    int64 transport = 1;
+    int64 cf_create = 2;
+}
+
+message cf_setup_ctx {
+    cf_setup_state state = 1;
+    conststructCurl_dns_entry*Pointer remotehost = 2;
+    int64 ssl_mode = 3;
+    int64 transport = 4;
+}
+
+message ContentType {
+    string extension = 1;
+    string type = 2;
+}
+
+message unsshort_st {
+    unsignedshort num = 1;
+    string expected = 2;
+    char[256] result = 3;
+}
+
+message sigshort_st {
+    short num = 1;
+    string expected = 2;
+    char[256] result = 3;
+}
+
+message unsint_st {
+    int64 num = 1;
+    string expected = 2;
+    char[256] result = 3;
+}
+
+message sigint_st {
+    int64 num = 1;
+    string expected = 2;
+    char[256] result = 3;
+}
+
+message unslong_st {
+    int64 num = 1;
+    string expected = 2;
+    char[256] result = 3;
+}
+
+message siglong_st {
+    int64 num = 1;
+    string expected = 2;
+    char[256] result = 3;
+}
+
+message curloff_st {
+    int64 num = 1;
+    string expected = 2;
+    char[256] result = 3;
+}
+
+message xattr_mapping {
+    string attr = 1;
+    CURLINFO info = 2;
+}
+
+message cf_proxy_ctx {
+    structCurl_cfilter*Pointer cf_protocol = 1;
+}
+
+message dnsprobe {
+    structCurl_easy*Pointer easy = 1;
+    DNStype dnstype = 2;
+    unsignedchar[512] dohbuffer = 3;
+    int64 dohlen = 4;
+    structdynbuf serverdoh = 5;
+}
+
+message dohdata {
+    structcurl_slist*Pointer headers = 1;
+    structdnsprobe[2] probe = 2;
+    int64 pending = 3;
+    int64 port = 4;
+    string host = 5;
+}
+
+message dohaddr {
+    int64 type = 1;
+    uniondohaddr::(unnamedat/data/tfk/study/PUT/curl/lib/doh.h:94:3) ip = 2;
+}
+
+message _data_tfk_study_PUT_curl_lib_doh_h:94:3 {
+    unsignedchar[4] v4 = 1;
+    unsignedchar[16] v6 = 2;
+}
+
+message dohentry {
+    structdynbuf[4] cname = 1;
+    structdohaddr[24] addr = 2;
+    int64 numaddr = 3;
+    int64 ttl = 4;
+    int64 numcname = 5;
+}
+
+message prunedead {
+    structCurl_easy*Pointer data = 1;
+    structconnectdata*Pointer extracted = 2;
+}
+
+message LongShort {
+    string lname = 1;
+    enumLongShort::(unnamedat/data/tfk/study/PUT/curl/src/tool_getparam.c:347:3) desc = 2;
+    char letter = 3;
+    cmdline_t cmd = 4;
+}
+
+message chunk_data {
+    int64 remains = 1;
+    int64 print_content = 2;
+}
+
+message pair {
+    string in = 1;
+    CURLcode*Pointer exp = 2;
+}
+
+message tftphdr {
+    short th_opcode = 1;
+    unsignedshort th_block = 2;
+    char[1] th_data = 3;
+}
+
+message testcase {
+    string buffer = 1;
+    int64 bufsize = 2;
+    string rptr = 3;
+    int64 rcount = 4;
+    int64 testno = 5;
+    int64 ofile = 6;
+    int64 writedelay = 7;
+}
+
+message formats {
+    string f_mode = 1;
+    int64 f_convert = 2;
+}
+
+message errmsg {
+    int64 e_code = 1;
+    string e_msg = 2;
+}
+
+message tftphdr_storage_t {
+    structtftphdr hdr = 1;
+    char[516] storage = 2;
+}
+
+message bf {
+    int64 counter = 1;
+    tftphdr_storage_t buf = 2;
+}
+
+message configurable {
+    unsignedchar version = 1;
+    unsignedchar nmethods_min = 2;
+    unsignedchar nmethods_max = 3;
+    unsignedchar responseversion = 4;
+    unsignedchar responsemethod = 5;
+    unsignedchar reqcmd = 6;
+    unsignedchar connectrep = 7;
+    unsignedshort port = 8;
+    char[32] addr = 9;
+    char[256] user = 10;
+    char[256] password = 11;
+}
+
+message perclient {
+    int64 fromremote = 1;
+    int64 fromclient = 2;
+    int64 remotefd = 3;
+    int64 clientfd = 4;
+    bool used = 5;
+}
+
+message s_tls_max {
+    string tls_max_str = 1;
+    int64 tls_max = 2;
+}
+
+message proto_name_tokenp {
+    string proto_name = 1;
+    string proto_tokenp = 2;
+}
+
+message feature_name_presentp {
+    string feature_name = 1;
+    bool feature_presentp = 2;
+    int64 feature_bitmask = 3;
+}
+
+message dcheck {
+    string input = 1;
+    int64 output = 2;
+}
+
+message Sockets {
+    int64 sockets = 1;
+    int64 count = 2;
+    int64 max_count = 3;
+}
+
+message ReadWriteSockets {
+    structSockets read = 1;
+    structSockets write = 2;
+}
+
+message namebuff {
+    structhostent hostentry = 1;
+    unionnamebuff::(unnamedat/data/tfk/study/PUT/curl/lib/curl_addrinfo.c:349:3) addrentry = 2;
+    string h_addr_list = 3;
+}
+
+message _data_tfk_study_PUT_curl_lib_curl_addrinfo_c:349:3 {
+    structin_addr ina4 = 1;
+    structin6_addr ina6 = 2;
+}
+
+message cf_hc_baller {
+    string name = 1;
+    structCurl_cfilter*Pointer cf = 2;
+    CURLcode result = 3;
+    structcurltime started = 4;
+    int64 reply_ms = 5;
+    bool enabled = 6;
+}
+
+message cf_hc_ctx {
+    cf_hc_state state = 1;
+    conststructCurl_dns_entry*Pointer remotehost = 2;
+    structcurltime started = 3;
+    CURLcode result = 4;
+    structcf_hc_baller h3_baller = 5;
+    structcf_hc_baller h21_baller = 6;
+    int64 soft_eyeballs_timeout_ms = 7;
+    int64 hard_eyeballs_timeout_ms = 8;
+}
+
+message cf_haproxy_ctx {
+    int64 state = 1;
+    structdynbuf data_out = 2;
+}
+
+message h1_req_parser {
+    structhttpreq*Pointer req = 1;
+    structdynbuf scratch = 2;
+    int64 scratch_skip = 3;
+    string line = 4;
+    int64 max_line_len = 5;
+    int64 line_len = 6;
+    bool done = 7;
+}
+
+message pl_unix_substate {
+    enumpl_unix_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:72:3) total_dirsize = 1;
+    enumpl_unix_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:77:3) hlinks = 2;
+    enumpl_unix_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:82:3) user = 3;
+    enumpl_unix_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:87:3) group = 4;
+    enumpl_unix_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:92:3) size = 5;
+    enumpl_unix_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:97:3) time = 6;
+    enumpl_unix_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:106:3) filename = 7;
+    enumpl_unix_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:112:3) symlink = 8;
+}
+
+message pl_winNT_substate {
+    enumpl_winNT_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:132:3) time = 1;
+    enumpl_winNT_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:136:3) dirorsize = 2;
+    enumpl_winNT_substate::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:140:3) filename = 3;
+}
+
+message ftp_parselist_data {
+    enumftp_parselist_data::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:149:3) os_type = 1;
+    unionftp_parselist_data::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:155:3) state = 2;
+    CURLcode error = 3;
+    structfileinfo*Pointer file_data = 4;
+    int64 item_length = 5;
+    int64 item_offset = 6;
+    structftp_parselist_data::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:171:3) offsets = 7;
+}
+
+message _data_tfk_study_PUT_curl_lib_ftplistparser_c:155:3 {
+    structftp_parselist_data::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:156:5) unix = 1;
+    structftp_parselist_data::(unnamedat/data/tfk/study/PUT/curl/lib/ftplistparser.c:161:5) nt = 2;
+}
+
+message _data_tfk_study_PUT_curl_lib_ftplistparser_c:156:5 {
+    pl_unix_mainstate main = 1;
+    pl_unix_substate sub = 2;
+}
+
+message _data_tfk_study_PUT_curl_lib_ftplistparser_c:161:5 {
+    pl_winNT_mainstate main = 1;
+    pl_winNT_substate sub = 2;
+}
+
+message _data_tfk_study_PUT_curl_lib_ftplistparser_c:171:3 {
+    int64 filename = 1;
+    int64 user = 2;
+    int64 group = 3;
+    int64 time = 4;
+    int64 perm = 5;
+    int64 symlink_target = 6;
+}
+
+message put_buffer {
+    string buf = 1;
+    int64 len = 2;
+}
+
+message speedcount {
+    int64 dl = 1;
+    int64 ul = 2;
+    structtimeval stamp = 3;
+}
+
+message chunked_writer {
+    structCurl_cwriter super = 1;
+    structCurl_chunker ch = 2;
+}
+
+message tzinfo {
+    char[5] name = 1;
+    int64 offset = 2;
+}
+
+message Curl_sh_entry {
+    structCurl_hash transfers = 1;
+    int64 action = 2;
+    int64 users = 3;
+    void*Pointer socketp = 4;
+    int64 readers = 5;
+    int64 writers = 6;
+}
+
+message h1_tunnel_state {
+    structHTTP connect = 1;
+    structdynbuf rcvbuf = 2;
+    structdynbuf request_data = 3;
+    int64 nsent = 4;
+    int64 headerlines = 5;
+    structCurl_chunker ch = 6;
+    enumkeeponval keepon = 7;
+    int64 cl = 8;
+    h1_tunnel_state tunnel_state = 9;
+    int64 chunked_encoding = 10;
+    int64 close_connection = 11;
+}
+
+message category_descriptors {
+    string opt = 1;
+    string desc = 2;
+    int64 category = 3;
+}
+
+message tftp_packet {
+    string data = 1;
+}
+
+message tftp_state_data {
+    tftp_state_t state = 1;
+    tftp_mode_t mode = 2;
+    tftp_error_t error = 3;
+    tftp_event_t event = 4;
+    structCurl_easy*Pointer data = 5;
+    int64 sockfd = 6;
+    int64 retries = 7;
+    int64 retry_time = 8;
+    int64 retry_max = 9;
+    int64 rx_time = 10;
+    structCurl_sockaddr_storage local_addr = 11;
+    structCurl_sockaddr_storage remote_addr = 12;
+    int64 remote_addrlen = 13;
+    int64 rbytes = 14;
+    int64 sbytes = 15;
+    int64 blksize = 16;
+    int64 requested_blksize = 17;
+    unsignedshort block = 18;
+    structtftp_packet rpacket = 19;
+    structtftp_packet spacket = 20;
+}
+
+message entry {
+    string name = 1;
+    string exp = 2;
+}
+
+message state {
+    int64 index = 1;
+}
+
+message upload_status {
+    int64 lines_read = 1;
+}
+
+message Curl_URL {
+    string scheme = 1;
+    string user = 2;
+    string password = 3;
+    string options = 4;
+    string host = 5;
+    string zoneid = 6;
+    string port = 7;
+    string path = 8;
+    string query = 9;
+    string fragment = 10;
+    int64 portnum = 11;
+}
+
+message httpmap {
+    string str = 1;
+    int64 num = 2;
+}
+
+message ms_filetime {
+    int64 dwlowdatetime = 1;
+    int64 dwhighdatetime = 2;
+}
+
+message sha256_ctx {
+    structevp_md_ctx_st*Pointer openssl_ctx = 1;
+}
+
+message _data_tfk_study_PUT_curl_lib_getinfo_c:196:3 {
+    int64 to_ulong = 1;
+    int64 to_long = 2;
+}
+
+message _data_tfk_study_PUT_curl_lib_getinfo_c:512:3 {
+    structcurl_certinfo*Pointer to_certinfo = 1;
+    structcurl_slist*Pointer to_slist = 2;
+}
+
+message feat {
+    string name = 1;
+    int64 present = 2;
+    int64 bitmask = 3;
+}
+
+message Curl_actual_call {
+    int64 func = 1;
+    void*Pointer arg = 2;
+}
+
+message resdata {
+    structcurltime start = 1;
+}
+
+message thread_sync_data {
+    pthread_mutex_t*Pointer mtx = 1;
+    int64 done = 2;
+    int64 port = 3;
+    string hostname = 4;
+    structCurl_easy*Pointer data = 5;
+    int64 sock_pair = 6;
+    int64 sock_error = 7;
+    structCurl_addrinfo*Pointer res = 8;
+    structaddrinfo hints = 9;
+    structthread_data*Pointer td = 10;
+}
+
+message thread_data {
+    int64 thread_hnd = 1;
+    int64 poll_interval = 2;
+    int64 interval_end = 3;
+    structthread_sync_data tsd = 4;
+}
+
+message _data_tfk_study_PUT_curl_tests_server_getpart_c:320:3 {
+    int64 sig = 1;
+    int64 uns = 2;
+}
+
+message headerinfo {
+    int64 largest = 1;
+}
+
+message socks_state {
+    enumconnect_t state = 1;
+    int64 outstanding = 2;
+    unsignedchar[600] buffer = 3;
+    string outp = 4;
+    string hostname = 5;
+    int64 remote_port = 6;
+    string proxy_user = 7;
+    string proxy_password = 8;
+}
+
+message cb_data {
+    structCurl_easy*Pointer easy_handle = 1;
+    int64 response_received = 2;
+    int64 paused = 3;
+    int64 remaining_bytes = 4;
+}
+
+message data {
+    char trace_ascii = 1;
+}
+
+message hostcache_prune_data {
+    int64 now = 1;
+    int64 oldest = 2;
+    int64 cache_timeout = 3;
+}
+
+message Curl_sec_client_mech {
+    string name = 1;
+    int64 size = 2;
+    int64 init = 3;
+    int64 auth = 4;
+    void(*)(void*)Pointer end = 5;
+    int64 check_prot = 6;
+    int64 encode = 7;
+    int64 decode = 8;
+}
+
+message part {
+    CURLUPart part = 1;
+    string name = 2;
+}
+
+message redircase {
+    string in = 1;
+    string set = 2;
+    string out = 3;
+    int64 urlflags = 4;
+    int64 setflags = 5;
+    CURLUcode ucode = 6;
+}
+
+message setcase {
+    string in = 1;
+    string set = 2;
+    string out = 3;
+    int64 urlflags = 4;
+    int64 setflags = 5;
+    CURLUcode ucode = 6;
+    CURLUcode pcode = 7;
+}
+
+message setgetcase {
+    string in = 1;
+    string set = 2;
+    string out = 3;
+    int64 urlflags = 4;
+    int64 setflags = 5;
+    int64 getflags = 6;
+    CURLUcode pcode = 7;
+}
+
+message urltestcase {
+    string in = 1;
+    string out = 2;
+    int64 urlflags = 3;
+    int64 getflags = 4;
+    CURLUcode ucode = 5;
+}
+
+message querycase {
+    string in = 1;
+    string q = 2;
+    string out = 3;
+    int64 urlflags = 4;
+    int64 qflags = 5;
+    CURLUcode ucode = 6;
+}
+
+message clearurlcase {
+    CURLUPart part = 1;
+    string in = 2;
+    string out = 3;
+    CURLUcode ucode = 4;
+}
+
+message ReadThis {
+    structCurl_easy*Pointer easy = 1;
+    int64 origin = 2;
+    int64 count = 3;
+}
+
+message zlib_writer {
+    structCurl_cwriter super = 1;
+    zlibInitState zlib_init = 2;
+    int64 trailerlen = 3;
+    structz_stream_s z = 4;
+}
+
+message testparams {
+    int64 flags = 1;
+    CURLcode result = 2;
+}
+
+message TELNET {
+    int64 please_negotiate = 1;
+    int64 already_negotiated = 2;
+    int64 us = 3;
+    int64 usq = 4;
+    int64 us_preferred = 5;
+    int64 him = 6;
+    int64 himq = 7;
+    int64 him_preferred = 8;
+    int64 subnegotiation = 9;
+    char[32] subopt_ttype = 10;
+    char[128] subopt_xdisploc = 11;
+    unsignedshort subopt_wsx = 12;
+    unsignedshort subopt_wsy = 13;
+    TelnetReceive telrcv_state = 14;
+    structcurl_slist*Pointer telnet_vars = 15;
+    structdynbuf out = 16;
+    unsignedchar[512] subbuffer = 17;
+    string subpointer = 18;
+    string subend = 19;
+}
+

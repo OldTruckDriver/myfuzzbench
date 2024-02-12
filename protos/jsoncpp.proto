@@ -1,0 +1,570 @@
+syntax = "proto3";
+
+message UnnamedStruct {
+    uint32 value_type = 1;
+    uint32 allocated = 2;
+}
+
+message Comments {
+    repeated string ptr = 1;
+}
+
+message ValueHolder {
+    sint64 int_ = 1;
+    uint64 uint_ = 2;
+    double real_ = 3;
+    bool bool_ = 4;
+    string string_ = 5;
+    map<CZString, Value> map_ = 6;
+}
+
+message PredicateContext {
+    uint32 id = 1;
+    string file = 2;
+    uint32 line = 3;
+    string expr = 4;
+    PredicateContext next = 5;
+    Failure failure = 6;
+}
+
+message Failure {
+    string file = 1;
+    uint32 line = 2;
+    string expr = 3;
+    string message = 4;
+    uint32 nestingLevel = 5;
+}
+
+message Value {
+    ValueHolder value = 1;
+    UnnamedStruct bits = 2;
+    Comments comments = 3;
+    sint64 start = 4;
+    sint64 limit = 5;
+}
+
+message OurReader {
+    repeated Value nodes = 1;
+    repeated ErrorInfo errors = 2;
+    string document = 3;
+    string begin = 4;
+    string end = 5;
+    string current = 6;
+    string lastValueEnd = 7;
+    Value lastValue = 8;
+    bool lastValueHasAComment = 9;
+    string commentsBefore = 10;
+    OurFeatures features = 11;
+    bool collectComments = 12;
+}
+
+message Token {
+    TokenType type = 1;
+    string start = 2;
+    string end = 3;
+}
+
+message TestResult {
+    uint32 predicateId = 1;
+    PredicateContext predicateStackTail = 2;
+    repeated Failure failures = 3;
+    string name = 4;
+    PredicateContext rootPredicateNode = 5;
+    uint32 lastUsedPredicateId = 6;
+    Failure messageTarget = 7;
+}
+
+message Features {
+    bool allowComments = 1;
+    bool strictRoot = 2;
+    bool allowDroppedNullPlaceholders = 3;
+    bool allowNumericKeys = 4;
+}
+
+message TestcommentAfterBool {}
+
+message TestresizeArray {}
+
+message TestmultiLineArray {}
+
+message TestwriteNestedObjects {}
+
+message TestparseArray {}
+
+message Testindexes {}
+
+message TestcommentAfterArray {}
+
+message TestwriteEscapeSequence {}
+
+message TestparseWithNoErrorsTestingOffsets {}
+
+message WOFF2FontInfo {
+    uint32 num_glyphs = 1;
+    uint32 index_format = 2;
+    uint32 num_hmetrics = 3;
+    repeated sint32 x_mins = 4;
+    map<uint32, uint32> table_entry_by_tag = 5;
+}
+
+message FontTable {
+    uint32 tag = 1;
+    uint32 checksum = 2;
+    uint32 offset = 3;
+    uint32 length = 4;
+    bytes data = 5;
+    repeated uint8 buffer = 6;
+    FontTable reuse_of = 7;
+    uint8 flag_byte = 8;
+}
+
+message GlyphPoint {
+    sint32 x = 1;
+    sint32 y = 2;
+    bool on_curve = 3;
+}
+
+message WOFF2Header {
+    uint32 flavor = 1;
+    uint32 header_version = 2;
+    uint32 num_tables = 3;
+    uint64 compressed_offset = 4;
+    uint32 compressed_length = 5;
+    uint32 uncompressed_size = 6;
+    repeated Table tables = 7;
+    repeated TtcFont ttc_fonts = 8;
+}
+
+message Table {
+    uint32 tag = 1;
+    uint32 flags = 2;
+    uint32 src_offset = 3;
+    uint32 src_length = 4;
+    uint32 transform_length = 5;
+    uint32 dst_offset = 6;
+    uint32 dst_length = 7;
+    bytes dst_data = 8;
+}
+
+message GlyfEncoder {
+    repeated uint8 n_contour_stream = 1;
+    repeated uint8 n_points_stream = 2;
+    repeated uint8 flag_byte_stream = 3;
+    repeated uint8 composite_stream = 4;
+    repeated uint8 bbox_bitmap = 5;
+    repeated uint8 bbox_stream = 6;
+    repeated uint8 glyph_stream = 7;
+    repeated uint8 instruction_stream = 8;
+    repeated uint8 overlap_bitmap = 9;
+    sint32 n_glyphs = 10;
+}
+
+message ContourVec {
+    repeated GlyphPoint points = 1;
+}
+
+message UnnamedStruct644 {
+    uint32 value_type_ = 1;
+    uint32 allocated_ = 2;
+}
+
+message JsonValueComments {
+}
+
+message JsonValueValueHolder {
+    sint64 int_ = 1;
+    uint64 uint_ = 2;
+    double real_ = 3;
+    bool bool_ = 4;
+    string string_ = 5;
+    map<CZString, JsonValue> map_ = 6;
+}
+
+message JsonTestPredicateContext {
+    uint32 id = 1;
+    string file = 2;
+    uint32 line = 3;
+    string expr = 4;
+    JsonTestPredicateContext next = 5;
+    JsonTestFailure failure = 6;
+}
+
+message JsonTestFailure {
+    string file = 1;
+    uint32 line = 2;
+    string expr = 3;
+    string message = 4;
+    uint32 nestingLevel = 5;
+}
+
+message JsonValue {
+    JsonValueValueHolder value = 1;
+    UnnamedStruct644 bits = 2;
+    JsonValueComments comments = 3;
+    sint64 start = 4;
+    sint64 limit = 5;
+}
+
+message JsonOurReader {
+    repeated JsonValue nodes = 1;
+    repeated JsonOurReaderErrorInfo errors = 2;
+    string document = 3;
+    string begin = 4;
+    string end = 5;
+    string current = 6;
+    string lastValueEnd = 7;
+    JsonValue lastValue = 8;
+    bool lastValueHasAComment = 9;
+    string commentsBefore = 10;
+    JsonOurFeatures features = 11;
+    bool collectComments = 12;
+}
+
+message JsonOurReaderToken {
+    JsonOurReaderTokenType type = 1;
+    string start = 2;
+    string end = 3;
+}
+
+message JsonTestTestResult {
+    uint32 predicateId = 1;
+    JsonTestPredicateContext predicateStackTail = 2;
+    repeated JsonTestFailure failures = 3;
+    string name = 4;
+    JsonTestPredicateContext rootPredicateNode = 5;
+    uint32 lastUsedPredicateId = 6;
+    JsonTestFailure messageTarget = 7;
+}
+
+message JsonFeatures {
+    bool allowComments = 1;
+    bool strictRoot = 2;
+    bool allowDroppedNullPlaceholders = 3;
+    bool allowNumericKeys = 4;
+}
+
+message TestCharReaderFailIfExtraTestcommentAfterBool {}
+
+message TestValueTestresizeArray {}
+
+message TestStyledStreamWriterTestmultiLineArray {}
+
+message TestStyledStreamWriterTestwriteNestedObjects {}
+
+message TestReaderTestparseArray {}
+
+message TestIteratorTestindexes {}
+
+message TestCharReaderFailIfExtraTestcommentAfterArray {}
+
+message TestEscapeSequenceTestwriteEscapeSequence {}
+
+message TestCharReaderTestparseWithNoErrorsTestingOffsets {}
+
+message JsonTestRunner {
+    repeated JsonTestTestCase tests = 1;
+}
+
+message TestBomTestskipBom {}
+
+message TestValueTestcompareString {}
+
+message TestCharReaderAllowSingleQuotesTestissue182 {}
+
+message TestFastWriterTestwriteArrays {}
+
+message TestIteratorTestnames {}
+
+message TestValueTestarrays {}
+
+message TestValueTestzeroes {}
+
+message TestStreamWriterTestindentation {}
+
+message TestReaderTestallowNumericKeysTest {}
+
+message TestValueTestcompareUInt {}
+
+message BomTest {}
+
+message TestValueTeststrings {}
+
+message TestStyledWriterTestwriteArrays {}
+
+message MemberTemplateAs {}
+
+message TestReaderTestparseComment {}
+
+message TestValueTestbools {}
+
+message VersionTest {}
+
+message JsonOurCharReader {
+    bool collectComments = 1;
+    JsonOurReader reader = 2;
+}
+
+message TestCharReaderFailIfExtraTestissue107 {}
+
+message TestReaderTeststrictModeParseNumber {}
+
+message TestValueTestcompareArray {}
+
+message TestMemberTemplateIsBehavesSameAsNamedIs {}
+
+message TestStreamWriterTestescapeControlCharacters {}
+
+message StyledStreamWriterTest {}
+
+message TestStyledStreamWriterTestwriteValueWithComment {}
+
+message TestReaderTestparseWithOneError {}
+
+message TestCharReaderAllowNumericKeysTestallowNumericKeys {}
+
+message TestValueTestarrayInsertAtRandomIndex {}
+
+message Options {
+    string path = 1;
+    JsonFeatures features = 2;
+    bool parseOnly = 3;
+}
+
+message TestFuzzTestfuzzDoesntCrash {}
+
+message TestValueTestsearchValueByPath {}
+
+message TestCharReaderFailIfExtraTestcommentAfterObject {}
+
+message TestValueTestcompareDouble {}
+
+message TestReaderTeststreamParseWithNoErrors {}
+
+message TestCharReaderAllowSpecialFloatsTestissue209 {}
+
+message TestCharReaderFailIfExtraTestparseComment {}
+
+message TestValueTestcompareBoolean {}
+
+message JsonCommentStyle {}
+
+message TestValueTestoffsetAccessors {}
+
+message TestCharReaderAllowDropNullTestissue178 {}
+
+message TestReaderTestparseChineseWithOneError {}
+
+message CharReaderAllowDropNullTest {
+    JsonValue nullValue = 1;
+    JsonValue emptyArray = 2;
+}
+
+message TestCharReaderTestparseWithOneError {}
+
+message TestCharReaderTestparseString {}
+
+message TestValueTestcompareType {}
+
+message TestData {
+    string in = 1;
+    string out = 2;
+}
+
+message TestValueTestCopyObject {}
+
+message TestValueTestgetArrayValue {}
+
+message TestCharReaderTestparseComment {}
+
+message TestCharReaderTestparseArrayWithErrors {}
+
+message RValueTest {}
+
+message JsonTestTestCase {
+    JsonTestTestResult result = 1;
+}
+
+message TestFastWriterTestomitEndingLineFeed {}
+
+message ValueTestIsCheck {
+    bool isObject = 1;
+    bool isArray = 2;
+    bool isBool = 3;
+    bool isString = 4;
+    bool isNull = 5;
+    bool isInt = 6;
+    bool isInt64 = 7;
+    bool isUInt = 8;
+    bool isUInt64 = 9;
+    bool isIntegral = 10;
+    bool isDouble = 11;
+    bool isNumeric = 12;
+}
+
+message TestValueTestmemberCount {}
+
+message TestReaderTestpushErrorTest {}
+
+message TestStreamWriterTestwriteZeroes {}
+
+message TestValueTestobjects {}
+
+message TestReaderTestparseWithNoErrorsTestingOffsets {}
+
+message TestCharReaderAllowZeroesTestissue176 {}
+
+message TestCharReaderStrictModeTestdupKeys {}
+
+message TestMemberTemplateAsBehavesSameAsNamedAs {}
+
+message TestValueTestcompareInt {}
+
+message CharReaderStrictModeTest {}
+
+message MemberTemplateIs {}
+
+message FuzzTest {}
+
+message TestValueTestspecialFloats {}
+
+message TestCharReaderTestparseWithDetailError {}
+
+message TestReaderTestparseWithDetailError {}
+
+message TestCharReaderTestparseWithStackLimit {}
+
+message TestStreamWriterTestenableYAMLCompatibility {}
+
+message TestEscapeSequenceTestreaderParseEscapeSequence {}
+
+message TestCharReaderTestparseWithNoErrors {}
+
+message CharReaderFailIfExtraTest {}
+
+message BuilderTest {}
+
+message TestValueTestCommentBefore {}
+
+message TestEscapeSequenceTestcharReaderParseEscapeSequence {}
+
+message TestIteratorTeststaticStringKey {}
+
+message TestValueTestprecision {}
+
+message TestStyledWriterTestwriteValueWithComment {}
+
+message TestValueTestcheckNormalizeFloatingPointStr {}
+
+message TestIteratorTestdistance {}
+
+message TestFastWriterTestwriteNumericValue {}
+
+message JsonOurReaderErrorInfo {
+    JsonOurReaderToken token = 1;
+    string message = 2;
+    string extra = 3;
+}
+
+message TestValueTestintegers {}
+
+message FastWriterTest {}
+
+message ReaderTest {
+    JsonValue root = 2;
+}
+
+message TestCharReaderTesttestOperator {}
+
+message TestStreamWriterTestdropNullPlaceholders {}
+
+message ValueTest {
+    JsonValue null_ = 1;
+    JsonValue emptyArray_ = 2;
+    JsonValue emptyObject_ = 3;
+    JsonValue integer_ = 4;
+    JsonValue unsignedInteger_ = 5;
+    JsonValue smallUnsignedInteger_ = 6;
+    JsonValue real_ = 7;
+    JsonValue float_ = 8;
+    JsonValue array1_ = 9;
+    JsonValue object1_ = 10;
+    JsonValue emptyString_ = 11;
+    JsonValue string1_ = 12;
+    JsonValue string_ = 13;
+    JsonValue true_ = 14;
+    JsonValue false_ = 15;
+}
+
+message TestReaderTestparseSpecialFloat {}
+
+message TestStyledStreamWriterTestwriteArrays {}
+
+message IteratorTest {}
+
+message TestFastWriterTestenableYAMLCompatibility {}
+
+message TestCharReaderFailIfExtraTestissue164 {}
+
+message EscapeSequenceTest {}
+
+message TestBuilderTestsettings {}
+
+message TestStyledWriterTestwriteNumericValue {}
+
+message TestFastWriterTestdropNullPlaceholders {}
+
+message TestStyledWriterTestwriteNestedObjects {}
+
+message TestValueTestStaticString {}
+
+message TestCharReaderTestparseObjectWithErrors {}
+
+message TestCharReaderAllowSpecialFloatsTestspecialFloat {}
+
+message TestValueTestarrayIssue252 {}
+
+message TestReaderTestparseWithNoErrors {}
+
+message TestStreamWriterTestwriteNestedObjects {}
+
+message TestStyledStreamWriterTestwriteNumericValue {}
+
+message TestIteratorTestnullValues {}
+
+message StreamWriterTest {}
+
+message JsonOurFeatures {
+    bool allowComments = 1;
+    bool allowTrailingCommas = 2;
+    bool strictRoot = 3;
+    bool allowDroppedNullPlaceholders = 4;
+    bool allowNumericKeys = 5;
+    bool allowSingleQuotes = 6;
+    bool failIfExtra = 7;
+    bool rejectDupKeys = 8;
+    bool allowSpecialFloats = 9;
+    bool skipBom = 10;
+    uint64 stackLimit = 11;
+}
+
+message TestValueTestnull {}
+
+message TestValueTestWideString {}
+
+message TestIteratorTestconvert {}
+
+message TestVersionTestVersionNumbersMatch {}
+
+message TestRValueTestmoveConstruction {}
+
+message JsonOurReaderStructuredError {
+    sint64 offset_start = 1;
+    sint64 offset_limit = 2;
+    string message = 3;
+}
+
+message TestStreamWriterTestunicode {}
+
+message TestValueTestcompareNull {}
+
+message TestIteratorTestreverseIterator {}
