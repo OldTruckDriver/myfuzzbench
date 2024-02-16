@@ -4,8 +4,8 @@ sudo docker build -t io/library/self/dispatcher-image:latest .
 
 PYTHONPATH=. python3 experiment/run_experiment.py \
 --experiment-config experiment-config.yaml \
---benchmarks woff2_convert_woff2ttf_fuzzer \
---experiment-name fbwoff2 \
+--benchmarks curl_curl_fuzzer_http  freetype2_ftfuzzer\
+--experiment-name fbcurl fbft2 \
 --fuzzers libfuzzer \
 --no-seeds --no-dictionaries
 

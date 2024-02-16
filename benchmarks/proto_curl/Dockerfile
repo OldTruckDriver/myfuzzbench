@@ -14,7 +14,19 @@
 #
 ################################################################################
 
+
+
+
 FROM gcr.io/oss-fuzz-base/base-builder@sha256:87ca1e9e19235e731fac8de8d1892ebe8d55caf18e7aa131346fc582a2034fdd
+
+RUN apt-get update && \
+    apt-get install -y \
+    libpsl-dev llvm libfuzzer-10-dev make automake libtool \
+    wget autoconf binutils cmake ninja-build 
+
+# RUN (git clone https://github.com/llvm/llvm-project.git && \
+#     cd llvm-project && \
+#     cmake -S llvm -B build -G Ninja -DCMAKE_BUILD_TYPE=Release && ninja -C build check-llvm && ninja install)
 
 # Curl will be checked out to the commit hash specified in benchmark.yaml.
 RUN git clone https://github.com/curl/curl-fuzzer /src/curl_fuzzer

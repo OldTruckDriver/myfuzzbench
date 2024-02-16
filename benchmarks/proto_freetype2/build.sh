@@ -14,7 +14,7 @@
 # limitations under the License.
 
 
-export PROJECT_NAME=freetyp2
+export PROJECT_NAME=freetype2
 export FUZZ_TARGET=ftfuzzer.cc
 export PROTO_FILE=freetype2.proto
 export FILE2PROTO_CONVERTER=file2speed_bin.cc
