@@ -20,4 +20,4 @@ make -j $(nproc)
 echo "my_variable: $FUZZER_LIB"
 $CXX $CXXFLAGS $SRC/cms_transform_fuzzer.cc -I include/ src/.libs/liblcms2.a \
     $FUZZER_LIB -o $OUT/cms_transform_fuzzer
-cp -r /opt/seeds $OUT/
+# cp -r /opt/seeds $OUT/
