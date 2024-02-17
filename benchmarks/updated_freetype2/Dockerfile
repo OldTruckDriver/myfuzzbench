@@ -16,16 +16,17 @@
 
 FROM gcr.io/oss-fuzz-base/base-builder@sha256:87ca1e9e19235e731fac8de8d1892ebe8d55caf18e7aa131346fc582a2034fdd
 
-RUN apt-get update && \
+RUN apt-get update &&  \
+    apt-get upgrade -y && \
     apt-get install -y \
     make \
-    automake \
+    autoconf \
     libtool \
     wget
 
-RUN git clone https://github.com/mm2/Little-CMS.git
+RUN git clone git://git.sv.nongnu.org/freetype/freetype2.git
+RUN git clone https://github.com/unicode-org/text-rendering-tests.git TRT
+RUN wget https://github.com/libarchive/libarchive/releases/download/v3.4.3/libarchive-3.4.3.tar.xz
 
-RUN wget -qO $OUT/cms_transform_fuzzer.dict \
-    https://raw.githubusercontent.com/google/fuzzing/master/dictionaries/icc.dict
-COPY cms_transform_fuzzer.cc build.sh $SRC/
-# ADD seeds /opt/seeds
+
+COPY * $SRC/

@@ -205,8 +205,8 @@
     // more than a single font.
     // get number of faces
     if ( FT_New_Memory_Face( library,
-                             data(),
-                             (FT_Long) size_,
+                             data,
+                             (FT_Long)files[0].size(),
                              -1,
                              &face ) )
       return 0;

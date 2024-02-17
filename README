@@ -4,7 +4,7 @@ sudo docker build -t io/library/self/dispatcher-image:latest .
 
 PYTHONPATH=. python3 experiment/run_experiment.py \
 --experiment-config experiment-config.yaml \
---benchmark lcms_cms_transform_fuzzer\
+--benchmark lcms_cms_transform_fuzzer \
 --experiment-name fblcms \
 --fuzzers libfuzzer \
 --no-seeds --no-dictionaries
