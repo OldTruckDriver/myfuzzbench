@@ -2,10 +2,13 @@ source .venv/bin/activate
 
 sudo docker build -t io/library/self/dispatcher-image:latest .
 
+PYTHONPATH=. python3 experiment/run_experiment.py \
+--experiment-config experiment-config.yaml \
+--benchmark  updated_freetype2 \
+--experiment-name fbft2 \
+--fuzzers libfuzzer \
+--no-seeds --no-dictionaries
 
-
-
-git reset --hard HEAD
 
 
 README for libpng version 1.6.41.git

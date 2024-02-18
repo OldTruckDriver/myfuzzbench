@@ -1,18 +1,33 @@
 #!/bin/bash -ex
 
 # Build project.
+cd lcms
 ./autogen.sh && ./configure && make -j
+cd ..
 
-# Build fuzz target in $OUT directory.
-export FUZZ_TARGET=cms_transform_fuzzer_proto_bin
+export FUZZ_TARGET=cms_transform_fuzzer_proto_bin.cc
+export PROTO_FILE=lcms.proto
 
-$CC $CFLAGS -c -Ilcms/include \
-        $SRC/$FUZZ_TARGET.c -o $SRC/$FUZZ_TARGET.o
-$CXX $CXXFLAGS \
-        $SRC/$FUZZ_TARGET.o -o $OUT/$FUZZ_TARGET \
-        $LIB_FUZZING_ENGINE lcms/src/.libs/liblcms2.a
 
-cp -r seeds $OUT/
 
-# Optional: Copy dictionary to $OUT directory.
-cp $FUZZ_TARGET.dict $OUT/
+rm -rf genfiles && mkdir genfiles && LPM/external.protobuf/bin/protoc lcms.proto --cpp_out=genfiles
+$CXX $CXXFLAGS -c genfiles/lcms.pb.cc -DNDEBUG -o genfiles/lcms.pb.o -I $SRC/LPM/external.protobuf/include
+
+export FILE2PROTO_CONVERTER=file2speed_bin.cc
+#build file2speed
+$CXX $CXXFLAGS $FILE2PROTO_CONVERTER lcms2proto.cc -I. -Ilcms/include -Ilcms/src -I genfiles -ILPM/external.protobuf/include -I libprotobuf-mutator/ genfiles/lcms.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group LPM/external.protobuf/lib/lib*.a -Wl,--end-group lcms/src/.libs/liblcms2.a $FUZZER_LIB -o $OUT/file2pseed_bin -pthread
+
+
+# build fuzzer
+$CXX $CXXFLAGS $FUZZ_TARGET proto2lcms.cc -I. -Ilcms/include -Ilcms/src -Ilcms/include -Ilcms/src -I genfiles -ILPM/external.protobuf/include -I libprotobuf-mutator/ genfiles/lcms.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group LPM/external.protobuf/lib/lib*.a -Wl,--end-group lcms/src/.libs/liblcms2.a $FUZZER_LIB -pthread -fsanitize=fuzzer -o $OUT/cms_transform_fuzzer_proto_bin
+
+
+# mkdir $OUT/seeds
+# for file in /opt/seeds/*.icc; do
+#     filename=$(basename "$file")
+#     extension="${filename##*.}"
+#     filename="${filename%.*}"
+
+#     output_file="${OUT}/seeds/${filename}.pbbin"
+#     $OUT/file2pseed_bin "$file" "$output_file"
+# done

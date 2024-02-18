@@ -191,7 +191,7 @@
     assert( !InitResult );
     if ( size_ < 1 )
       return 0;
-    // const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
+    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
     FT_Face         face;
     FT_Int32        load_flags  = FT_LOAD_DEFAULT;
 #if 0
@@ -204,8 +204,16 @@
     // an unsupported NFNT bitmap font in a Mac dfont resource that holds
     // more than a single font.
     // get number of faces
+
+    // FT_New_Memory_Face( FT_Library      library,
+    //                   const FT_Byte*  file_base,
+    //                   FT_Long         file_size,
+    //                   FT_Long         face_index,
+    //                   FT_Face        *aface )
+
+
     if ( FT_New_Memory_Face( library,
-                             data,
+                             files[0].data(),
                              (FT_Long)files[0].size(),
                              -1,
                              &face ) )

@@ -1,8 +1,0 @@
-fuzz_target: cms_transform_fuzzer_proto_bin
-project: lcms-proto-bin
-unsupported_fuzzers:
-  - symcc_afl
-  - symcc_afl_single
-  - symcc_aflplusplus
-  - afldd
-  - aflpp_vs_dd
