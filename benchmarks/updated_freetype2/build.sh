@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-mkdir $OUT/seeds
+# mkdir $OUT/seeds
 # TRT/fonts is the full seed folder, but they're too big
-cp TRT/fonts/TestKERNOne.otf $OUT/seeds/
-cp TRT/fonts/TestGLYFOne.ttf $OUT/seeds/
+# cp TRT/fonts/TestKERNOne.otf $OUT/seeds/
+# cp TRT/fonts/TestGLYFOne.ttf $OUT/seeds/
 
 tar xf libarchive-3.4.3.tar.xz
 
@@ -33,6 +33,6 @@ cd freetype2
 make clean
 make all -j $(nproc)
 
-$CXX $CXXFLAGS -std=c++11 -I include -I . $SRC/ftfuzzer.cc \
+$CXX $CXXFLAGS -std=c++11 -I include -I . -pthread $SRC/ftfuzzer.cc \
     objs/.libs/libfreetype.a $FUZZER_LIB -L /usr/local/lib -larchive \
     -o $OUT/ftfuzzer

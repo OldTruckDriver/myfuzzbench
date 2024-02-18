@@ -342,3 +342,9 @@
     return 0;
   }
 // END
+
+
+int main(int argc, char **argv) {
+    // Initialize any necessary setup
+    return 0;
+}
