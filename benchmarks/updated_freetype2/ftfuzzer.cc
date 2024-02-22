@@ -248,7 +248,7 @@
         {
           if ( FT_New_Memory_Face( library,
                                    data,
-                                   (FT_Long)size_,
+                                   (FT_Long) size_,
                                    face_index,
                                    &face ) )
             continue;
@@ -258,7 +258,7 @@
           instance_index = instances_pool.get();
           if ( FT_New_Memory_Face( library,
                                    data,
-                                   (FT_Long)size_,
+                                   (FT_Long) size_,
                                    ( instance_index << 16 ) + face_index,
                                    &face ) )
             continue;
@@ -266,18 +266,18 @@
         // if we have more than a single input file coming from an archive,
         // attach them (starting with the second file) using the order given
         // in the archive
-        // for ( size_t  files_index = 1;
-        //       files_index < size_;
-        //       files_index++ )
-        // {
-        //   FT_Open_Args  open_args = {};
-        //   open_args.flags         = FT_OPEN_MEMORY;
-        //   open_args.memory_base   = files[files_index].data();
-        //   open_args.memory_size   = (FT_Long)files[files_index].size();
-        //   // the last archive element will be eventually used as the
-        //   // attachment
-        //   FT_Attach_Stream( face, &open_args );
-        // }
+        for ( size_t  files_index = 1;
+              files_index < size_;
+              files_index++ )
+        {
+          FT_Open_Args  open_args = {};
+          open_args.flags         = FT_OPEN_MEMORY;
+          open_args.memory_base   = data;
+          open_args.memory_size   = (FT_Long) size_;
+          // the last archive element will be eventually used as the
+          // attachment
+          FT_Attach_Stream( face, &open_args );
+        }
         // loop over an arbitrary size for outlines
         // and up to ten arbitrarily selected bitmap strike sizes
         // from the range [0;num_fixed_sizes - 1]
