@@ -27,6 +27,13 @@ make -j $(nproc)
 make install
 cd ..
 
+
+
+cd libfuzzer
+./build.sh
+cp libFuzzer.a /usr/lib/
+cd ..
+
 cd freetype2
 ./autogen.sh
 ./configure --with-harfbuzz=no --with-bzip2=no --with-png=no --without-zlib
@@ -34,5 +41,5 @@ make clean
 make all -j $(nproc)
 
 $CXX $CXXFLAGS -std=c++11 -I include -I . -pthread $SRC/ftfuzzer.cc \
-    objs/.libs/libfreetype.a $FUZZER_LIB /usr/lib/libFuzzer.a -L /usr/local/lib -larchive \
+    freetype2/objs/.libs/libfreetype.a /usr/lib/libFuzzer.a -L /usr/local/lib -larchive \
     -o $OUT/ftfuzzer
