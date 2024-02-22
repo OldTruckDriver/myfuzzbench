@@ -34,5 +34,5 @@ make clean
 make all -j $(nproc)
 
 $CXX $CXXFLAGS -std=c++11 -I include -I . -pthread $SRC/ftfuzzer.cc \
-    objs/.libs/libfreetype.a $FUZZER_LIB -L /usr/local/lib -larchive \
+    objs/.libs/libfreetype.a $FUZZER_LIB /usr/lib/libFuzzer.a -L /usr/local/lib -larchive \
     -o $OUT/ftfuzzer
