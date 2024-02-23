@@ -14,6 +14,13 @@
 #if __cplusplus < 201103L
 #  error "a C++11 compiler is needed"
 #endif
+
+#include "freetype2.pb.h"
+#include "libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h"
+#include "converter.h"
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 #include <archive.h>
 #include <archive_entry.h>
 #include <assert.h>
@@ -100,67 +107,7 @@
       return t;
     }
   };
-  static int
-  archive_read_entry_data( struct archive   *ar,
-                           vector<FT_Byte>  *vw )
-  {
-    int             r;
-    const FT_Byte*  buff;
-    size_t          size;
-    int64_t         offset;
-    for (;;)
-    {
-      r = archive_read_data_block( ar,
-                                   reinterpret_cast<const void**>( &buff ),
-                                   &size,
-                                   &offset );
-      if ( r == ARCHIVE_EOF )
-        return ARCHIVE_OK;
-      if ( r != ARCHIVE_OK )
-        return r;
-      vw->insert( vw->end(), buff, buff + size );
-    }
-  }
-  static vector<vector<FT_Byte>>
-  parse_data( const uint8_t*  data,
-              size_t          size )
-  {
-    struct archive_entry*    entry;
-    int                      r;
-    vector<vector<FT_Byte>>  files;
-    unique_ptr<struct  archive,
-               decltype ( archive_read_free )*>  a( archive_read_new(),
-                                                    archive_read_free );
-    // activate reading of uncompressed tar archives
-    archive_read_support_format_tar( a.get() );
-    // the need for `const_cast' was removed with libarchive commit be4d4dd
-    if ( !( r = archive_read_open_memory(
-                  a.get(),
-                  const_cast<void*>(static_cast<const void*>( data ) ),
-                  size ) ) )
-    {
-      unique_ptr<struct  archive,
-                 decltype ( archive_read_close )*>  a_open( a.get(),
-                                                            archive_read_close );
-      // read files contained in archive
-      for (;;)
-      {
-        r = archive_read_next_header( a_open.get(), &entry );
-        if ( r == ARCHIVE_EOF )
-          break;
-        if ( r != ARCHIVE_OK )
-          break;
-        vector<FT_Byte>  entry_data;
-        r = archive_read_entry_data( a.get(), &entry_data );
-        if ( r != ARCHIVE_OK )
-          break;
-        files.push_back( move( entry_data ) );
-      }
-    }
-    if ( files.size() == 0 )
-      files.emplace_back( data, data + size );
-    return files;
-  }
+
   static void
   setIntermediateAxis( FT_Face  face )
   {
@@ -185,13 +132,14 @@
   }
   // the interface function to the libFuzzer library
   extern "C" int
-  LLVMFuzzerTestOneInput( const uint8_t*  data,
-                          size_t          size_ )
+  DEFINE_BINARY_PROTO_FUZZER( const std::vector<FT_Byte_Proto>& font_data_proto, \
+                                const FT_Long_Proto& file_size_proto, \
+                                const FT_Long_Proto& face_index_proto)
   {
     assert( !InitResult );
     if ( size_ < 1 )
       return 0;
-    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
+//    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
     FT_Face         face;
     FT_Int32        load_flags  = FT_LOAD_DEFAULT;
 #if 0
@@ -211,10 +159,18 @@
     //                   FT_Long         face_index,
     //                   FT_Face        *aface )
 
+    std::vector<FT_Byte> font_data;
+    for (const auto& byte_proto : font_data_proto) {
+        font_data.push_back(ConvertFT_Byte(byte_proto.ft_byte()));
+    }
+
+    FT_Long file_size = ConvertFT_Long(file_size_proto.ft_long());
+    FT_Long face_index = ConvertFT_Long(face_index_proto.ft_long());
+
 
     if ( FT_New_Memory_Face( library,
-                             files[0].data(),
-                             (FT_Long)files[0].size(),
+                             font_data,
+                             file_size,
                              -1,
                              &face ) )
       return 0;
@@ -233,8 +189,8 @@
       long  face_index = faces_pool.get() - 1;
       // get number of instances
       if ( FT_New_Memory_Face( library,
-                               files[0].data(),
-                               (FT_Long)files[0].size(),
+                               font_data,
+                               file_size,
                                -( face_index + 1 ),
                                &face ) )
         continue;
@@ -255,8 +211,8 @@
         if ( !instance_cnt )
         {
           if ( FT_New_Memory_Face( library,
-                                   files[0].data(),
-                                   (FT_Long)files[0].size(),
+                                   font_data,
+                                   file_size,,
                                    face_index,
                                    &face ) )
             continue;
@@ -265,8 +221,8 @@
         {
           instance_index = instances_pool.get();
           if ( FT_New_Memory_Face( library,
-                                   files[0].data(),
-                                   (FT_Long)files[0].size(),
+                                   font_data,
+                                   file_size,,
                                    ( instance_index << 16 ) + face_index,
                                    &face ) )
             continue;
@@ -280,8 +236,8 @@
         {
           FT_Open_Args  open_args = {};
           open_args.flags         = FT_OPEN_MEMORY;
-          open_args.memory_base   = files[files_index].data();
-          open_args.memory_size   = (FT_Long)files[files_index].size();
+          open_args.memory_base   = font_data;
+          open_args.memory_size   = file_size;
           // the last archive element will be eventually used as the
           // attachment
           FT_Attach_Stream( face, &open_args );

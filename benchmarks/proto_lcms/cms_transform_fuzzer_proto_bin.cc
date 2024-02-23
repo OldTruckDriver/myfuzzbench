@@ -19,7 +19,7 @@ limitations under the License.
 #include "libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h"
 #include "converter.h"
 #include "lcms.pb.h"
-x`
+
 
 DEFINE_BINARY_PROTO_FUZZER(const cmsICCPROFILEProto &cmsICCPROFILE_proto) {
   _cmsICCPROFILE* newProfile;
