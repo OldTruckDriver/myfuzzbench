@@ -1,3 +1,4 @@
+
 // ftfuzzer.cc
 //
 //   A fuzzing function to test FreeType with libFuzzer.
@@ -121,46 +122,46 @@
       vw->insert( vw->end(), buff, buff + size );
     }
   }
-  // static vector<vector<FT_Byte>>
-  // parse_data( const uint8_t*  data,
-  //             size_t          size )
-  // {
-  //   struct archive_entry*    entry;
-  //   int                      r;
-  //   vector<vector<FT_Byte>>  files;
-  //   unique_ptr<struct  archive,
-  //              decltype ( archive_read_free )*>  a( archive_read_new(),
-  //                                                   archive_read_free );
-  //   // activate reading of uncompressed tar archives
-  //   archive_read_support_format_tar( a.get() );
-  //   // the need for `const_cast' was removed with libarchive commit be4d4dd
-  //   if ( !( r = archive_read_open_memory(
-  //                 a.get(),
-  //                 const_cast<void*>(static_cast<const void*>( data ) ),
-  //                 size ) ) )
-  //   {
-  //     unique_ptr<struct  archive,
-  //                decltype ( archive_read_close )*>  a_open( a.get(),
-  //                                                           archive_read_close );
-  //     // read files contained in archive
-  //     for (;;)
-  //     {
-  //       r = archive_read_next_header( a_open.get(), &entry );
-  //       if ( r == ARCHIVE_EOF )
-  //         break;
-  //       if ( r != ARCHIVE_OK )
-  //         break;
-  //       vector<FT_Byte>  entry_data;
-  //       r = archive_read_entry_data( a.get(), &entry_data );
-  //       if ( r != ARCHIVE_OK )
-  //         break;
-  //       files.push_back( move( entry_data ) );
-  //     }
-  //   }
-  //   if ( files.size() == 0 )
-  //     files.emplace_back( data, data + size );
-  //   return files;
-  // }
+  static vector<vector<FT_Byte>>
+  parse_data( const uint8_t*  data,
+              size_t          size )
+  {
+    struct archive_entry*    entry;
+    int                      r;
+    vector<vector<FT_Byte>>  files;
+    unique_ptr<struct  archive,
+               decltype ( archive_read_free )*>  a( archive_read_new(),
+                                                    archive_read_free );
+    // activate reading of uncompressed tar archives
+    archive_read_support_format_tar( a.get() );
+    // the need for `const_cast' was removed with libarchive commit be4d4dd
+    if ( !( r = archive_read_open_memory(
+                  a.get(),
+                  const_cast<void*>(static_cast<const void*>( data ) ),
+                  size ) ) )
+    {
+      unique_ptr<struct  archive,
+                 decltype ( archive_read_close )*>  a_open( a.get(),
+                                                            archive_read_close );
+      // read files contained in archive
+      for (;;)
+      {
+        r = archive_read_next_header( a_open.get(), &entry );
+        if ( r == ARCHIVE_EOF )
+          break;
+        if ( r != ARCHIVE_OK )
+          break;
+        vector<FT_Byte>  entry_data;
+        r = archive_read_entry_data( a.get(), &entry_data );
+        if ( r != ARCHIVE_OK )
+          break;
+        files.push_back( move( entry_data ) );
+      }
+    }
+    if ( files.size() == 0 )
+      files.emplace_back( data, data + size );
+    return files;
+  }
   static void
   setIntermediateAxis( FT_Face  face )
   {
@@ -191,7 +192,7 @@
     assert( !InitResult );
     if ( size_ < 1 )
       return 0;
-    // const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
+    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
     FT_Face         face;
     FT_Int32        load_flags  = FT_LOAD_DEFAULT;
 #if 0
@@ -205,8 +206,8 @@
     // more than a single font.
     // get number of faces
     if ( FT_New_Memory_Face( library,
-                             data, //
-                             (FT_Long) size_, //
+                             files[0].data(),
+                             (FT_Long)files[0].size(),
                              -1,
                              &face ) )
       return 0;
@@ -225,8 +226,8 @@
       long  face_index = faces_pool.get() - 1;
       // get number of instances
       if ( FT_New_Memory_Face( library,
-                               data,
-                               (FT_Long)size_,
+                               files[0].data(),
+                               (FT_Long)files[0].size(),
                                -( face_index + 1 ),
                                &face ) )
         continue;
@@ -247,8 +248,8 @@
         if ( !instance_cnt )
         {
           if ( FT_New_Memory_Face( library,
-                                   data,
-                                   (FT_Long) size_,
+                                   files[0].data(),
+                                   (FT_Long)files[0].size(),
                                    face_index,
                                    &face ) )
             continue;
@@ -257,8 +258,8 @@
         {
           instance_index = instances_pool.get();
           if ( FT_New_Memory_Face( library,
-                                   data,
-                                   (FT_Long) size_,
+                                   files[0].data(),
+                                   (FT_Long)files[0].size(),
                                    ( instance_index << 16 ) + face_index,
                                    &face ) )
             continue;
@@ -267,13 +268,13 @@
         // attach them (starting with the second file) using the order given
         // in the archive
         for ( size_t  files_index = 1;
-              files_index < size_;
+              files_index < files.size();
               files_index++ )
         {
           FT_Open_Args  open_args = {};
           open_args.flags         = FT_OPEN_MEMORY;
-          open_args.memory_base   = data;
-          open_args.memory_size   = (FT_Long) size_;
+          open_args.memory_base   = files[files_index].data();
+          open_args.memory_size   = (FT_Long)files[files_index].size();
           // the last archive element will be eventually used as the
           // attachment
           FT_Attach_Stream( face, &open_args );
@@ -342,9 +343,3 @@
     return 0;
   }
 // END
-
-
-int main(int argc, char **argv) {
-    // Initialize any necessary setup
-    return 0;
-}
