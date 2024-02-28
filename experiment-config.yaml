@@ -12,11 +12,11 @@ docker_registry: gcr.io/fuzzbench
 
 # The local experiment folder that will store most of the experiment data.
 # Please use an absolute path.
-experiment_filestore: /home/hehuang/result/data
+experiment_filestore: /home/ricky/result/data
 
 # The local report folder where HTML reports and summary data will be stored.
 # Please use an absolute path.
-report_filestore: /home/hehuang/result/report
+report_filestore: /home/ricky/result/report
 
 # Flag that indicates this is a local experiment.
 local_experiment: true
