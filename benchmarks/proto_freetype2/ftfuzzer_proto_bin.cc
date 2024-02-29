@@ -17,9 +17,8 @@
 
 #include "genfiles/freetype2.pb.h"
 #include "libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h"
-#include <freetype2/include/ft2build.h>
+// #include <freetype2/include/ft2build.h>
 // #include "converter.h"
-#include FT_FREETYPE_H
 
 #include <archive.h>
 #include <archive_entry.h>
