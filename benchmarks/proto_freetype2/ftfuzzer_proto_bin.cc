@@ -135,44 +135,19 @@
   // the interface function to the libFuzzer library
 
 
-
-
-
-  std::vector<unsigned char> ConvertFTByteProtoToVector(const FT_Byte_Proto& proto) {
-    std::vector<unsigned char> result;
-
-    for (const uint32_t& ft_byte : proto.ft_byte()) {
-      // Assuming ft_byte is within the range of unsigned char
-      result.push_back(static_cast<unsigned char>(ft_byte));
-    }
-
-    return result;
-  }
-
- // Assuming FT_Long in FreeType2 is equivalent to a signed long or similar type
-  FT_Long ConvertFT_Long(const FT_Long_Proto& proto_long) {
-      return static_cast<FT_Long>(proto_long.ft_long());
-  }
-
   class FT_Proto_Class {
   public:
-      // ... (existing code)
-
       // Static member function to convert FT_Byte_Proto to vector
-      static std::vector<unsigned char> ConvertFTByteProtoToVector(const FT_Byte_Proto& proto) {
-          std::vector<unsigned char> result;
-
-          for (const uint32_t& ft_byte : proto.ft_byte()) {
-              // Assuming ft_byte is within the range of unsigned char
-              result.push_back(static_cast<unsigned char>(ft_byte));
-          }
-
-          return result;
-      }
+      static void ConvertFTByteProtoToVector(const FT_Proto& ft_proto, vector<vector<FT_Byte>>& result) {
+        for (const FT_Byte_Proto& ft_byte_proto : ft_proto.ft_byte()) {
+            vector<FT_Byte> ft_bytes(ft_byte_proto.ftbyte().begin(), ft_byte_proto.ftbyte().end());
+            result.push_back(ft_bytes);
+        }
+}
 
       // Static member function to convert FT_Long_Proto to FT_Long
       static FT_Long ConvertFT_Long(const FT_Long_Proto& proto_long) {
-          return static_cast<FT_Long>(proto_long.ft_long());
+          return static_cast<FT_Long>(proto_long.ftlong());
       }
   };
 
@@ -181,19 +156,16 @@
   {
     assert( !InitResult );
 
-    // std::vector<FT_Byte> font_data = ConvertFTByteProtoToVector(ft_proto->ft_byte);
-    // FT_Long file_size = ConvertFT_Long(ft_proto->ft_size);
-    // FT_Long face_index = ConvertFT_Long(ft_proto->ft_index);
-
-    std::vector<FT_Byte> font_data = FT_Proto_Class::ConvertFTByteProtoToVector(ft_proto.ft_byte());
+    vector<vector<FT_Byte>> font_data;
+    FT_Proto_Class::ConvertFTByteProtoToVector(ft_proto, font_data);
     FT_Long file_size = FT_Proto_Class::ConvertFT_Long(ft_proto.ft_size());
     FT_Long face_index = FT_Proto_Class::ConvertFT_Long(ft_proto.ft_index());
 
     if (font_data.size() < 1) {
         return;
     }
-    
-    const FT_Byte* font_data_ptr = font_data.data();
+
+    // const FT_Byte* font_data_ptr = font_data.data();
 //    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
     FT_Face         face;
     FT_Int32        load_flags  = FT_LOAD_DEFAULT;
@@ -209,10 +181,9 @@
 
     
 
-    // const FT_Byte* font_data_ptr = font_data.data();
     if ( FT_New_Memory_Face( library,
-                             font_data_ptr,
-                             file_size,
+                             font_data[0].data(),
+                             (FT_Long)font_data[0].size(),
                              -1,
                              &face ) )
       return;
@@ -231,8 +202,8 @@
       long  face_index = faces_pool.get() - 1;
       // get number of instances
       if ( FT_New_Memory_Face( library,
-                               font_data_ptr,
-                               file_size,
+                               font_data[0].data(),
+                               (FT_Long)font_data[0].size(),
                                -( face_index + 1 ),
                                &face ) )
         continue;
@@ -253,8 +224,8 @@
         if ( !instance_cnt )
         {
           if ( FT_New_Memory_Face( library,
-                                   font_data_ptr,
-                                   file_size,
+                                   font_data[0].data(),
+                                   (FT_Long)font_data[0].size(),
                                    face_index,
                                    &face ) )
             continue;
@@ -263,8 +234,8 @@
         {
           instance_index = instances_pool.get();
           if ( FT_New_Memory_Face( library,
-                                   font_data_ptr,
-                                   file_size,
+                                   font_data[0].data(),
+                                   (FT_Long)font_data[0].size(),
                                    ( instance_index << 16 ) + face_index,
                                    &face ) )
             continue;
@@ -278,8 +249,8 @@
         {
           FT_Open_Args  open_args = {};
           open_args.flags         = FT_OPEN_MEMORY;
-          open_args.memory_base   = font_data_ptr;
-          open_args.memory_size   = file_size;
+          open_args.memory_base   = font_data[files_index].data();
+          open_args.memory_size   = (FT_Long)font_data[files_index].size();
           // the last archive element will be eventually used as the
           // attachment
           FT_Attach_Stream( face, &open_args );

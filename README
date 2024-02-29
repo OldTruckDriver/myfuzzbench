@@ -7,7 +7,8 @@ PYTHONPATH=. python3 experiment/run_experiment.py \
 --benchmark  proto_freetype2 \
 --experiment-name ptft2 \
 --fuzzers libfuzzer \
---no-seeds --no-dictionaries
+--no-seeds \
+--no-dictionaries
 
 
 
