@@ -2,9 +2,15 @@ syntax = "proto3";
 
 
 message FT_Byte_Proto {
-  uint32 ft_byte = 1;
+  repeated uint32 ft_byte = 1;
 }
 
 message FT_Long_Proto {
   int64 ft_long = 1;
+}
+
+message FT_Proto {
+  FT_Byte_Proto ft_byte = 1;
+  FT_Long_Proto ft_size = 2;
+  FT_Long_Proto ft_index = 3;
 }

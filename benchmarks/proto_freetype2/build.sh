@@ -15,17 +15,19 @@
 
 
 export PROJECT_NAME=freetype2
-export FUZZ_TARGET=ftfuzzer.cc
+export FUZZ_TARGET=ftfuzzer_proto_bin.cc
 export PROTO_FILE=freetype2.proto
 export FILE2PROTO_CONVERTER=file2speed_bin.cc
 
 
-rm -rf genfiles && mkdir genfiles && LPM/external.protobuf/bin/protoc $PROJECT_NAME.proto --cpp_out=genfiles
-$CXX $CXXFLAGS -c genfiles/$PROJECT_NAME.pb.cc -DNDEBUG -o genfiles/$PROJECT_NAME.pb.o -I $SRC/LPM/external.protobuf/include
+rm -rf genfiles && mkdir genfiles && LPM/external.protobuf/bin/protoc freetype2.proto --cpp_out=genfiles
+$CXX $CXXFLAGS -c genfiles/freetype2.pb.cc -DNDEBUG -o genfiles/freetype2.pb.o -I $SRC/LPM/external.protobuf/include
 
 
 #build file2speed
-$CXX $CXXFLAGS $FILE2PROTO_CONVERTER freetyp2proto.cc -I. -I$PROJECT_NAME/include -I$PROJECT_NAME/src -I genfiles -ILPM/external.protobuf/include -I libprotobuf-mutator/ genfiles/woff2.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group LPM/external.protobuf/lib/lib*.a -Wl,--end-group woff2/build/libconvert_woff2ttf_fuzzer.a $FUZZER_LIB -o $OUT/file2pseed_bin -pthread
+# $CXX $CXXFLAGS $FILE2PROTO_CONVERTER freety2proto.cc -I. -I$PROJECT_NAME/include -I$PROJECT_NAME/src -I genfiles -ILPM/external.protobuf/include \
+#                     -I libprotobuf-mutator/ genfiles/woff2.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
+#                     LPM/external.protobuf/lib/lib*.a -Wl,--end-group woff2/build/libconvert_woff2ttf_fuzzer.a $FUZZER_LIB -o $OUT/file2pseed_bin -pthread
 
 mkdir $OUT/seeds
 # TRT/fonts is the full seed folder, but they're too big
@@ -46,7 +48,18 @@ cd freetype2
 ./configure --with-harfbuzz=no --with-bzip2=no --with-png=no --without-zlib
 make clean
 make all -j $(nproc)
+cd ..
 
-$CXX $CXXFLAGS -std=c++11 -I include -I . src/tools/ftfuzzer/ftfuzzer.cc \
-    objs/.libs/libfreetype.a $FUZZER_LIB -L /usr/local/lib -larchive \
-    -o $OUT/ftfuzzer
+
+$CXX $CXXFLAGS ftfuzzer_proto_bin.cc -std=c++14 -I. -I$SRC/freetype2/include -I$SRC/freetype2/src -I genfiles -ILPM/external.protobuf/include \
+                    -I libprotobuf-mutator/ genfiles/freetype2.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
+                    LPM/external.protobuf/lib/lib*.a -Wl,--end-group $SRC/freetype2/objs/.libs/libfreetype.a $FUZZER_LIB \
+                    -L /usr/local/lib -larchive -lbrotlidec -lz -lm -pthread -fsanitize=fuzzer,address -o $OUT/ftfuzzer_proto_bin
+
+
+
+# $CXX $CXXFLAGS $FUZZ_TARGET -std=c++14 -I. -I$SRC/freetype2/include -I$SRC/freetype2/src -I genfiles -ILPM/external.protobuf/include \
+# -I libprotobuf-mutator/ genfiles/freetype2.pb.o -L /usr/local/lib -larchive -lbrotlidec -lz -lm -pthread -Wl,--start-group \
+# LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a LPM/external.protobuf/lib/lib*.a \
+# $SRC/freetype2/objs/.libs/libfreetype.a $FUZZER_LIB -Wl,--end-group -fsanitize=fuzzer -o $OUT/ftfuzzer_proto_bin -g0
+

@@ -47,3 +47,4 @@ RUN (mkdir LPM && \
     ninja)
 
 COPY * $SRC/
+COPY ftfuzzer_proto_bin.cc *.proto build.sh $SRC/

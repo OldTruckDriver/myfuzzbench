@@ -15,11 +15,15 @@ $CXX $CXXFLAGS -c genfiles/lcms.pb.cc -DNDEBUG -o genfiles/lcms.pb.o -I $SRC/LPM
 
 export FILE2PROTO_CONVERTER=file2speed_bin.cc
 #build file2speed
-$CXX $CXXFLAGS $FILE2PROTO_CONVERTER lcms2proto.cc -I. -Ilcms/include -Ilcms/src -I genfiles -ILPM/external.protobuf/include -I libprotobuf-mutator/ genfiles/lcms.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group LPM/external.protobuf/lib/lib*.a -Wl,--end-group lcms/src/.libs/liblcms2.a $FUZZER_LIB -o $OUT/file2pseed_bin -pthread
+$CXX $CXXFLAGS $FILE2PROTO_CONVERTER lcms2proto.cc -I. -Ilcms/include -Ilcms/src -I genfiles -ILPM/external.protobuf/include \
+                    -I libprotobuf-mutator/ genfiles/lcms.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
+                    LPM/external.protobuf/lib/lib*.a -Wl,--end-group lcms/src/.libs/liblcms2.a $FUZZER_LIB -o $OUT/file2pseed_bin -pthread
 
 
 # build fuzzer
-$CXX $CXXFLAGS $FUZZ_TARGET proto2lcms.cc -I. -Ilcms/include -Ilcms/src -Ilcms/include -Ilcms/src -I genfiles -ILPM/external.protobuf/include -I libprotobuf-mutator/ genfiles/lcms.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group LPM/external.protobuf/lib/lib*.a -Wl,--end-group lcms/src/.libs/liblcms2.a $FUZZER_LIB -pthread -fsanitize=fuzzer -o $OUT/cms_transform_fuzzer_proto_bin
+$CXX $CXXFLAGS $FUZZ_TARGET proto2lcms.cc -I. -Ilcms/include -Ilcms/src -Ilcms/include -Ilcms/src -I genfiles -ILPM/external.protobuf/include \
+                    -I libprotobuf-mutator/ genfiles/lcms.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
+                    LPM/external.protobuf/lib/lib*.a -Wl,--end-group lcms/src/.libs/liblcms2.a $FUZZER_LIB -pthread -fsanitize=fuzzer -o $OUT/cms_transform_fuzzer_proto_bin
 
 
 # mkdir $OUT/seeds

@@ -15,10 +15,10 @@
 #  error "a C++11 compiler is needed"
 #endif
 
-#include "freetype2.pb.h"
+#include "genfiles/freetype2.pb.h"
 #include "libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h"
-#include "converter.h"
-#include <ft2build.h>
+#include <freetype2/include/ft2build.h>
+// #include "converter.h"
 #include FT_FREETYPE_H
 
 #include <archive.h>
@@ -131,27 +131,72 @@
       return;
   }
   // the interface function to the libFuzzer library
-  extern "C" int
-  DEFINE_BINARY_PROTO_FUZZER( const std::vector<FT_Byte_Proto>& font_data_proto, \
-                                const FT_Long_Proto& file_size_proto, \
-                                const FT_Long_Proto& face_index_proto)
+
+
+
+
+
+  std::vector<unsigned char> ConvertFTByteProtoToVector(const FT_Byte_Proto& proto) {
+    std::vector<unsigned char> result;
+
+    for (const uint32_t& ft_byte : proto.ft_byte()) {
+      // Assuming ft_byte is within the range of unsigned char
+      result.push_back(static_cast<unsigned char>(ft_byte));
+    }
+
+    return result;
+  }
+
+ // Assuming FT_Long in FreeType2 is equivalent to a signed long or similar type
+  FT_Long ConvertFT_Long(const FT_Long_Proto& proto_long) {
+      return static_cast<FT_Long>(proto_long.ft_long());
+  }
+
+  class FT_Proto_Class {
+  public:
+      // ... (existing code)
+
+      // Static member function to convert FT_Byte_Proto to vector
+      static std::vector<unsigned char> ConvertFTByteProtoToVector(const FT_Byte_Proto& proto) {
+          std::vector<unsigned char> result;
+
+          for (const uint32_t& ft_byte : proto.ft_byte()) {
+              // Assuming ft_byte is within the range of unsigned char
+              result.push_back(static_cast<unsigned char>(ft_byte));
+          }
+
+          return result;
+      }
+
+      // Static member function to convert FT_Long_Proto to FT_Long
+      static FT_Long ConvertFT_Long(const FT_Long_Proto& proto_long) {
+          return static_cast<FT_Long>(proto_long.ft_long());
+      }
+  };
+
+  
+  DEFINE_BINARY_PROTO_FUZZER(const FT_Proto &ft_proto)
   {
     assert( !InitResult );
-    if ( size_ < 1 )
-      return 0;
+
+    // std::vector<FT_Byte> font_data = ConvertFTByteProtoToVector(ft_proto->ft_byte);
+    // FT_Long file_size = ConvertFT_Long(ft_proto->ft_size);
+    // FT_Long face_index = ConvertFT_Long(ft_proto->ft_index);
+
+    std::vector<FT_Byte> font_data = FT_Proto_Class::ConvertFTByteProtoToVector(ft_proto.ft_byte());
+    FT_Long file_size = FT_Proto_Class::ConvertFT_Long(ft_proto.ft_size());
+    FT_Long face_index = FT_Proto_Class::ConvertFT_Long(ft_proto.ft_index());
+    if (font_data.size() < 1) {
+        return;
+    }
+
+    const FT_Byte* font_data_ptr = font_data.data();
 //    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
     FT_Face         face;
     FT_Int32        load_flags  = FT_LOAD_DEFAULT;
 #if 0
     FT_Render_Mode  render_mode = FT_RENDER_MODE_NORMAL;
 #endif
-    // We use a conservative approach here, at the cost of calling
-    // `FT_New_Face' quite often.  The idea is that the fuzzer should be
-    // able to try all faces and named instances of a font, expecting that
-    // some faces don't work for various reasons, e.g., a broken subfont, or
-    // an unsupported NFNT bitmap font in a Mac dfont resource that holds
-    // more than a single font.
-    // get number of faces
 
     // FT_New_Memory_Face( FT_Library      library,
     //                   const FT_Byte*  file_base,
@@ -159,21 +204,15 @@
     //                   FT_Long         face_index,
     //                   FT_Face        *aface )
 
-    std::vector<FT_Byte> font_data;
-    for (const auto& byte_proto : font_data_proto) {
-        font_data.push_back(ConvertFT_Byte(byte_proto.ft_byte()));
-    }
+    
 
-    FT_Long file_size = ConvertFT_Long(file_size_proto.ft_long());
-    FT_Long face_index = ConvertFT_Long(face_index_proto.ft_long());
-
-
+    // const FT_Byte* font_data_ptr = font_data.data();
     if ( FT_New_Memory_Face( library,
-                             font_data,
+                             font_data_ptr,
                              file_size,
                              -1,
                              &face ) )
-      return 0;
+      return;
     long  num_faces = face->num_faces;
     FT_Done_Face( face );
     // loop over up to 20 arbitrarily selected faces
@@ -189,7 +228,7 @@
       long  face_index = faces_pool.get() - 1;
       // get number of instances
       if ( FT_New_Memory_Face( library,
-                               font_data,
+                               font_data_ptr,
                                file_size,
                                -( face_index + 1 ),
                                &face ) )
@@ -211,8 +250,8 @@
         if ( !instance_cnt )
         {
           if ( FT_New_Memory_Face( library,
-                                   font_data,
-                                   file_size,,
+                                   font_data_ptr,
+                                   file_size,
                                    face_index,
                                    &face ) )
             continue;
@@ -221,8 +260,8 @@
         {
           instance_index = instances_pool.get();
           if ( FT_New_Memory_Face( library,
-                                   font_data,
-                                   file_size,,
+                                   font_data_ptr,
+                                   file_size,
                                    ( instance_index << 16 ) + face_index,
                                    &face ) )
             continue;
@@ -231,12 +270,12 @@
         // attach them (starting with the second file) using the order given
         // in the archive
         for ( size_t  files_index = 1;
-              files_index < files.size();
+              files_index < font_data.size();
               files_index++ )
         {
           FT_Open_Args  open_args = {};
           open_args.flags         = FT_OPEN_MEMORY;
-          open_args.memory_base   = font_data;
+          open_args.memory_base   = font_data_ptr;
           open_args.memory_size   = file_size;
           // the last archive element will be eventually used as the
           // attachment
@@ -303,6 +342,6 @@
         FT_Done_Face( face );
       }
     }
-    return 0;
+    return;
   }
 // END
