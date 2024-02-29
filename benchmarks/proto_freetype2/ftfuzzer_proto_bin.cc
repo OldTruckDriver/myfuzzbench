@@ -27,7 +27,7 @@
 #include <memory>
 #include <vector>
   using namespace std;
-#include <freetype/ftdriver.h>
+#include "freetype2/include/freetype/ftdriver.h"
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
