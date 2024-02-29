@@ -39,7 +39,8 @@
 #include FT_OUTLINE_H
 #include FT_BBOX_H
 #include FT_MODULE_H
-#include FT_DRIVER_H
+// #include FT_DRIVER_H
+#include FT_HINTING_ADOBE
 #include FT_MULTIPLE_MASTERS_H
   static FT_Library  library;
   static int         InitResult;
