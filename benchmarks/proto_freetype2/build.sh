@@ -29,10 +29,10 @@ $CXX $CXXFLAGS -c genfiles/freetype2.pb.cc -DNDEBUG -o genfiles/freetype2.pb.o -
 #                     -I libprotobuf-mutator/ genfiles/woff2.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
 #                     LPM/external.protobuf/lib/lib*.a -Wl,--end-group woff2/build/libconvert_woff2ttf_fuzzer.a $FUZZER_LIB -o $OUT/file2pseed_bin -pthread
 
-mkdir $OUT/seeds
+# mkdir $OUT/seeds
 # TRT/fonts is the full seed folder, but they're too big
-cp TRT/fonts/TestKERNOne.otf $OUT/seeds/
-cp TRT/fonts/TestGLYFOne.ttf $OUT/seeds/
+# cp TRT/fonts/TestKERNOne.otf $OUT/seeds/
+# cp TRT/fonts/TestGLYFOne.ttf $OUT/seeds/
 
 tar xf libarchive-3.4.3.tar.xz
 

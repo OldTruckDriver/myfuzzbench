@@ -188,10 +188,11 @@
     std::vector<FT_Byte> font_data = FT_Proto_Class::ConvertFTByteProtoToVector(ft_proto.ft_byte());
     FT_Long file_size = FT_Proto_Class::ConvertFT_Long(ft_proto.ft_size());
     FT_Long face_index = FT_Proto_Class::ConvertFT_Long(ft_proto.ft_index());
+
     if (font_data.size() < 1) {
         return;
     }
-
+    
     const FT_Byte* font_data_ptr = font_data.data();
 //    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
     FT_Face         face;
