@@ -28,6 +28,7 @@
 #include <vector>
   using namespace std;
 #include "freetype2/include/freetype/ftdriver.h"
+#include <freetype/ftdriver.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
@@ -41,7 +42,7 @@
 #include FT_BBOX_H
 #include FT_MODULE_H
 // #include FT_DRIVER_H
-#include FT_HINTING_ADOBE
+// #include FT_HINTING_ADOBE
 #include FT_MULTIPLE_MASTERS_H
   static FT_Library  library;
   static int         InitResult;
@@ -53,7 +54,7 @@
       if ( InitResult )
         return;
       // try to activate Adobe's CFF engine; it might not be the default
-      unsigned int  cff_hinting_engine = FT_HINTING_ADOBE;
+      unsigned int  cff_hinting_engine = 1;
       FT_Property_Set( library,
                        "cff",
                        "hinting-engine", &cff_hinting_engine );
