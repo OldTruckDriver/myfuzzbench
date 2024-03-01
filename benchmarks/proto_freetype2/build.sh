@@ -24,7 +24,7 @@ rm -rf genfiles && mkdir genfiles && LPM/external.protobuf/bin/protoc freetype2.
 $CXX $CXXFLAGS -c genfiles/freetype2.pb.cc -DNDEBUG -o genfiles/freetype2.pb.o -I $SRC/LPM/external.protobuf/include
 
 
-#build file2speed
+#build file2pseed
 # $CXX $CXXFLAGS $FILE2PROTO_CONVERTER freety2proto.cc -I. -I$PROJECT_NAME/include -I$PROJECT_NAME/src -I genfiles -ILPM/external.protobuf/include \
 #                     -I libprotobuf-mutator/ genfiles/woff2.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
 #                     LPM/external.protobuf/lib/lib*.a -Wl,--end-group woff2/build/libconvert_woff2ttf_fuzzer.a $FUZZER_LIB -o $OUT/file2pseed_bin -pthread
@@ -52,9 +52,12 @@ cd ..
 
 
 $CXX $CXXFLAGS ftfuzzer_proto_bin.cc -std=c++14 -I. -I$SRC/freetype2/include -I$SRC/freetype2/src -I genfiles -ILPM/external.protobuf/include \
-                    -I libprotobuf-mutator/ genfiles/freetype2.pb.o -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
-                    LPM/external.protobuf/lib/lib*.a -Wl,--end-group $SRC/freetype2/objs/.libs/libfreetype.a $FUZZER_LIB \
-                    -L /usr/local/lib -larchive -lbrotlidec -lz -lm -pthread -fsanitize=fuzzer,address -o $OUT/ftfuzzer_proto_bin
+                    -I libprotobuf-mutator/ genfiles/freetype2.pb.o \
+                    -lz -lm LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
+                    LPM/external.protobuf/lib/lib*.a -Wl,--end-group \
+                    $SRC/freetype2/objs/.libs/libfreetype.a $FUZZER_LIB \
+                    -L /usr/local/lib -larchive -lbrotlidec -lz -lm -pthread -fsanitize=fuzzer,address -o \
+                    $OUT/ftfuzzer_proto_bin
 
 
 

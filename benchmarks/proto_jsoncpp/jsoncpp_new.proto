@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+message ptrdiff_t {
+  int64 ptrdiff_t = 1;
+}
+
+//message Json_proto_CharReaderBuilder {
+//    Json_proto_Value alias_settings_ = 1;
+//}
+
+//message Json_proto_Value {
+//    Json_proto_Value_proto_ValueHolder alias_value_ = 1;
+//    Bits_proto alias_bits_ = 2;
+//    Json_proto_Value_proto_Comments alias_comments_ = 3;
+//    ptrdiff_t alias_start_ = 4;
+//    ptrdiff_t alias_limit_ = 5;
+//}
+
+message Bits_proto{
+    uint32 value_type_ = 1;
+    uint32 allocated_ = 2;
+}
+
+message Json_proto_Value_proto_Comments {
+    repeated string alias_ptr_ = 1;
+}
+
+//message Json_proto_Value_proto_ValueHolder {
+//  oneof data1 {
+//    LargestInt_Proto alias_int_ = 1;
+//    LargestUInt_Proto alias_uint_ = 2;
+//    double alias_real_ = 3;
+//    bool alias_bool_ = 4;
+//    string alias_string_ = 5;
+//    ObjectValues_proto alias_map_ = 6;
+//  }
+//}
+
+message ArrayIndex_proto {
+  uint32 index = 1;
+}
+
+message Json_proto_Value_proto_CZString {
+
+  DuplicationPolicy alias_duplication_policy = 1;
+
+  oneof data {
+    ArrayIndex_proto index = 2; // 用于模拟原始C++类中的union
+    StringStorage_proto storage = 3; // 自定义消息类型来表示原始C++类中的StringStorage结构
+  }
+
+  string cstr = 4; // Protobuf中的string类型可以用来表示原始C++类中的char const* cstr_
+  // 注意：在Protobuf中无法直接表示cstr_的特殊含义（例如前缀字符串），这需要在应用逻辑中处理
+}
+
+enum DuplicationPolicy {
+  noDuplication = 0;
+  duplicate = 1;
+  duplicateOnCopy = 2;
+}
+
+message StringStorage_proto {
+  DuplicationPolicy policy = 1; // 枚举类型
+  uint32 length = 2; // 假设这里不需要完整的30位，因为Protobuf不支持位字段
+}
+
+//me=
+
+message LargestInt_Proto {
+  int64 alias_int = 1;
+}
+
+message LargestUInt_Proto {
+  uint64 alias_uint = 1;
+}
+

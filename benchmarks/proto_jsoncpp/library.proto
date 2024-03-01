@@ -1,0 +1,4488 @@
+syntax = 'proto3';
+
+message size_t {
+  uint64 size_t = 1;
+}
+
+message ptrdiff_t {
+  int64 ptrdiff_t = 1;
+}
+
+message nullptr_t {
+  decltype(nullptr) nullptr_t = 1;
+}
+
+message (anonymous) {
+  long long alias___clang_max_align_nonce1 = 1;
+  bytes alias___clang_max_align_nonce2 = 2;
+}
+
+message max_align_t {
+  max_align_t alias_max_align_t = 1;
+}
+
+message __u_char {
+  uint32 __u_char = 1;
+}
+
+message __u_short {
+  uint32 __u_short = 1;
+}
+
+message __u_int {
+  uint32 __u_int = 1;
+}
+
+message __u_long {
+  uint64 __u_long = 1;
+}
+
+message __int8_t {
+  int32 __int8_t = 1;
+}
+
+message __uint8_t {
+  uint32 __uint8_t = 1;
+}
+
+message __int16_t {
+  int32 __int16_t = 1;
+}
+
+message __uint16_t {
+  uint32 __uint16_t = 1;
+}
+
+message __int32_t {
+  int32 __int32_t = 1;
+}
+
+message __uint32_t {
+  uint32 __uint32_t = 1;
+}
+
+message __int64_t {
+  int64 __int64_t = 1;
+}
+
+message __uint64_t {
+  uint64 __uint64_t = 1;
+}
+
+message __int_least8_t {
+  __int8_t __int_least8_t = 1;
+}
+
+message __uint_least8_t {
+  __uint8_t __uint_least8_t = 1;
+}
+
+message __int_least16_t {
+  __int16_t __int_least16_t = 1;
+}
+
+message __uint_least16_t {
+  __uint16_t __uint_least16_t = 1;
+}
+
+message __int_least32_t {
+  __int32_t __int_least32_t = 1;
+}
+
+message __uint_least32_t {
+  __uint32_t __uint_least32_t = 1;
+}
+
+message __int_least64_t {
+  __int64_t __int_least64_t = 1;
+}
+
+message __uint_least64_t {
+  __uint64_t __uint_least64_t = 1;
+}
+
+message __quad_t {
+  int64 __quad_t = 1;
+}
+
+message __u_quad_t {
+  uint64 __u_quad_t = 1;
+}
+
+message __intmax_t {
+  int64 __intmax_t = 1;
+}
+
+message __uintmax_t {
+  uint64 __uintmax_t = 1;
+}
+
+message __dev_t {
+  uint64 __dev_t = 1;
+}
+
+message __uid_t {
+  uint32 __uid_t = 1;
+}
+
+message __gid_t {
+  uint32 __gid_t = 1;
+}
+
+message __ino_t {
+  uint64 __ino_t = 1;
+}
+
+message __ino64_t {
+  uint64 __ino64_t = 1;
+}
+
+message __mode_t {
+  uint32 __mode_t = 1;
+}
+
+message __nlink_t {
+  uint64 __nlink_t = 1;
+}
+
+message __off_t {
+  int64 __off_t = 1;
+}
+
+message __off64_t {
+  int64 __off64_t = 1;
+}
+
+message __pid_t {
+  int32 __pid_t = 1;
+}
+
+message __fsid_t {
+  __fsid_t alias___fsid_t = 1;
+}
+
+message __clock_t {
+  int64 __clock_t = 1;
+}
+
+message __rlim_t {
+  uint64 __rlim_t = 1;
+}
+
+message __rlim64_t {
+  uint64 __rlim64_t = 1;
+}
+
+message __id_t {
+  uint32 __id_t = 1;
+}
+
+message __time_t {
+  int64 __time_t = 1;
+}
+
+message __useconds_t {
+  uint32 __useconds_t = 1;
+}
+
+message __suseconds_t {
+  int64 __suseconds_t = 1;
+}
+
+message __suseconds64_t {
+  int64 __suseconds64_t = 1;
+}
+
+message __daddr_t {
+  int32 __daddr_t = 1;
+}
+
+message __key_t {
+  int32 __key_t = 1;
+}
+
+message __clockid_t {
+  int32 __clockid_t = 1;
+}
+
+message __timer_t {
+  bytes __timer_t = 1;
+}
+
+message __blksize_t {
+  int64 __blksize_t = 1;
+}
+
+message __blkcnt_t {
+  int64 __blkcnt_t = 1;
+}
+
+message __blkcnt64_t {
+  int64 __blkcnt64_t = 1;
+}
+
+message __fsblkcnt_t {
+  uint64 __fsblkcnt_t = 1;
+}
+
+message __fsblkcnt64_t {
+  uint64 __fsblkcnt64_t = 1;
+}
+
+message __fsfilcnt_t {
+  uint64 __fsfilcnt_t = 1;
+}
+
+message __fsfilcnt64_t {
+  uint64 __fsfilcnt64_t = 1;
+}
+
+message __fsword_t {
+  int64 __fsword_t = 1;
+}
+
+message __ssize_t {
+  int64 __ssize_t = 1;
+}
+
+message __syscall_slong_t {
+  int64 __syscall_slong_t = 1;
+}
+
+message __syscall_ulong_t {
+  uint64 __syscall_ulong_t = 1;
+}
+
+message __loff_t {
+  __off64_t __loff_t = 1;
+}
+
+message __caddr_t {
+  string __loff_t = 1;
+}
+
+message __intptr_t {
+  int64 __intptr_t = 1;
+}
+
+message __socklen_t {
+  uint32 __socklen_t = 1;
+}
+
+message __sig_atomic_t {
+  int32 __sig_atomic_t = 1;
+}
+
+message int8_t {
+  __int8_t int8_t = 1;
+}
+
+message int16_t {
+  __int16_t int16_t = 1;
+}
+
+message int32_t {
+  __int32_t int32_t = 1;
+}
+
+message int64_t {
+  __int64_t int64_t = 1;
+}
+
+message uint8_t {
+  __uint8_t uint8_t = 1;
+}
+
+message uint16_t {
+  __uint16_t uint16_t = 1;
+}
+
+message uint32_t {
+  __uint32_t uint32_t = 1;
+}
+
+message uint64_t {
+  __uint64_t uint64_t = 1;
+}
+
+message int_least8_t {
+  __int_least8_t int_least8_t = 1;
+}
+
+message int_least16_t {
+  __int_least16_t int_least16_t = 1;
+}
+
+message int_least32_t {
+  __int_least32_t int_least32_t = 1;
+}
+
+message int_least64_t {
+  __int_least64_t int_least64_t = 1;
+}
+
+message uint_least8_t {
+  __uint_least8_t uint_least8_t = 1;
+}
+
+message uint_least16_t {
+  __uint_least16_t uint_least16_t = 1;
+}
+
+message uint_least32_t {
+  __uint_least32_t uint_least32_t = 1;
+}
+
+message uint_least64_t {
+  __uint_least64_t uint_least64_t = 1;
+}
+
+message int_fast8_t {
+  int32 int_fast8_t = 1;
+}
+
+message int_fast16_t {
+  int64 int_fast16_t = 1;
+}
+
+message int_fast32_t {
+  int64 int_fast32_t = 1;
+}
+
+message int_fast64_t {
+  int64 int_fast64_t = 1;
+}
+
+message uint_fast8_t {
+  uint32 uint_fast8_t = 1;
+}
+
+message uint_fast16_t {
+  uint64 uint_fast16_t = 1;
+}
+
+message uint_fast32_t {
+  uint64 uint_fast32_t = 1;
+}
+
+message uint_fast64_t {
+  uint64 uint_fast64_t = 1;
+}
+
+message intptr_t {
+  int64 intptr_t = 1;
+}
+
+message uintptr_t {
+  uint64 uintptr_t = 1;
+}
+
+message intmax_t {
+  __intmax_t intmax_t = 1;
+}
+
+message uintmax_t {
+  __uintmax_t uintmax_t = 1;
+}
+
+message va_list {
+  __builtin_va_list va_list = 1;
+}
+
+message __gnuc_va_list {
+  __builtin_va_list __gnuc_va_list = 1;
+}
+
+message (anonymous struct)::(anonymous) {
+  uint32 alias___wch = 1;
+  char[4] alias___wchb = 2;
+}
+
+message __mbstate_t {
+  __mbstate_t alias___mbstate_t = 1;
+}
+
+message _G_fpos_t {
+  __off_t alias___pos = 1;
+  __mbstate_t alias___state = 2;
+}
+
+message __fpos_t {
+  _G_fpos_t alias___fpos_t = 1;
+}
+
+message _G_fpos64_t {
+  __off64_t alias___pos = 1;
+  __mbstate_t alias___state = 2;
+}
+
+message __fpos64_t {
+  _G_fpos64_t alias___fpos64_t = 1;
+}
+
+message __FILE {
+  _IO_FILE alias___file = 1;
+}
+
+message FILE {
+  _IO_FILE alias_file = 1;
+}
+
+message _IO_lock_t {
+  bytes _io_lock_t = 1;
+}
+
+message _IO_FILE {
+  int32 alias__flags = 1;
+  string alias__io_read_ptr = 2;
+  string alias__io_read_end = 3;
+  string alias__io_read_base = 4;
+  string alias__io_write_base = 5;
+  string alias__io_write_ptr = 6;
+  string alias__io_write_end = 7;
+  string alias__io_buf_base = 8;
+  string alias__io_buf_end = 9;
+  string alias__io_save_base = 10;
+  string alias__io_backup_base = 11;
+  string alias__io_save_end = 12;
+  _IO_marker alias__markers = 13;
+  _IO_FILE alias__chain = 14;
+  int32 alias__fileno = 15;
+  int32 alias__flags2 = 16;
+  __off_t alias__old_offset = 17;
+  uint32 alias__cur_column = 18;
+  int32 alias__vtable_offset = 19;
+  char[1] alias__shortbuf = 20;
+  _IO_lock_t * alias__lock = 21;
+  __off64_t alias__offset = 22;
+  _IO_codecvt alias__codecvt = 23;
+  _IO_wide_data alias__wide_data = 24;
+  _IO_FILE alias__freeres_list = 25;
+  bytes alias__freeres_buf = 26;
+  uint64 alias___pad5 = 27;
+  int32 alias__mode = 28;
+  char[20] alias__unused2 = 29;
+}
+
+message cookie_read_function_t {
+  string alias__unused2 = 1;
+}
+
+message cookie_write_function_t {
+  string alias__unused2 = 1;
+}
+
+message cookie_seek_function_t {
+  int (void *, __off64_t *, int) cookie_seek_function_t = 1;
+}
+
+message cookie_close_function_t {
+  int (void *) cookie_close_function_t = 1;
+}
+
+message _IO_cookie_io_functions_t {
+  cookie_read_function_t * alias_read = 1;
+  cookie_write_function_t * alias_write = 2;
+  cookie_seek_function_t * alias_seek = 3;
+  cookie_close_function_t * alias_close = 4;
+}
+
+message cookie_io_functions_t {
+  _IO_cookie_io_functions_t alias_cookie_io_functions_t = 1;
+}
+
+message off_t {
+  __off64_t off_t = 1;
+}
+
+message off64_t {
+  __off64_t off64_t = 1;
+}
+
+message ssize_t {
+  __ssize_t ssize_t = 1;
+}
+
+message fpos_t {
+  __fpos64_t fpos_t = 1;
+}
+
+message fpos64_t {
+  __fpos64_t fpos64_t = 1;
+}
+
+message _Float32 {
+  float _float32 = 1;
+}
+
+message _Float64 {
+  double _float64 = 1;
+}
+
+message _Float32x {
+  double _float32x = 1;
+}
+
+message _Float64x {
+  bytes _float64x = 1;
+}
+
+message std::__true_type {
+}
+
+message std::__false_type {
+}
+
+message std::__truth_type {
+}
+
+message __type {
+  std::__false_type __type = 1;
+}
+
+message std::__traitor {
+}
+
+message std::__are_same {
+}
+
+message std::__is_void {
+}
+
+message std::__is_integer {
+}
+
+message std::__is_floating {
+}
+
+message std::__is_pointer {
+}
+
+message std::__is_arithmetic {
+}
+
+message std::__is_scalar {
+}
+
+message std::__is_char {
+}
+
+message std::__is_byte {
+}
+
+message std::__is_nonvolatile_trivially_copyable {
+}
+
+message std::__memcpyable {
+}
+
+message std::__memcmpable {
+}
+
+message std::__is_memcmp_ordered {
+}
+
+message std::__is_memcmp_ordered_with {
+}
+
+message std::__is_move_iterator {
+}
+
+message __gnu_cxx::__enable_if {
+}
+
+message __gnu_cxx::__conditional_type {
+}
+
+message __gnu_cxx::__add_unsigned {
+}
+
+message __if_type {
+  __enable_if<std::__is_integer<_Tp>::__value, _Tp> __if_type = 1;
+}
+
+message __gnu_cxx::__remove_unsigned {
+}
+
+message __gnu_cxx::__promote {
+}
+
+message __gnu_cxx::__promote_2 {
+}
+
+message __gnu_cxx::__promote_3 {
+}
+
+message __gnu_cxx::__promote_4 {
+}
+
+message __gnu_cxx::__is_integer_nonstrict {
+}
+
+message __gnu_cxx::__numeric_traits_integer {
+}
+
+message __gnu_cxx::__numeric_traits_floating {
+}
+
+message __gnu_cxx::__numeric_traits {
+}
+
+message std::integral_constant {
+}
+
+message value_type {
+  _Tp value_type = 1;
+}
+
+message type {
+  integral_constant<_Tp, __v> type = 1;
+}
+
+message std::__type_identity {
+}
+
+message std::__or_ {
+}
+
+message std::__and_ {
+}
+
+message std::__not_ {
+}
+
+message std::__success_type {
+}
+
+message std::__failure_type {
+}
+
+message std::__is_void_helper {
+}
+
+message std::is_void {
+}
+
+message std::__is_integral_helper {
+}
+
+message std::is_integral {
+}
+
+message std::__is_floating_point_helper {
+}
+
+message std::is_floating_point {
+}
+
+message std::is_array {
+}
+
+message std::__is_pointer_helper {
+}
+
+message std::is_pointer {
+}
+
+message std::is_lvalue_reference {
+}
+
+message std::is_rvalue_reference {
+}
+
+message std::__is_member_object_pointer_helper {
+}
+
+message std::is_member_object_pointer {
+}
+
+message std::__is_member_function_pointer_helper {
+}
+
+message std::is_member_function_pointer {
+}
+
+message std::is_enum {
+}
+
+message std::is_union {
+}
+
+message std::is_class {
+}
+
+message std::is_function {
+}
+
+message std::__is_null_pointer_helper {
+}
+
+message std::is_null_pointer {
+}
+
+message std::__is_nullptr_t {
+}
+
+message std::is_reference {
+}
+
+message std::is_arithmetic {
+}
+
+message std::is_fundamental {
+}
+
+message std::is_object {
+}
+
+message std::is_scalar {
+}
+
+message std::is_compound {
+}
+
+message std::__is_member_pointer_helper {
+}
+
+message std::is_member_pointer {
+}
+
+message std::__is_referenceable {
+}
+
+message std::is_const {
+}
+
+message std::is_volatile {
+}
+
+message std::is_trivial {
+}
+
+message std::is_trivially_copyable {
+}
+
+message std::is_standard_layout {
+}
+
+message std::is_pod {
+}
+
+message std::is_literal_type {
+}
+
+message std::is_empty {
+}
+
+message std::is_polymorphic {
+}
+
+message std::is_abstract {
+}
+
+message std::__is_signed_helper {
+}
+
+message std::is_signed {
+}
+
+message std::is_unsigned {
+}
+
+message std::__is_array_known_bounds {
+}
+
+message std::__is_array_unknown_bounds {
+}
+
+message std::__do_is_destructible_impl {
+}
+
+message std::__is_destructible_impl {
+}
+
+message std::__is_destructible_safe {
+}
+
+message std::is_destructible {
+}
+
+message std::__do_is_nt_destructible_impl {
+}
+
+message std::__is_nt_destructible_impl {
+}
+
+message std::__is_nt_destructible_safe {
+}
+
+message std::is_nothrow_destructible {
+}
+
+message std::__is_constructible_impl {
+}
+
+message std::is_constructible {
+}
+
+message std::is_default_constructible {
+}
+
+message std::__is_copy_constructible_impl {
+}
+
+message std::is_copy_constructible {
+}
+
+message std::__is_move_constructible_impl {
+}
+
+message std::is_move_constructible {
+}
+
+message std::is_nothrow_constructible {
+}
+
+message std::is_nothrow_default_constructible {
+}
+
+message std::__is_nothrow_copy_constructible_impl {
+}
+
+message std::is_nothrow_copy_constructible {
+}
+
+message std::__is_nothrow_move_constructible_impl {
+}
+
+message std::is_nothrow_move_constructible {
+}
+
+message std::is_assignable {
+}
+
+message std::__is_copy_assignable_impl {
+}
+
+message std::is_copy_assignable {
+}
+
+message std::__is_move_assignable_impl {
+}
+
+message std::is_move_assignable {
+}
+
+message std::is_nothrow_assignable {
+}
+
+message std::__is_nt_copy_assignable_impl {
+}
+
+message std::is_nothrow_copy_assignable {
+}
+
+message std::__is_nt_move_assignable_impl {
+}
+
+message std::is_nothrow_move_assignable {
+}
+
+message std::is_trivially_constructible {
+}
+
+message std::is_trivially_default_constructible {
+}
+
+message std::__do_is_implicitly_default_constructible_impl {
+}
+
+message std::__is_implicitly_default_constructible_impl {
+}
+
+message std::__is_implicitly_default_constructible_safe {
+}
+
+message std::__is_implicitly_default_constructible {
+}
+
+message std::__is_trivially_copy_constructible_impl {
+}
+
+message std::is_trivially_copy_constructible {
+}
+
+message std::__is_trivially_move_constructible_impl {
+}
+
+message std::is_trivially_move_constructible {
+}
+
+message std::is_trivially_assignable {
+}
+
+message std::__is_trivially_copy_assignable_impl {
+}
+
+message std::is_trivially_copy_assignable {
+}
+
+message std::__is_trivially_move_assignable_impl {
+}
+
+message std::is_trivially_move_assignable {
+}
+
+message std::is_trivially_destructible {
+}
+
+message std::has_virtual_destructor {
+}
+
+message std::alignment_of {
+}
+
+message std::rank {
+}
+
+message std::extent {
+}
+
+message std::is_same {
+}
+
+message std::is_base_of {
+}
+
+message std::__is_convertible_helper {
+}
+
+message std::is_convertible {
+}
+
+message std::__is_nt_convertible_helper {
+}
+
+message std::remove_const {
+}
+
+message std::remove_volatile {
+}
+
+message std::remove_cv {
+}
+
+message std::add_const {
+}
+
+message std::add_volatile {
+}
+
+message std::add_cv {
+}
+
+message std::remove_reference {
+}
+
+message std::__add_lvalue_reference_helper {
+}
+
+message std::add_lvalue_reference {
+}
+
+message std::__add_rvalue_reference_helper {
+}
+
+message std::add_rvalue_reference {
+}
+
+message std::__cv_selector {
+}
+
+message std::__match_cv_qualifiers {
+}
+
+message __match {
+  __cv_selector<_Unqualified, _IsConst, _IsVol> __match = 1;
+}
+
+message std::__make_unsigned {
+}
+
+message std::__make_unsigned_selector {
+}
+
+message std::__make_unsigned_selector_base {
+}
+
+message std::__make_unsigned_selector_base::_List {
+}
+
+message std::__make_unsigned_selector_base::__select {
+}
+
+message std::make_unsigned {
+}
+
+message std::__make_signed {
+}
+
+message std::__make_signed_selector {
+}
+
+message __unsigned_type {
+  typename __make_unsigned_selector<_Tp>::__type __unsigned_type = 1;
+}
+
+message std::make_signed {
+}
+
+message std::remove_extent {
+}
+
+message std::remove_all_extents {
+}
+
+message std::__remove_pointer_helper {
+}
+
+message std::remove_pointer {
+}
+
+message std::__add_pointer_helper {
+}
+
+message std::add_pointer {
+}
+
+message std::__aligned_storage_msa {
+}
+
+message std::__aligned_storage_msa::__type {
+  unsigned char[_Len] alias___data = 1;
+  (unnamed alias___align = 2;
+}
+
+message std::__aligned_storage_msa::__type::(anonymous) {
+}
+
+message std::aligned_storage {
+}
+
+message std::aligned_storage::type {
+  unsigned char[_Len] alias___data = 1;
+  (unnamed alias___align = 2;
+}
+
+message std::aligned_storage::type::(anonymous) {
+}
+
+message std::__strictest_alignment {
+}
+
+message std::aligned_union {
+}
+
+message std::__decay_selector {
+}
+
+message std::decay {
+}
+
+message __remove_type {
+  typename remove_reference<_Tp>::type __remove_type = 1;
+}
+
+message std::__strip_reference_wrapper {
+}
+
+message std::enable_if {
+}
+
+message std::conditional {
+}
+
+message std::__do_common_type_impl {
+}
+
+message std::common_type {
+}
+
+message std::__common_type_impl {
+}
+
+message std::__common_type_pack {
+}
+
+message std::__common_type_fold {
+}
+
+message std::__underlying_type_impl {
+}
+
+message std::underlying_type {
+}
+
+message std::__declval_protector {
+}
+
+message std::__invoke_memfun_ref {
+}
+
+message std::__invoke_memfun_deref {
+}
+
+message std::__invoke_memobj_ref {
+}
+
+message std::__invoke_memobj_deref {
+}
+
+message std::__invoke_other {
+}
+
+message std::__result_of_success {
+}
+
+message std::__result_of_memfun_ref_impl {
+}
+
+message std::__result_of_memfun_ref {
+}
+
+message std::__result_of_memfun_deref_impl {
+}
+
+message std::__result_of_memfun_deref {
+}
+
+message std::__result_of_memobj_ref_impl {
+}
+
+message std::__result_of_memobj_ref {
+}
+
+message std::__result_of_memobj_deref_impl {
+}
+
+message std::__result_of_memobj_deref {
+}
+
+message std::__result_of_memobj {
+}
+
+message _Argval {
+  __remove_cvref_t<_Arg> _argval = 1;
+}
+
+message _MemPtr {
+  _Res _Class::* _memptr = 1;
+}
+
+message std::__result_of_memfun {
+}
+
+message std::__inv_unwrap {
+}
+
+message std::__result_of_impl {
+}
+
+message std::__result_of_other_impl {
+}
+
+message std::__invoke_result {
+}
+
+message std::result_of {
+}
+
+message std::__detector {
+}
+
+message std::__is_tuple_like_impl {
+}
+
+message std::__is_tuple_like {
+}
+
+message std::__swappable_details::__do_is_swappable_impl {
+}
+
+message std::__swappable_details::__do_is_nothrow_swappable_impl {
+}
+
+message std::__is_swappable_impl {
+}
+
+message std::__is_nothrow_swappable_impl {
+}
+
+message std::__is_swappable {
+}
+
+message std::__is_nothrow_swappable {
+}
+
+message std::__is_invocable_impl {
+}
+
+message std::__is_invocable {
+}
+
+message std::__call_is_nothrow {
+}
+
+message std::__is_nothrow_invocable {
+}
+
+message std::__nonesuchbase {
+}
+
+message std::__nonesuch {
+}
+
+message std::__move_if_noexcept_cond {
+}
+
+message std::piecewise_construct_t {
+}
+
+message std::_PCC {
+}
+
+message std::__pair_base {
+}
+
+message std::pair {
+  _T1 alias_first = 1;
+  _T2 alias_second = 2;
+}
+
+message first_type {
+  _T1 first_type = 1;
+}
+
+message second_type {
+  _T2 second_type = 1;
+}
+
+message __ds_type1 {
+  typename __decay_and_strip<_T1>::__type __ds_type1 = 1;
+}
+
+message __ds_type2 {
+  typename __decay_and_strip<_T2>::__type __ds_type2 = 1;
+}
+
+message __pair_type {
+  pair<__ds_type1, __ds_type2> __pair_type = 1;
+}
+
+message std::input_iterator_tag {
+}
+
+message std::output_iterator_tag {
+}
+
+message std::forward_iterator_tag {
+}
+
+message std::bidirectional_iterator_tag {
+}
+
+message std::random_access_iterator_tag {
+}
+
+message std::iterator {
+}
+
+message iterator_category {
+  _Category iterator_category = 1;
+}
+
+message difference_type {
+  _Distance difference_type = 1;
+}
+
+message pointer {
+  _Pointer pointer = 1;
+}
+
+message reference {
+  _Reference reference = 1;
+}
+
+message std::__iterator_traits {
+}
+
+message std::iterator_traits {
+}
+
+message std::__is_random_access_iter {
+}
+
+message _Base {
+  is_base_of<std::random_access_iterator_tag, _Cat> _base = 1;
+}
+
+message std::__replace_first_arg {
+}
+
+message std::__ptr_traits_elem_1 {
+}
+
+message std::__ptr_traits_elem {
+}
+
+message std::pointer_traits {
+}
+
+message std::pointer_traits::__rebind {
+}
+
+message element_type {
+  _Tp element_type = 1;
+}
+
+message std::reverse_iterator {
+  _Iterator alias_current = 1;
+}
+
+message __traits_type {
+  iterator_traits<_Iterator> __traits_type = 1;
+}
+
+message iterator_type {
+  _Iterator iterator_type = 1;
+}
+
+message std::back_insert_iterator {
+  _Container * alias_container = 1;
+}
+
+message container_type {
+  _Container container_type = 1;
+}
+
+message std::front_insert_iterator {
+  _Container * alias_container = 1;
+}
+
+message std::insert_iterator {
+  _Container * alias_container = 1;
+  std::insert_iterator::_Iter alias_iter = 2;
+}
+
+message _Iter {
+  typename _Container::iterator _iter = 1;
+}
+
+message __gnu_cxx::__normal_iterator {
+  _Iterator alias__m_current = 1;
+}
+
+message std::move_iterator {
+  _Iterator alias__m_current = 1;
+}
+
+message __gnu_cxx::__ops::_Iter_less_iter {
+}
+
+message __gnu_cxx::__ops::_Iter_less_val {
+}
+
+message __gnu_cxx::__ops::_Val_less_iter {
+}
+
+message __gnu_cxx::__ops::_Iter_equal_to_iter {
+}
+
+message __gnu_cxx::__ops::_Iter_equal_to_val {
+}
+
+message __gnu_cxx::__ops::_Iter_comp_iter {
+  _Compare alias__m_comp = 1;
+}
+
+message __gnu_cxx::__ops::_Iter_comp_val {
+  _Compare alias__m_comp = 1;
+}
+
+message __gnu_cxx::__ops::_Val_comp_iter {
+  _Compare alias__m_comp = 1;
+}
+
+message __gnu_cxx::__ops::_Iter_equals_val {
+  _Value & alias__m_value = 1;
+}
+
+message __gnu_cxx::__ops::_Iter_equals_iter {
+  _Iterator1 alias__m_it1 = 1;
+}
+
+message __gnu_cxx::__ops::_Iter_pred {
+  _Predicate alias__m_pred = 1;
+}
+
+message __gnu_cxx::__ops::_Iter_comp_to_val {
+  _Compare alias__m_comp = 1;
+  _Value & alias__m_value = 2;
+}
+
+message __gnu_cxx::__ops::_Iter_comp_to_iter {
+  _Compare alias__m_comp = 1;
+  _Iterator1 alias__m_it1 = 2;
+}
+
+message __gnu_cxx::__ops::_Iter_negate {
+  _Predicate alias__m_pred = 1;
+}
+
+message std::__copy_move {
+}
+
+message _Distance {
+  typename iterator_traits<_II>::difference_type _distance = 1;
+}
+
+message _Category {
+  typename iterator_traits<_II>::iterator_category _category = 1;
+}
+
+message std::__copy_move_backward {
+}
+
+message std::__equal {
+}
+
+message _ValueType1 {
+  typename iterator_traits<_II1>::value_type _valuetype1 = 1;
+}
+
+message std::__lc_rai {
+}
+
+message _Category1 {
+  typename iterator_traits<_II1>::iterator_category _category1 = 1;
+}
+
+message _Category2 {
+  typename iterator_traits<_II2>::iterator_category _category2 = 1;
+}
+
+message __rai_type {
+  std::__lc_rai<_Category1, _Category2> __rai_type = 1;
+}
+
+message std::__lexicographical_compare {
+}
+
+message _ValueType2 {
+  typename iterator_traits<_II2>::value_type _valuetype2 = 1;
+}
+
+message _DistanceType {
+  typename iterator_traits<_ForwardIterator>::difference_type _distancetype = 1;
+}
+
+message std::exception {
+}
+
+message std::bad_alloc {
+}
+
+message std::bad_array_new_length {
+}
+
+message std::nothrow_t {
+}
+
+message new_handler {
+  void (*)() new_handler = 1;
+}
+
+message __gnu_cxx::new_allocator {
+}
+
+message size_type {
+  std::size_t size_type = 1;
+}
+
+message const_pointer {
+  _Tp * const_pointer = 1;
+}
+
+message const_reference {
+  _Tp & const_reference = 1;
+}
+
+message __gnu_cxx::new_allocator::rebind {
+}
+
+message other {
+  new_allocator<_Tp1> other = 1;
+}
+
+message propagate_on_container_move_assignment {
+  std::true_type propagate_on_container_move_assignment = 1;
+}
+
+message std::allocator {
+}
+
+message std::allocator<void>::rebind {
+}
+
+message std::allocator::rebind {
+}
+
+message std::__alloc_swap {
+}
+
+message std::__alloc_neq {
+}
+
+message std::__shrink_to_fit_aux {
+}
+
+message std::_Destroy_aux {
+}
+
+message _Value_type {
+  typename iterator_traits<_ForwardIterator>::value_type _value_type = 1;
+}
+
+message std::_Destroy_n_aux {
+}
+
+message std::__allocator_traits_base {
+}
+
+message std::__allocator_traits_base::__rebind {
+}
+
+message std::allocator_traits {
+}
+
+message allocator_type {
+  _Alloc allocator_type = 1;
+}
+
+message std::allocator_traits::_Ptr {
+}
+
+message std::allocator_traits::_Diff {
+}
+
+message std::allocator_traits::_Size {
+}
+
+message std::allocator_traits::__construct_helper {
+}
+
+message __traits {
+  allocator_traits<_Alloc> __traits = 1;
+}
+
+message __pocca {
+  typename __traits::propagate_on_container_copy_assignment __pocca = 1;
+}
+
+message __pocma {
+  typename __traits::propagate_on_container_move_assignment __pocma = 1;
+}
+
+message __pocs {
+  typename __traits::propagate_on_container_swap __pocs = 1;
+}
+
+message std::__is_alloc_insertable_impl {
+}
+
+message std::__is_copy_insertable {
+}
+
+message std::__is_move_insertable {
+}
+
+message std::__is_allocator {
+}
+
+message __gnu_cxx::__alloc_traits {
+}
+
+message _Base_type {
+  std::allocator_traits<_Alloc> _base_type = 1;
+}
+
+message __gnu_cxx::__alloc_traits::rebind {
+}
+
+message std::__uninitialized_copy {
+}
+
+message _RefType1 {
+  typename iterator_traits<_InputIterator>::reference _reftype1 = 1;
+}
+
+message _RefType2 {
+  typename iterator_traits<_ForwardIterator>::reference _reftype2 = 1;
+}
+
+message std::__uninitialized_fill {
+}
+
+message _ValueType {
+  typename iterator_traits<_ForwardIterator>::value_type _valuetype = 1;
+}
+
+message std::__uninitialized_fill_n {
+}
+
+message std::__uninitialized_default_1 {
+}
+
+message std::__uninitialized_default_n_1 {
+}
+
+message std::__uninitialized_default_novalue_1 {
+}
+
+message std::__uninitialized_default_novalue_n_1 {
+}
+
+message std::__is_bitwise_relocatable {
+}
+
+message std::initializer_list {
+  std::initializer_list::iterator alias__m_array = 1;
+  std::initializer_list::size_type alias__m_len = 2;
+}
+
+message iterator {
+  _E * iterator = 1;
+}
+
+message const_iterator {
+  _E * const_iterator = 1;
+}
+
+message std::_Deque_iterator {
+  std::_Deque_iterator::_Elt_pointer alias__m_cur = 1;
+  std::_Deque_iterator::_Elt_pointer alias__m_first = 2;
+  std::_Deque_iterator::_Elt_pointer alias__m_last = 3;
+  std::_Deque_iterator::_Map_pointer alias__m_node = 4;
+}
+
+message _Elt_pointer {
+  __ptr_rebind<_Ptr, _Tp> _elt_pointer = 1;
+}
+
+message _Map_pointer {
+  __ptr_rebind<_Ptr, std::_Deque_iterator::_Elt_pointer> _map_pointer = 1;
+}
+
+message _Self {
+  _Deque_iterator<_Tp, _Ref, _Ptr> _self = 1;
+}
+
+message std::_Deque_base {
+  std::_Deque_base::_Deque_impl alias__m_impl = 1;
+}
+
+message _Tp_alloc_type {
+  typename __gnu_cxx::__alloc_traits<_Alloc>::template rebind<_Tp>::other _tp_alloc_type = 1;
+}
+
+message _Alloc_traits {
+  __gnu_cxx::__alloc_traits<_Tp_alloc_type> _alloc_traits = 1;
+}
+
+message _Ptr {
+  typename _Alloc_traits::pointer _ptr = 1;
+}
+
+message _Ptr_const {
+  typename _Alloc_traits::const_pointer _ptr_const = 1;
+}
+
+message _Map_alloc_type {
+  typename _Alloc_traits::template rebind<_Ptr>::other _map_alloc_type = 1;
+}
+
+message _Map_alloc_traits {
+  __gnu_cxx::__alloc_traits<_Map_alloc_type> _map_alloc_traits = 1;
+}
+
+message std::_Deque_base::_Deque_impl_data {
+  std::_Deque_base::_Map_pointer alias__m_map = 1;
+  std::size_t alias__m_map_size = 2;
+  std::_Deque_base::iterator alias__m_start = 3;
+  std::_Deque_base::iterator alias__m_finish = 4;
+}
+
+message std::_Deque_base::_Deque_impl {
+}
+
+message _Traits {
+  __gnu_cxx::__alloc_traits<_Tp_alloc_type> _traits = 1;
+}
+
+message std::deque {
+}
+
+message const_reverse_iterator {
+  std::reverse_iterator<const_iterator> const_reverse_iterator = 1;
+}
+
+message reverse_iterator {
+  std::reverse_iterator<iterator> reverse_iterator = 1;
+}
+
+message _Lc {
+  std::__lexicographical_compare<__simple> _lc = 1;
+}
+
+message string {
+  basic_string<char> string = 1;
+}
+
+message wstring {
+  basic_string<wchar_t> wstring = 1;
+}
+
+message u16string {
+  basic_string<char16_t> u16string = 1;
+}
+
+message u32string {
+  basic_string<char32_t> u32string = 1;
+}
+
+message wint_t {
+  uint32 wint_t = 1;
+}
+
+message mbstate_t {
+  __mbstate_t mbstate_t = 1;
+}
+
+message __locale_struct {
+  __locale_data alias___locales = 1;
+  unsigned short * alias___ctype_b = 2;
+  int * alias___ctype_tolower = 3;
+  int * alias___ctype_toupper = 4;
+  string alias___names = 5;
+}
+
+message __locale_t {
+  __locale_struct alias___locale_t = 1;
+}
+
+message locale_t {
+  __locale_t locale_t = 1;
+}
+
+message streamoff {
+  int64 streamoff = 1;
+}
+
+message streamsize {
+  std::ptrdiff_t streamsize = 1;
+}
+
+message std::fpos {
+  std::streamoff alias__m_off = 1;
+  _StateT alias__m_state = 2;
+}
+
+message streampos {
+  fpos<mbstate_t> streampos = 1;
+}
+
+message wstreampos {
+  fpos<mbstate_t> wstreampos = 1;
+}
+
+message u16streampos {
+  fpos<mbstate_t> u16streampos = 1;
+}
+
+message u32streampos {
+  fpos<mbstate_t> u32streampos = 1;
+}
+
+message ios {
+  basic_ios<char> ios = 1;
+}
+
+message streambuf {
+  basic_streambuf<char> streambuf = 1;
+}
+
+message istream {
+  basic_istream<char> istream = 1;
+}
+
+message ostream {
+  basic_ostream<char> ostream = 1;
+}
+
+message iostream {
+  basic_iostream<char> iostream = 1;
+}
+
+message stringbuf {
+  basic_stringbuf<char> stringbuf = 1;
+}
+
+message istringstream {
+  basic_istringstream<char> istringstream = 1;
+}
+
+message ostringstream {
+  basic_ostringstream<char> ostringstream = 1;
+}
+
+message stringstream {
+  basic_stringstream<char> stringstream = 1;
+}
+
+message filebuf {
+  basic_filebuf<char> filebuf = 1;
+}
+
+message ifstream {
+  basic_ifstream<char> ifstream = 1;
+}
+
+message ofstream {
+  basic_ofstream<char> ofstream = 1;
+}
+
+message fstream {
+  basic_fstream<char> fstream = 1;
+}
+
+message wios {
+  basic_ios<wchar_t> wios = 1;
+}
+
+message wstreambuf {
+  basic_streambuf<wchar_t> wstreambuf = 1;
+}
+
+message wistream {
+  basic_istream<wchar_t> wistream = 1;
+}
+
+message wostream {
+  basic_ostream<wchar_t> wostream = 1;
+}
+
+message wiostream {
+  basic_iostream<wchar_t> wiostream = 1;
+}
+
+message wstringbuf {
+  basic_stringbuf<wchar_t> wstringbuf = 1;
+}
+
+message wistringstream {
+  basic_istringstream<wchar_t> wistringstream = 1;
+}
+
+message wostringstream {
+  basic_ostringstream<wchar_t> wostringstream = 1;
+}
+
+message wstringstream {
+  basic_stringstream<wchar_t> wstringstream = 1;
+}
+
+message wfilebuf {
+  basic_filebuf<wchar_t> wfilebuf = 1;
+}
+
+message wifstream {
+  basic_ifstream<wchar_t> wifstream = 1;
+}
+
+message wofstream {
+  basic_ofstream<wchar_t> wofstream = 1;
+}
+
+message wfstream {
+  basic_fstream<wchar_t> wfstream = 1;
+}
+
+message time_t {
+  __time_t time_t = 1;
+}
+
+message timespec {
+  __time_t alias_tv_sec = 1;
+  __syscall_slong_t alias_tv_nsec = 2;
+}
+
+message pid_t {
+  __pid_t pid_t = 1;
+}
+
+message sched_param {
+  int32 alias_sched_priority = 1;
+}
+
+message __cpu_mask {
+  uint64 __cpu_mask = 1;
+}
+
+message cpu_set_t {
+  cpu_set_t alias_cpu_set_t = 1;
+}
+
+message timeval {
+  __time_t alias_tv_sec = 1;
+  __suseconds_t alias_tv_usec = 2;
+}
+
+message timex {
+  uint32 alias_modes = 1;
+  __syscall_slong_t alias_offset = 2;
+  __syscall_slong_t alias_freq = 3;
+  __syscall_slong_t alias_maxerror = 4;
+  __syscall_slong_t alias_esterror = 5;
+  int32 alias_status = 6;
+  __syscall_slong_t alias_constant = 7;
+  __syscall_slong_t alias_precision = 8;
+  __syscall_slong_t alias_tolerance = 9;
+  timeval alias_time = 10;
+  __syscall_slong_t alias_tick = 11;
+  __syscall_slong_t alias_ppsfreq = 12;
+  __syscall_slong_t alias_jitter = 13;
+  int32 alias_shift = 14;
+  __syscall_slong_t alias_stabil = 15;
+  __syscall_slong_t alias_jitcnt = 16;
+  __syscall_slong_t alias_calcnt = 17;
+  __syscall_slong_t alias_errcnt = 18;
+  __syscall_slong_t alias_stbcnt = 19;
+  int32 alias_tai = 20;
+  int32 alias_ = 21;
+  int32 alias_ = 22;
+  int32 alias_ = 23;
+  int32 alias_ = 24;
+  int32 alias_ = 25;
+  int32 alias_ = 26;
+  int32 alias_ = 27;
+  int32 alias_ = 28;
+  int32 alias_ = 29;
+  int32 alias_ = 30;
+  int32 alias_ = 31;
+}
+
+message clock_t {
+  __clock_t clock_t = 1;
+}
+
+message tm {
+  int32 alias_tm_sec = 1;
+  int32 alias_tm_min = 2;
+  int32 alias_tm_hour = 3;
+  int32 alias_tm_mday = 4;
+  int32 alias_tm_mon = 5;
+  int32 alias_tm_year = 6;
+  int32 alias_tm_wday = 7;
+  int32 alias_tm_yday = 8;
+  int32 alias_tm_isdst = 9;
+  int64 alias_tm_gmtoff = 10;
+  string alias_tm_zone = 11;
+}
+
+message clockid_t {
+  __clockid_t clockid_t = 1;
+}
+
+message timer_t {
+  __timer_t timer_t = 1;
+}
+
+message itimerspec {
+  timespec alias_it_interval = 1;
+  timespec alias_it_value = 2;
+}
+
+message (anonymous union)::(anonymous) {
+  uint32 alias___low = 1;
+  uint32 alias___high = 2;
+}
+
+message __atomic_wide_counter {
+  union __atomic_wide_counter __atomic_wide_counter = 1;
+}
+
+message __pthread_internal_list {
+  __pthread_internal_list alias___prev = 1;
+  __pthread_internal_list alias___next = 2;
+}
+
+message __pthread_list_t {
+  __pthread_internal_list alias___pthread_list_t = 1;
+}
+
+message __pthread_internal_slist {
+  __pthread_internal_slist alias___next = 1;
+}
+
+message __pthread_slist_t {
+  __pthread_internal_slist alias___pthread_slist_t = 1;
+}
+
+message __pthread_mutex_s {
+  int32 alias___lock = 1;
+  uint32 alias___count = 2;
+  int32 alias___owner = 3;
+  uint32 alias___nusers = 4;
+  int32 alias___kind = 5;
+  int32 alias___spins = 6;
+  int32 alias___elision = 7;
+  __pthread_list_t alias___list = 8;
+}
+
+message __pthread_rwlock_arch_t {
+  uint32 alias___readers = 1;
+  uint32 alias___writers = 2;
+  uint32 alias___wrphase_futex = 3;
+  uint32 alias___writers_futex = 4;
+  uint32 alias___pad3 = 5;
+  uint32 alias___pad4 = 6;
+  int32 alias___cur_writer = 7;
+  int32 alias___shared = 8;
+  int32 alias___rwelision = 9;
+  unsigned char[7] alias___pad1 = 10;
+  uint64 alias___pad2 = 11;
+  uint32 alias___flags = 12;
+}
+
+message __pthread_cond_s {
+  __atomic_wide_counter alias___wseq = 1;
+  __atomic_wide_counter alias___g1_start = 2;
+  unsigned int[2] alias___g_refs = 3;
+  unsigned int[2] alias___g_size = 4;
+  uint32 alias___g1_orig_size = 5;
+  uint32 alias___wrefs = 6;
+  unsigned int[2] alias___g_signals = 7;
+}
+
+message __tss_t {
+  uint32 __tss_t = 1;
+}
+
+message __thrd_t {
+  uint64 __thrd_t = 1;
+}
+
+message __once_flag {
+  __once_flag alias___once_flag = 1;
+}
+
+message pthread_t {
+  uint64 pthread_t = 1;
+}
+
+message pthread_mutexattr_t {
+  union pthread_mutexattr_t pthread_mutexattr_t = 1;
+}
+
+message pthread_condattr_t {
+  union pthread_condattr_t pthread_condattr_t = 1;
+}
+
+message pthread_key_t {
+  uint32 pthread_key_t = 1;
+}
+
+message pthread_once_t {
+  int32 pthread_once_t = 1;
+}
+
+message pthread_attr_t {
+  char[56] alias___size = 1;
+  int64 alias___align = 2;
+}
+
+message pthread_attr_t {
+  union pthread_attr_t pthread_attr_t = 1;
+}
+
+message pthread_mutex_t {
+  union pthread_mutex_t pthread_mutex_t = 1;
+}
+
+message pthread_cond_t {
+  union pthread_cond_t pthread_cond_t = 1;
+}
+
+message pthread_rwlock_t {
+  union pthread_rwlock_t pthread_rwlock_t = 1;
+}
+
+message pthread_rwlockattr_t {
+  union pthread_rwlockattr_t pthread_rwlockattr_t = 1;
+}
+
+message pthread_spinlock_t {
+  volatile int pthread_spinlock_t = 1;
+}
+
+message pthread_barrier_t {
+  union pthread_barrier_t pthread_barrier_t = 1;
+}
+
+message pthread_barrierattr_t {
+  union pthread_barrierattr_t pthread_barrierattr_t = 1;
+}
+
+message __jmp_buf {
+  union pthread_barrierattr_t pthread_barrierattr_t = 1;
+}
+
+message __sigset_t {
+  __sigset_t alias___sigset_t = 1;
+}
+
+message __jmp_buf_tag {
+  __jmp_buf alias___jmpbuf = 1;
+  int32 alias___mask_was_saved = 2;
+  __sigset_t alias___saved_mask = 3;
+}
+
+message _pthread_cleanup_buffer {
+  void (*)(void *) alias___routine = 1;
+  bytes alias___arg = 2;
+  int32 alias___canceltype = 3;
+  _pthread_cleanup_buffer alias___prev = 4;
+}
+
+message __cancel_jmp_buf_tag {
+  __jmp_buf alias___cancel_jmp_buf = 1;
+  int32 alias___mask_was_saved = 2;
+}
+
+message __pthread_unwind_buf_t {
+  __pthread_unwind_buf_t alias___pthread_unwind_buf_t = 1;
+}
+
+message __pthread_cleanup_frame {
+  void (*)(void *) alias___cancel_routine = 1;
+  bytes alias___cancel_arg = 2;
+  int32 alias___do_it = 3;
+  int32 alias___cancel_type = 4;
+}
+
+message __pthread_cleanup_class {
+  void (*)(void *) alias___cancel_routine = 1;
+  bytes alias___cancel_arg = 2;
+  int32 alias___do_it = 3;
+  int32 alias___cancel_type = 4;
+}
+
+message __gthread_t {
+  pthread_t __gthread_t = 1;
+}
+
+message __gthread_key_t {
+  pthread_key_t __gthread_key_t = 1;
+}
+
+message __gthread_once_t {
+  pthread_once_t __gthread_once_t = 1;
+}
+
+message __gthread_mutex_t {
+  pthread_mutex_t __gthread_mutex_t = 1;
+}
+
+message __gthread_recursive_mutex_t {
+  pthread_mutex_t __gthread_recursive_mutex_t = 1;
+}
+
+message __gthread_cond_t {
+  pthread_cond_t __gthread_cond_t = 1;
+}
+
+message __gthread_time_t {
+  timespec alias___gthread_time_t = 1;
+}
+
+message _Atomic_word {
+  int32 _atomic_word = 1;
+}
+
+message lconv {
+  string alias_decimal_point = 1;
+  string alias_thousands_sep = 2;
+  string alias_grouping = 3;
+  string alias_int_curr_symbol = 4;
+  string alias_currency_symbol = 5;
+  string alias_mon_decimal_point = 6;
+  string alias_mon_thousands_sep = 7;
+  string alias_mon_grouping = 8;
+  string alias_positive_sign = 9;
+  string alias_negative_sign = 10;
+  int32 alias_int_frac_digits = 11;
+  int32 alias_frac_digits = 12;
+  int32 alias_p_cs_precedes = 13;
+  int32 alias_p_sep_by_space = 14;
+  int32 alias_n_cs_precedes = 15;
+  int32 alias_n_sep_by_space = 16;
+  int32 alias_p_sign_posn = 17;
+  int32 alias_n_sign_posn = 18;
+  int32 alias_int_p_cs_precedes = 19;
+  int32 alias_int_p_sep_by_space = 20;
+  int32 alias_int_n_cs_precedes = 21;
+  int32 alias_int_n_sep_by_space = 22;
+  int32 alias_int_p_sign_posn = 23;
+  int32 alias_int_n_sign_posn = 24;
+}
+
+message __c_locale {
+  __locale_t __c_locale = 1;
+}
+
+message __gnu_cxx::_Char_types {
+}
+
+message int_type {
+  uint64 int_type = 1;
+}
+
+message pos_type {
+  std::streampos pos_type = 1;
+}
+
+message off_type {
+  std::streamoff off_type = 1;
+}
+
+message state_type {
+  std::mbstate_t state_type = 1;
+}
+
+message __gnu_cxx::char_traits {
+}
+
+message char_type {
+  _CharT char_type = 1;
+}
+
+message std::char_traits {
+}
+
+message __cxxabiv1::__forced_unwind {
+}
+
+message __ostream_type {
+  basic_ostream<_CharT, _Traits> __ostream_type = 1;
+}
+
+message __ios_base {
+  typename __ostream_type::ios_base __ios_base = 1;
+}
+
+message std::unary_function {
+}
+
+message argument_type {
+  _Arg argument_type = 1;
+}
+
+message result_type {
+  _Result result_type = 1;
+}
+
+message std::binary_function {
+}
+
+message first_argument_type {
+  _Arg1 first_argument_type = 1;
+}
+
+message second_argument_type {
+  _Arg2 second_argument_type = 1;
+}
+
+message std::plus {
+}
+
+message std::minus {
+}
+
+message std::multiplies {
+}
+
+message std::divides {
+}
+
+message std::modulus {
+}
+
+message std::negate {
+}
+
+message std::equal_to {
+}
+
+message std::not_equal_to {
+}
+
+message std::greater {
+}
+
+message std::less {
+}
+
+message std::greater_equal {
+}
+
+message std::less_equal {
+}
+
+message std::logical_and {
+}
+
+message std::logical_or {
+}
+
+message std::logical_not {
+}
+
+message std::bit_and {
+}
+
+message std::bit_or {
+}
+
+message std::bit_xor {
+}
+
+message std::bit_not {
+}
+
+message std::unary_negate {
+  _Predicate alias__m_pred = 1;
+}
+
+message std::binary_negate {
+  _Predicate alias__m_pred = 1;
+}
+
+message std::pointer_to_unary_function {
+  _Result (*)(_Arg) alias__m_ptr = 1;
+}
+
+message std::pointer_to_binary_function {
+  _Result (*)(_Arg1, _Arg2) alias__m_ptr = 1;
+}
+
+message std::_Identity {
+}
+
+message std::_Select1st {
+}
+
+message std::_Select2nd {
+}
+
+message std::mem_fun_t {
+  _Ret (_Tp::*)() alias__m_f = 1;
+}
+
+message std::const_mem_fun_t {
+  _Ret (_Tp::*)() const alias__m_f = 1;
+}
+
+message std::mem_fun_ref_t {
+  _Ret (_Tp::*)() alias__m_f = 1;
+}
+
+message std::const_mem_fun_ref_t {
+  _Ret (_Tp::*)() const alias__m_f = 1;
+}
+
+message std::mem_fun1_t {
+  _Ret (_Tp::*)(_Arg) alias__m_f = 1;
+}
+
+message std::const_mem_fun1_t {
+  _Ret (_Tp::*)(_Arg) const alias__m_f = 1;
+}
+
+message std::mem_fun1_ref_t {
+  _Ret (_Tp::*)(_Arg) alias__m_f = 1;
+}
+
+message std::const_mem_fun1_ref_t {
+  _Ret (_Tp::*)(_Arg) const alias__m_f = 1;
+}
+
+message std::binder1st {
+  _Operation alias_op = 1;
+  typename _Operation::first_argument_type alias_value = 2;
+}
+
+message _Arg1_type {
+  typename _Operation::first_argument_type _arg1_type = 1;
+}
+
+message std::binder2nd {
+  _Operation alias_op = 1;
+  typename _Operation::second_argument_type alias_value = 2;
+}
+
+message _Arg2_type {
+  typename _Operation::second_argument_type _arg2_type = 1;
+}
+
+message std::basic_string {
+  std::basic_string::_Alloc_hider alias__m_dataplus = 1;
+  std::basic_string::size_type alias__m_string_length = 2;
+  std::basic_string::(anonymous union at /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/bits/basic_string.h:179:7) alias_ = 3;
+}
+
+message _Char_alloc_type {
+  typename __gnu_cxx::__alloc_traits<_Alloc>::template rebind<_CharT>::other _char_alloc_type = 1;
+}
+
+message traits_type {
+  _Traits traits_type = 1;
+}
+
+message __const_iterator {
+  std::basic_string::const_iterator __const_iterator = 1;
+}
+
+message std::basic_string::_Alloc_hider {
+  std::basic_string::pointer alias__m_p = 1;
+}
+
+message std::basic_string::(anonymous) {
+  _CharT[_S_local_capacity + 1] alias__m_local_buf = 1;
+  std::basic_string::size_type alias__m_allocated_capacity = 2;
+}
+
+message _Tag {
+  typename iterator_traits<_InIterator>::iterator_category _tag = 1;
+}
+
+message _Integral {
+  typename std::__is_integer<_InIterator>::__type _integral = 1;
+}
+
+message __string_type {
+  basic_string<_CharT, _Traits, _Alloc> __string_type = 1;
+}
+
+message __size_type {
+  typename __string_type::size_type __size_type = 1;
+}
+
+message div_t {
+  div_t alias_div_t = 1;
+}
+
+message ldiv_t {
+  ldiv_t alias_ldiv_t = 1;
+}
+
+message lldiv_t {
+  lldiv_t alias_lldiv_t = 1;
+}
+
+message u_char {
+  __u_char u_char = 1;
+}
+
+message u_short {
+  __u_short u_short = 1;
+}
+
+message u_int {
+  __u_int u_int = 1;
+}
+
+message u_long {
+  __u_long u_long = 1;
+}
+
+message quad_t {
+  __quad_t quad_t = 1;
+}
+
+message u_quad_t {
+  __u_quad_t u_quad_t = 1;
+}
+
+message fsid_t {
+  __fsid_t fsid_t = 1;
+}
+
+message loff_t {
+  __loff_t loff_t = 1;
+}
+
+message ino_t {
+  __ino64_t ino_t = 1;
+}
+
+message ino64_t {
+  __ino64_t ino64_t = 1;
+}
+
+message dev_t {
+  __dev_t dev_t = 1;
+}
+
+message gid_t {
+  __gid_t gid_t = 1;
+}
+
+message mode_t {
+  __mode_t mode_t = 1;
+}
+
+message nlink_t {
+  __nlink_t nlink_t = 1;
+}
+
+message uid_t {
+  __uid_t uid_t = 1;
+}
+
+message id_t {
+  __id_t id_t = 1;
+}
+
+message daddr_t {
+  __daddr_t daddr_t = 1;
+}
+
+message caddr_t {
+  __caddr_t caddr_t = 1;
+}
+
+message key_t {
+  __key_t key_t = 1;
+}
+
+message useconds_t {
+  __useconds_t useconds_t = 1;
+}
+
+message suseconds_t {
+  __suseconds_t suseconds_t = 1;
+}
+
+message ulong {
+  uint64 ulong = 1;
+}
+
+message ushort {
+  uint32 ushort = 1;
+}
+
+message uint {
+  uint32 uint = 1;
+}
+
+message u_int8_t {
+  __uint8_t u_int8_t = 1;
+}
+
+message u_int16_t {
+  __uint16_t u_int16_t = 1;
+}
+
+message u_int32_t {
+  __uint32_t u_int32_t = 1;
+}
+
+message u_int64_t {
+  __uint64_t u_int64_t = 1;
+}
+
+message register_t {
+  int64 register_t = 1;
+}
+
+message sigset_t {
+  __sigset_t sigset_t = 1;
+}
+
+message __fd_mask {
+  int64 __fd_mask = 1;
+}
+
+message fd_set {
+  fd_set alias_fd_set = 1;
+}
+
+message fd_mask {
+  __fd_mask fd_mask = 1;
+}
+
+message blksize_t {
+  __blksize_t blksize_t = 1;
+}
+
+message blkcnt_t {
+  __blkcnt64_t blkcnt_t = 1;
+}
+
+message fsblkcnt_t {
+  __fsblkcnt64_t fsblkcnt_t = 1;
+}
+
+message fsfilcnt_t {
+  __fsfilcnt64_t fsfilcnt_t = 1;
+}
+
+message blkcnt64_t {
+  __blkcnt64_t blkcnt64_t = 1;
+}
+
+message fsblkcnt64_t {
+  __fsblkcnt64_t fsblkcnt64_t = 1;
+}
+
+message fsfilcnt64_t {
+  __fsfilcnt64_t fsfilcnt64_t = 1;
+}
+
+message random_data {
+  int32_t * alias_fptr = 1;
+  int32_t * alias_rptr = 2;
+  int32_t * alias_state = 3;
+  int32 alias_rand_type = 4;
+  int32 alias_rand_deg = 5;
+  int32 alias_rand_sep = 6;
+  int32_t * alias_end_ptr = 7;
+}
+
+message drand48_data {
+  unsigned short[3] alias___x = 1;
+  unsigned short[3] alias___old_x = 2;
+  uint32 alias___c = 3;
+  uint32 alias___init = 4;
+  unsigned long long alias___a = 5;
+}
+
+message __compar_fn_t {
+  int (*)(const void *, const void *) __compar_fn_t = 1;
+}
+
+message comparison_fn_t {
+  __compar_fn_t comparison_fn_t = 1;
+}
+
+message __compar_d_fn_t {
+  int (*)(const void *, const void *, void *) __compar_d_fn_t = 1;
+}
+
+message error_t {
+  int32 error_t = 1;
+}
+
+message _Save_errno {
+  int32 alias__m_errno = 1;
+}
+
+message _Range_chk {
+}
+
+message std::__hash_base {
+}
+
+message std::__poison_hash {
+}
+
+message std::__hash_enum {
+}
+
+message std::hash {
+}
+
+message std::_Hash_impl {
+}
+
+message std::_Fnv_hash_impl {
+}
+
+message std::__is_fast_hash {
+}
+
+message __istream_type {
+  basic_istream<_CharT, _Traits> __istream_type = 1;
+}
+
+message __int_type {
+  typename __istream_type::int_type __int_type = 1;
+}
+
+message __ctype_type {
+  ctype<_CharT> __ctype_type = 1;
+}
+
+message __ctype_base {
+  typename __ctype_type::ctype_base __ctype_base = 1;
+}
+
+message std::locale {
+  std::locale::_Impl * alias__m_impl = 1;
+}
+
+message category {
+  int32 category = 1;
+}
+
+message std::locale::facet {
+  _Atomic_word alias__m_refcount = 1;
+}
+
+message std::locale::id {
+  std::size_t alias__m_index = 1;
+}
+
+message std::locale::_Impl {
+  _Atomic_word alias__m_refcount = 1;
+  std::locale::facet ** alias__m_facets = 2;
+  std::size_t alias__m_facets_size = 3;
+  std::locale::facet ** alias__m_caches = 4;
+  string alias__m_names = 5;
+}
+
+message std::collate {
+  std::__c_locale alias__m_c_locale_collate = 1;
+}
+
+message string_type {
+  basic_string<_CharT> string_type = 1;
+}
+
+message std::collate_byname {
+}
+
+message __collate_type {
+  std::collate<_CharT> __collate_type = 1;
+}
+
+message std::bad_exception {
+}
+
+message terminate_handler {
+  void (*)() terminate_handler = 1;
+}
+
+message unexpected_handler {
+  void (*)() unexpected_handler = 1;
+}
+
+message std::type_info {
+  string alias___name = 1;
+}
+
+message std::bad_cast {
+}
+
+message std::bad_typeid {
+}
+
+message std::__exception_ptr::exception_ptr {
+  bytes alias__m_exception_object = 1;
+}
+
+message std::nested_exception {
+  std::__exception_ptr::exception_ptr alias__m_ptr = 1;
+}
+
+message std::_Nested_exception {
+}
+
+message std::__cow_string {
+  std::__cow_string::(anonymous union at /../lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/stdexcept:50:5) alias_ = 1;
+}
+
+message std::__cow_string::(anonymous) {
+  string alias__m_p = 1;
+  char[8] alias__m_bytes = 2;
+}
+
+message __sso_string {
+  basic_string<char> __sso_string = 1;
+}
+
+message std::logic_error {
+  std::__cow_string alias__m_msg = 1;
+}
+
+message std::domain_error {
+}
+
+message std::invalid_argument {
+}
+
+message std::length_error {
+}
+
+message std::out_of_range {
+}
+
+message std::runtime_error {
+  std::__cow_string alias__m_msg = 1;
+}
+
+message std::range_error {
+}
+
+message std::overflow_error {
+}
+
+message std::underflow_error {
+}
+
+message std::is_error_code_enum {
+}
+
+message std::is_error_condition_enum {
+}
+
+message std::error_category {
+}
+
+message std::error_code {
+  int32 alias__m_value = 1;
+  std::error_category * alias__m_cat = 2;
+}
+
+message std::error_condition {
+  int32 alias__m_value = 1;
+  std::error_category * alias__m_cat = 2;
+}
+
+message std::system_error {
+  std::error_code alias__m_code = 1;
+}
+
+message std::ios_base {
+  std::streamsize alias__m_precision = 1;
+  std::streamsize alias__m_width = 2;
+  std::ios_base::fmtflags alias__m_flags = 3;
+  std::ios_base::iostate alias__m_exception = 4;
+  std::ios_base::iostate alias__m_streambuf_state = 5;
+  std::ios_base::_Callback_list * alias__m_callbacks = 6;
+  std::ios_base::_Words alias__m_word_zero = 7;
+  std::ios_base::_Words[8] alias__m_local_word = 8;
+  int32 alias__m_word_size = 9;
+  std::ios_base::_Words * alias__m_word = 10;
+  std::locale alias__m_ios_locale = 11;
+}
+
+message std::ios_base::failure {
+}
+
+enum std::_Ios_Fmtflags {
+  _S_boolalpha alias__s_boolalpha = 0;
+  _S_dec alias__s_dec = 1;
+  _S_fixed alias__s_fixed = 2;
+  _S_hex alias__s_hex = 3;
+  _S_internal alias__s_internal = 4;
+  _S_left alias__s_left = 5;
+  _S_oct alias__s_oct = 6;
+  _S_right alias__s_right = 7;
+  _S_scientific alias__s_scientific = 8;
+  _S_showbase alias__s_showbase = 9;
+  _S_showpoint alias__s_showpoint = 10;
+  _S_showpos alias__s_showpos = 11;
+  _S_skipws alias__s_skipws = 12;
+  _S_unitbuf alias__s_unitbuf = 13;
+  _S_uppercase alias__s_uppercase = 14;
+  _S_adjustfield alias__s_adjustfield = 15;
+  _S_basefield alias__s_basefield = 16;
+  _S_floatfield alias__s_floatfield = 17;
+  _S_ios_fmtflags_end alias__s_ios_fmtflags_end = 18;
+  _S_ios_fmtflags_max alias__s_ios_fmtflags_max = 19;
+  _S_ios_fmtflags_min alias__s_ios_fmtflags_min = 20;
+}
+
+message fmtflags {
+  std::_Ios_Fmtflags fmtflags = 1;
+}
+
+enum std::_Ios_Iostate {
+  _S_goodbit alias__s_goodbit = 0;
+  _S_badbit alias__s_badbit = 1;
+  _S_eofbit alias__s_eofbit = 2;
+  _S_failbit alias__s_failbit = 3;
+  _S_ios_iostate_end alias__s_ios_iostate_end = 4;
+  _S_ios_iostate_max alias__s_ios_iostate_max = 5;
+  _S_ios_iostate_min alias__s_ios_iostate_min = 6;
+}
+
+message iostate {
+  std::_Ios_Iostate iostate = 1;
+}
+
+enum std::_Ios_Openmode {
+  _S_app alias__s_app = 0;
+  _S_ate alias__s_ate = 1;
+  _S_bin alias__s_bin = 2;
+  _S_in alias__s_in = 3;
+  _S_out alias__s_out = 4;
+  _S_trunc alias__s_trunc = 5;
+  _S_ios_openmode_end alias__s_ios_openmode_end = 6;
+  _S_ios_openmode_max alias__s_ios_openmode_max = 7;
+  _S_ios_openmode_min alias__s_ios_openmode_min = 8;
+}
+
+message openmode {
+  std::_Ios_Openmode openmode = 1;
+}
+
+enum std::_Ios_Seekdir {
+  _S_beg alias__s_beg = 0;
+  _S_cur alias__s_cur = 1;
+  _S_end alias__s_end = 2;
+  _S_ios_seekdir_end alias__s_ios_seekdir_end = 3;
+}
+
+message seekdir {
+  std::_Ios_Seekdir seekdir = 1;
+}
+
+message io_state {
+  int32 io_state = 1;
+}
+
+message open_mode {
+  int32 open_mode = 1;
+}
+
+message seek_dir {
+  int32 seek_dir = 1;
+}
+
+message event_callback {
+  void (*)(std::ios_base::event, std::ios_base &, int) event_callback = 1;
+}
+
+message std::ios_base::_Callback_list {
+  std::ios_base::_Callback_list * alias__m_next = 1;
+  ios_base::event_callback alias__m_fn = 2;
+  int32 alias__m_index = 3;
+  _Atomic_word alias__m_refcount = 4;
+}
+
+message std::ios_base::_Words {
+  bytes alias__m_pword = 1;
+  int64 alias__m_iword = 2;
+}
+
+message std::ios_base::Init {
+}
+
+message wctype_t {
+  uint64 wctype_t = 1;
+}
+
+message wctrans_t {
+  __int32_t * wctrans_t = 1;
+}
+
+message std::ctype_base {
+}
+
+message __to_type {
+  int * __to_type = 1;
+}
+
+message mask {
+  uint32 mask = 1;
+}
+
+message std::basic_streambuf {
+  std::basic_streambuf::char_type * alias__m_in_beg = 1;
+  std::basic_streambuf::char_type * alias__m_in_cur = 2;
+  std::basic_streambuf::char_type * alias__m_in_end = 3;
+  std::basic_streambuf::char_type * alias__m_out_beg = 4;
+  std::basic_streambuf::char_type * alias__m_out_cur = 5;
+  std::basic_streambuf::char_type * alias__m_out_end = 6;
+  std::locale alias__m_buf_locale = 7;
+}
+
+message __streambuf_type {
+  basic_streambuf<std::basic_streambuf::char_type, std::basic_streambuf::traits_type> __streambuf_type = 1;
+}
+
+message std::istreambuf_iterator {
+  std::istreambuf_iterator::streambuf_type * alias__m_sbuf = 1;
+  std::istreambuf_iterator::int_type alias__m_c = 2;
+}
+
+message streambuf_type {
+  basic_streambuf<_CharT, _Traits> streambuf_type = 1;
+}
+
+message istream_type {
+  basic_istream<_CharT, _Traits> istream_type = 1;
+}
+
+message std::ostreambuf_iterator {
+  std::ostreambuf_iterator::streambuf_type * alias__m_sbuf = 1;
+  bool alias__m_failed = 2;
+}
+
+message ostream_type {
+  basic_ostream<_CharT, _Traits> ostream_type = 1;
+}
+
+message __is_iterator_type {
+  istreambuf_iterator<_CharT> __is_iterator_type = 1;
+}
+
+message std::__pad {
+}
+
+message std::__ctype_abstract_base {
+}
+
+message std::ctype {
+}
+
+message __wmask_type {
+  wctype_t __wmask_type = 1;
+}
+
+message std::ctype_byname {
+}
+
+message std::__num_base {
+}
+
+message std::__numpunct_cache {
+  string alias__m_grouping = 1;
+  std::size_t alias__m_grouping_size = 2;
+  bool alias__m_use_grouping = 3;
+  _CharT * alias__m_truename = 4;
+  std::size_t alias__m_truename_size = 5;
+  _CharT * alias__m_falsename = 6;
+  std::size_t alias__m_falsename_size = 7;
+  _CharT alias__m_decimal_point = 8;
+  _CharT alias__m_thousands_sep = 9;
+  _CharT[36] alias__m_atoms_out = 10;
+  _CharT[26] alias__m_atoms_in = 11;
+  bool alias__m_allocated = 12;
+}
+
+message std::numpunct {
+  std::numpunct::__cache_type * alias__m_data = 1;
+}
+
+message __cache_type {
+  __numpunct_cache<_CharT> __cache_type = 1;
+}
+
+message std::numpunct_byname {
+}
+
+message std::num_get {
+}
+
+message iter_type {
+  _InIter iter_type = 1;
+}
+
+message std::num_put {
+}
+
+message std::__use_cache {
+}
+
+message __num_traits {
+  __gnu_cxx::__numeric_traits<_ValueT> __num_traits = 1;
+}
+
+message _UIntPtrType {
+  __gnu_cxx::__conditional_type<(sizeof(void *) <= sizeof(unsigned long)), unsigned long, unsigned long long>::__type _uintptrtype = 1;
+}
+
+message std::time_base {
+}
+
+message std::__timepunct_cache {
+  _CharT * alias__m_date_format = 1;
+  _CharT * alias__m_date_era_format = 2;
+  _CharT * alias__m_time_format = 3;
+  _CharT * alias__m_time_era_format = 4;
+  _CharT * alias__m_date_time_format = 5;
+  _CharT * alias__m_date_time_era_format = 6;
+  _CharT * alias__m_am = 7;
+  _CharT * alias__m_pm = 8;
+  _CharT * alias__m_am_pm_format = 9;
+  _CharT * alias__m_day1 = 10;
+  _CharT * alias__m_day2 = 11;
+  _CharT * alias__m_day3 = 12;
+  _CharT * alias__m_day4 = 13;
+  _CharT * alias__m_day5 = 14;
+  _CharT * alias__m_day6 = 15;
+  _CharT * alias__m_day7 = 16;
+  _CharT * alias__m_aday1 = 17;
+  _CharT * alias__m_aday2 = 18;
+  _CharT * alias__m_aday3 = 19;
+  _CharT * alias__m_aday4 = 20;
+  _CharT * alias__m_aday5 = 21;
+  _CharT * alias__m_aday6 = 22;
+  _CharT * alias__m_aday7 = 23;
+  _CharT * alias__m_month01 = 24;
+  _CharT * alias__m_month02 = 25;
+  _CharT * alias__m_month03 = 26;
+  _CharT * alias__m_month04 = 27;
+  _CharT * alias__m_month05 = 28;
+  _CharT * alias__m_month06 = 29;
+  _CharT * alias__m_month07 = 30;
+  _CharT * alias__m_month08 = 31;
+  _CharT * alias__m_month09 = 32;
+  _CharT * alias__m_month10 = 33;
+  _CharT * alias__m_month11 = 34;
+  _CharT * alias__m_month12 = 35;
+  _CharT * alias__m_amonth01 = 36;
+  _CharT * alias__m_amonth02 = 37;
+  _CharT * alias__m_amonth03 = 38;
+  _CharT * alias__m_amonth04 = 39;
+  _CharT * alias__m_amonth05 = 40;
+  _CharT * alias__m_amonth06 = 41;
+  _CharT * alias__m_amonth07 = 42;
+  _CharT * alias__m_amonth08 = 43;
+  _CharT * alias__m_amonth09 = 44;
+  _CharT * alias__m_amonth10 = 45;
+  _CharT * alias__m_amonth11 = 46;
+  _CharT * alias__m_amonth12 = 47;
+  bool alias__m_allocated = 48;
+}
+
+message std::__timepunct {
+  std::__timepunct::__cache_type * alias__m_data = 1;
+  std::__c_locale alias__m_c_locale_timepunct = 2;
+  string alias__m_name_timepunct = 3;
+}
+
+message __char_type {
+  _CharT __char_type = 1;
+}
+
+message std::time_get {
+}
+
+message std::time_get_byname {
+}
+
+message std::time_put {
+}
+
+message std::time_put_byname {
+}
+
+message std::money_base {
+}
+
+message std::money_base::pattern {
+  char[4] alias_field = 1;
+}
+
+message std::__moneypunct_cache {
+  string alias__m_grouping = 1;
+  std::size_t alias__m_grouping_size = 2;
+  bool alias__m_use_grouping = 3;
+  _CharT alias__m_decimal_point = 4;
+  _CharT alias__m_thousands_sep = 5;
+  _CharT * alias__m_curr_symbol = 6;
+  std::size_t alias__m_curr_symbol_size = 7;
+  _CharT * alias__m_positive_sign = 8;
+  std::size_t alias__m_positive_sign_size = 9;
+  _CharT * alias__m_negative_sign = 10;
+  std::size_t alias__m_negative_sign_size = 11;
+  int32 alias__m_frac_digits = 12;
+  money_base::pattern alias__m_pos_format = 13;
+  money_base::pattern alias__m_neg_format = 14;
+  _CharT[11] alias__m_atoms = 15;
+  bool alias__m_allocated = 16;
+}
+
+message std::moneypunct {
+  std::moneypunct::__cache_type * alias__m_data = 1;
+}
+
+message std::moneypunct_byname {
+}
+
+message std::money_get {
+}
+
+message std::money_put {
+}
+
+message std::messages_base {
+}
+
+message catalog {
+  int32 catalog = 1;
+}
+
+message std::messages {
+  std::__c_locale alias__m_c_locale_messages = 1;
+  string alias__m_name_messages = 2;
+}
+
+message std::messages_byname {
+}
+
+message std::codecvt_base {
+}
+
+message std::__codecvt_abstract_base {
+}
+
+enum codecvt_base::result {
+  ok alias_ok = 0;
+  partial alias_partial = 1;
+  error alias_error = 2;
+  noconv alias_noconv = 3;
+}
+
+message result {
+  codecvt_base::result result = 1;
+}
+
+message intern_type {
+  _InternT intern_type = 1;
+}
+
+message extern_type {
+  _ExternT extern_type = 1;
+}
+
+message std::codecvt {
+  std::__c_locale alias__m_c_locale_codecvt = 1;
+}
+
+message std::codecvt_byname {
+}
+
+enum money_base::part {
+  none alias_none = 0;
+  space alias_space = 1;
+  symbol alias_symbol = 2;
+  sign alias_sign = 3;
+  value alias_value = 4;
+}
+
+message part {
+  money_base::part part = 1;
+}
+
+message std::tuple_size {
+}
+
+message std::tuple_element {
+}
+
+message std::__pair_get {
+}
+
+message std::_Index_tuple {
+}
+
+message std::_Build_index_tuple {
+}
+
+message std::__array_traits {
+}
+
+message _Type {
+  money_base::part part = 1;
+}
+
+message _Is_swappable {
+  __is_swappable<_Tp> _is_swappable = 1;
+}
+
+message _Is_nothrow_swappable {
+  __is_nothrow_swappable<_Tp> _is_nothrow_swappable = 1;
+}
+
+message std::__array_traits<type-parameter-0-0, 0>::_Type {
+}
+
+message std::array {
+  typename _AT_Type::_Type alias__m_elems = 1;
+}
+
+message _AT_Type {
+  __array_traits<_Tp, _Nm> _at_type = 1;
+}
+
+message std::__erased_type {
+}
+
+message std::allocator_arg_t {
+}
+
+message std::__uses_allocator_helper {
+}
+
+message std::uses_allocator {
+}
+
+message std::__uses_alloc_base {
+}
+
+message std::__uses_alloc0 {
+  _Sink alias__m_a = 1;
+}
+
+message std::__uses_alloc0::_Sink {
+}
+
+message std::__uses_alloc1 {
+  _Alloc * alias__m_a = 1;
+}
+
+message std::__uses_alloc2 {
+  _Alloc * alias__m_a = 1;
+}
+
+message std::__uses_alloc {
+}
+
+message std::__is_uses_allocator_predicate {
+}
+
+message std::__is_uses_allocator_constructible {
+}
+
+message std::__is_nothrow_uses_allocator_constructible {
+}
+
+message std::__is_empty_non_tuple {
+}
+
+message std::_Head_base {
+  _Head alias__m_head_impl = 1;
+}
+
+message std::_Tuple_impl {
+}
+
+message _Inherited {
+  _Tuple_impl<_Idx + 1, _Tail...> _inherited = 1;
+}
+
+message std::_TupleConstraints {
+}
+
+message std::tuple {
+}
+
+message std::tuple::_UseOtherCtor {
+}
+
+message __element_type {
+  __tuple_element_t<__i, tuple<_Elements...>> __element_type = 1;
+}
+
+message std::__tuple_compare {
+}
+
+message __result_type {
+  tuple<typename __decay_and_strip<_Elements>::__type...> __result_type = 1;
+}
+
+message std::__make_tuple_impl {
+}
+
+message std::__do_make_tuple {
+}
+
+message std::__make_tuple {
+}
+
+message std::__combine_tuples {
+}
+
+message std::__tuple_cat_result {
+}
+
+message std::__make_1st_indices {
+}
+
+message std::__tuple_concater {
+}
+
+message __idx {
+  typename __make_1st_indices<_Tpls...>::__type __idx = 1;
+}
+
+message __next {
+  __tuple_concater<_Ret, __idx, _Tpls...> __next = 1;
+}
+
+message __ret {
+  typename __tuple_cat_result<_Tpls...>::__type __ret = 1;
+}
+
+message __concater {
+  __tuple_concater<__ret, __idx, _Tpls...> __concater = 1;
+}
+
+message std::_Swallow_assign {
+}
+
+message std::default_delete {
+}
+
+message std::__uniq_ptr_impl {
+  tuple<std::__uniq_ptr_impl::pointer, _Dp> alias__m_t = 1;
+}
+
+message std::__uniq_ptr_impl::_Ptr {
+}
+
+message std::__uniq_ptr_data {
+}
+
+message std::unique_ptr {
+  __uniq_ptr_data<_Tp, _Dp> alias__m_t = 1;
+}
+
+message _CT {
+  typename std::common_type<typename unique_ptr<_Tp, _Dp>::pointer, typename unique_ptr<_Up, _Ep>::pointer>::type _ct = 1;
+}
+
+message std::__uniq_ptr_hash {
+}
+
+message std::wstring_convert {
+  unique_ptr<_Codecvt> alias__m_cvt = 1;
+  std::wstring_convert::byte_string alias__m_byte_err_string = 2;
+  std::wstring_convert::wide_string alias__m_wide_err_string = 3;
+  std::wstring_convert::state_type alias__m_state = 4;
+  std::size_t alias__m_count = 5;
+  bool alias__m_with_cvtstate = 6;
+  bool alias__m_with_strings = 7;
+}
+
+message byte_string {
+  basic_string<char, char_traits<char>, _Byte_alloc> byte_string = 1;
+}
+
+message wide_string {
+  basic_string<_Elem, char_traits<_Elem>, _Wide_alloc> wide_string = 1;
+}
+
+message std::wbuffer_convert {
+  std::streambuf * alias__m_buf = 1;
+  unique_ptr<_Codecvt> alias__m_cvt = 2;
+  std::wbuffer_convert::state_type alias__m_state = 3;
+  _Elem[32] alias__m_put_area = 4;
+  _Elem[32] alias__m_get_area = 5;
+  std::streamsize alias__m_unconv = 6;
+  char[29] alias__m_get_buf = 7;
+  bool alias__m_always_noconv = 8;
+}
+
+message _Wide_streambuf {
+  basic_streambuf<_Elem, _Tr> _wide_streambuf = 1;
+}
+
+message std::_Resetiosflags {
+  ios_base::fmtflags alias__m_mask = 1;
+}
+
+message std::_Setiosflags {
+  ios_base::fmtflags alias__m_mask = 1;
+}
+
+message std::_Setbase {
+  int32 alias__m_base = 1;
+}
+
+message std::_Setfill {
+  _CharT alias__m_c = 1;
+}
+
+message std::_Setprecision {
+  int32 alias__m_n = 1;
+}
+
+message std::_Setw {
+  int32 alias__m_n = 1;
+}
+
+message std::_Get_money {
+  _MoneyT & alias__m_mon = 1;
+  bool alias__m_intl = 2;
+}
+
+message _MoneyGet {
+  money_get<_CharT, _Iter> _moneyget = 1;
+}
+
+message std::_Put_money {
+  _MoneyT & alias__m_mon = 1;
+  bool alias__m_intl = 2;
+}
+
+message _MoneyPut {
+  money_put<_CharT, _Iter> _moneyput = 1;
+}
+
+message std::_Put_time {
+  std::tm * alias__m_tmb = 1;
+  _CharT * alias__m_fmt = 2;
+}
+
+message _TimePut {
+  time_put<_CharT, _Iter> _timeput = 1;
+}
+
+message std::_Get_time {
+  std::tm * alias__m_tmb = 1;
+  _CharT * alias__m_fmt = 2;
+}
+
+message _TimeGet {
+  time_get<_CharT, _Iter> _timeget = 1;
+}
+
+message std::basic_ios {
+  basic_ostream<_CharT, _Traits> * alias__m_tie = 1;
+  std::basic_ios::char_type alias__m_fill = 2;
+  bool alias__m_fill_init = 3;
+  basic_streambuf<_CharT, _Traits> * alias__m_streambuf = 4;
+  std::basic_ios::__ctype_type * alias__m_ctype = 5;
+  std::basic_ios::__num_put_type * alias__m_num_put = 6;
+  std::basic_ios::__num_get_type * alias__m_num_get = 7;
+}
+
+message __num_put_type {
+  num_put<_CharT, ostreambuf_iterator<_CharT, _Traits>> __num_put_type = 1;
+}
+
+message __num_get_type {
+  num_get<_CharT, istreambuf_iterator<_CharT, _Traits>> __num_get_type = 1;
+}
+
+message std::basic_ostream {
+}
+
+message __ios_type {
+  basic_ios<_CharT, _Traits> __ios_type = 1;
+}
+
+message std::basic_ostream::sentry {
+  bool alias__m_ok = 1;
+  basic_ostream<_CharT, _Traits> & alias__m_os = 2;
+}
+
+message __ptr_guard {
+  _CharT * alias___p = 1;
+}
+
+message std::basic_istream {
+  std::streamsize alias__m_gcount = 1;
+}
+
+message std::basic_istream::sentry {
+  bool alias__m_ok = 1;
+}
+
+message std::basic_iostream {
+}
+
+message std::_Temporary_buffer {
+  std::_Temporary_buffer::size_type alias__m_original_len = 1;
+  std::_Temporary_buffer::size_type alias__m_len = 2;
+  std::_Temporary_buffer::pointer alias__m_buffer = 3;
+}
+
+message std::__uninitialized_construct_buf_dispatch {
+}
+
+message std::raw_storage_iterator {
+  _OutputIterator alias__m_iter = 1;
+}
+
+message std::__allocated_ptr {
+  _Alloc * alias__m_alloc = 1;
+  std::__allocated_ptr::pointer alias__m_ptr = 2;
+}
+
+message std::_Maybe_unary_or_binary_function {
+}
+
+message std::_Mem_fn_traits_base {
+}
+
+message std::_Mem_fn_traits {
+}
+
+message std::_Maybe_get_result_type {
+}
+
+message std::_Weak_result_type_impl {
+}
+
+message std::_Weak_result_type_memfun {
+}
+
+message std::_Weak_result_type {
+}
+
+message std::_Refwrap_base_arg1 {
+}
+
+message std::_Refwrap_base_arg2 {
+}
+
+message std::_Reference_wrapper_base {
+}
+
+message std::_Reference_wrapper_base_memfun {
+}
+
+message std::reference_wrapper {
+  _Tp * alias__m_data = 1;
+}
+
+message __gnu_cxx::__aligned_membuf {
+  unsigned char[sizeof(_Tp)] alias__m_storage = 1;
+}
+
+message __gnu_cxx::__aligned_membuf::_Tp2 {
+  _Tp alias__m_t = 1;
+}
+
+message __gnu_cxx::__aligned_buffer {
+  typename std::aligned_storage<sizeof(_Tp), __alignof(_Tp)>::type alias__m_storage = 1;
+}
+
+message __gnu_cxx::__concurrence_lock_error {
+}
+
+message __gnu_cxx::__concurrence_unlock_error {
+}
+
+message __gnu_cxx::__concurrence_broadcast_error {
+}
+
+message __gnu_cxx::__concurrence_wait_error {
+}
+
+message __gnu_cxx::__mutex {
+  __gthread_mutex_t alias__m_mutex = 1;
+}
+
+message __gnu_cxx::__recursive_mutex {
+  __gthread_recursive_mutex_t alias__m_mutex = 1;
+}
+
+message __gnu_cxx::__scoped_lock {
+  __gnu_cxx::__scoped_lock::__mutex_type & alias__m_device = 1;
+}
+
+message __mutex_type {
+  __gnu_cxx::__mutex __mutex_type = 1;
+}
+
+message __gnu_cxx::__cond {
+  __gthread_cond_t alias__m_cond = 1;
+}
+
+message std::bad_weak_ptr {
+}
+
+message std::_Mutex_base {
+}
+
+message std::_Sp_counted_base {
+  _Atomic_word alias__m_use_count = 1;
+  _Atomic_word alias__m_weak_count = 2;
+}
+
+message std::_Sp_counted_ptr {
+  _Ptr alias__m_ptr = 1;
+}
+
+message std::_Sp_ebo_helper {
+}
+
+message std::_Sp_counted_deleter {
+  std::_Sp_counted_deleter::_Impl alias__m_impl = 1;
+}
+
+message std::_Sp_counted_deleter::_Impl {
+  _Ptr alias__m_ptr = 1;
+}
+
+message _Del_base {
+  _Sp_ebo_helper<0, _Deleter> _del_base = 1;
+}
+
+message _Alloc_base {
+  _Sp_ebo_helper<1, _Alloc> _alloc_base = 1;
+}
+
+message std::_Sp_make_shared_tag {
+}
+
+message std::_Sp_alloc_shared_tag {
+  _Alloc & alias__m_a = 1;
+}
+
+message std::_Sp_counted_ptr_inplace {
+  std::_Sp_counted_ptr_inplace::_Impl alias__m_impl = 1;
+}
+
+message std::_Sp_counted_ptr_inplace::_Impl {
+  __gnu_cxx::__aligned_buffer<_Tp> alias__m_storage = 1;
+}
+
+message _A_base {
+  _Sp_ebo_helper<0, _Alloc> _a_base = 1;
+}
+
+message std::__sp_array_delete {
+}
+
+message std::__shared_count {
+  _Sp_counted_base<_Lp> * alias__m_pi = 1;
+}
+
+message std::__shared_count::__not_alloc_shared_tag {
+}
+
+message _Sp_cd_type {
+  _Sp_counted_deleter<_Ptr, _Deleter, _Alloc, _Lp> _sp_cd_type = 1;
+}
+
+message _Sp_cp_type {
+  _Sp_counted_ptr_inplace<_Tp, _Alloc, _Lp> _sp_cp_type = 1;
+}
+
+message std::__weak_count {
+  _Sp_counted_base<_Lp> * alias__m_pi = 1;
+}
+
+message std::__sp_compatible_with {
+}
+
+message std::__sp_is_constructible_arrN {
+}
+
+message std::__sp_is_constructible_arr {
+}
+
+message std::__sp_is_constructible {
+}
+
+message std::__shared_ptr_access {
+}
+
+message std::__shared_ptr {
+  std::__shared_ptr::element_type * alias__m_ptr = 1;
+  __shared_count<_Lp> alias__m_refcount = 2;
+}
+
+message std::__shared_ptr::__has_esft_base {
+}
+
+message std::__weak_ptr {
+  std::__weak_ptr::element_type * alias__m_ptr = 1;
+  __weak_count<_Lp> alias__m_refcount = 2;
+}
+
+message std::_Sp_owner_less {
+}
+
+message std::owner_less {
+}
+
+message std::__enable_shared_from_this {
+  __weak_ptr<_Tp, _Lp> alias__m_weak_this = 1;
+}
+
+message _Tp_nc {
+  typename std::remove_const<_Tp>::type _tp_nc = 1;
+}
+
+message std::shared_ptr {
+}
+
+message std::weak_ptr {
+}
+
+message std::enable_shared_from_this {
+  weak_ptr<_Tp> alias__m_weak_this = 1;
+}
+
+enum enum {
+  memory_order_relaxed alias_memory_order_relaxed = 0;
+  memory_order_consume alias_memory_order_consume = 1;
+  memory_order_acquire alias_memory_order_acquire = 2;
+  memory_order_release alias_memory_order_release = 3;
+  memory_order_acq_rel alias_memory_order_acq_rel = 4;
+  memory_order_seq_cst alias_memory_order_seq_cst = 5;
+}
+
+message memory_order {
+  enum memory_order = 1;
+}
+
+message __atomic_flag_data_type {
+  bool __atomic_flag_data_type = 1;
+}
+
+message std::__atomic_flag_base {
+  std::__atomic_flag_data_type alias__m_i = 1;
+}
+
+message std::atomic_flag {
+}
+
+message std::__atomic_base {
+  std::__atomic_base::__int_type alias__m_i = 1;
+}
+
+message __pointer_type {
+  _PTp * __pointer_type = 1;
+}
+
+message std::_Sp_locker {
+  uint32 alias__m_key1 = 1;
+  uint32 alias__m_key2 = 2;
+}
+
+message std::auto_ptr_ref {
+  _Tp1 * alias__m_ptr = 1;
+}
+
+message std::auto_ptr {
+  _Tp * alias__m_ptr = 1;
+}
+
+message std::basic_stringbuf {
+  ios_base::openmode alias__m_mode = 1;
+  std::basic_stringbuf::__string_type alias__m_string = 2;
+}
+
+message std::basic_stringbuf::__xfer_bufptrs {
+  basic_stringbuf<_CharT, _Traits, _Alloc> * alias__m_to = 1;
+  std::basic_stringbuf::off_type[3] alias__m_goff = 2;
+  std::basic_stringbuf::off_type[3] alias__m_poff = 3;
+}
+
+message std::basic_istringstream {
+  std::basic_istringstream::__stringbuf_type alias__m_stringbuf = 1;
+}
+
+message __stringbuf_type {
+  basic_stringbuf<_CharT, _Traits, _Alloc> __stringbuf_type = 1;
+}
+
+message std::basic_ostringstream {
+  std::basic_ostringstream::__stringbuf_type alias__m_stringbuf = 1;
+}
+
+message std::basic_stringstream {
+  std::basic_stringstream::__stringbuf_type alias__m_stringbuf = 1;
+}
+
+message __iostream_type {
+  basic_iostream<std::basic_stringstream::char_type, std::basic_stringstream::traits_type> __iostream_type = 1;
+}
+
+message Json::SecureAllocator {
+}
+
+message Json::SecureAllocator::rebind {
+}
+
+message std::_Rb_tree_node_base {
+  std::_Rb_tree_color alias__m_color = 1;
+  std::_Rb_tree_node_base::_Base_ptr alias__m_parent = 2;
+  std::_Rb_tree_node_base::_Base_ptr alias__m_left = 3;
+  std::_Rb_tree_node_base::_Base_ptr alias__m_right = 4;
+}
+
+message _Base_ptr {
+  std::_Rb_tree_node_base * _base_ptr = 1;
+}
+
+message _Const_Base_ptr {
+  std::_Rb_tree_node_base * _const_base_ptr = 1;
+}
+
+message std::_Rb_tree_key_compare {
+  _Key_compare alias__m_key_compare = 1;
+}
+
+message std::_Rb_tree_header {
+  std::_Rb_tree_node_base alias__m_header = 1;
+  std::size_t alias__m_node_count = 2;
+}
+
+message std::_Rb_tree_node {
+  __gnu_cxx::__aligned_membuf<_Val> alias__m_storage = 1;
+}
+
+message _Link_type {
+  _Rb_tree_node<_Val> * _link_type = 1;
+}
+
+message std::_Rb_tree_iterator {
+  std::_Rb_tree_iterator::_Base_ptr alias__m_node = 1;
+}
+
+message std::_Rb_tree_const_iterator {
+  std::_Rb_tree_const_iterator::_Base_ptr alias__m_node = 1;
+}
+
+message std::_Rb_tree {
+  _Rb_tree_impl<_Compare> alias__m_impl = 1;
+}
+
+message _Node_allocator {
+  typename __gnu_cxx::__alloc_traits<_Alloc>::template rebind<_Rb_tree_node<_Val>>::other _node_allocator = 1;
+}
+
+message _Const_Link_type {
+  _Rb_tree_node<_Val> * _const_link_type = 1;
+}
+
+message std::_Rb_tree::_Reuse_or_alloc_node {
+  std::_Rb_tree::_Base_ptr alias__m_root = 1;
+  std::_Rb_tree::_Base_ptr alias__m_nodes = 2;
+  _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc> & alias__m_t = 3;
+}
+
+message std::_Rb_tree::_Alloc_node {
+  _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc> & alias__m_t = 1;
+}
+
+message key_type {
+  _Key key_type = 1;
+}
+
+message std::_Rb_tree::_Rb_tree_impl {
+}
+
+message _Base_key_compare {
+  _Rb_tree_key_compare<_Key_compare> _base_key_compare = 1;
+}
+
+message _Res {
+  pair<std::_Rb_tree::_Base_ptr, std::_Rb_tree::_Base_ptr> _res = 1;
+}
+
+message std::map {
+  std::map::_Rep_type alias__m_t = 1;
+}
+
+message mapped_type {
+  _Tp mapped_type = 1;
+}
+
+message key_compare {
+  _Compare key_compare = 1;
+}
+
+message std::map::value_compare {
+  _Compare alias_comp = 1;
+}
+
+message _Pair_alloc_type {
+  typename __gnu_cxx::__alloc_traits<_Alloc>::template rebind<value_type>::other _pair_alloc_type = 1;
+}
+
+message _Rep_type {
+  _Rb_tree<std::map::key_type, std::map::value_type, _Select1st<std::map::value_type>, std::map::key_compare, std::map::_Pair_alloc_type> _rep_type = 1;
+}
+
+message std::multimap {
+  std::multimap::_Rep_type alias__m_t = 1;
+}
+
+message std::multimap::value_compare {
+  _Compare alias_comp = 1;
+}
+
+message std::_Vector_base {
+  std::_Vector_base::_Vector_impl alias__m_impl = 1;
+}
+
+message std::_Vector_base::_Vector_impl_data {
+  std::_Vector_base::pointer alias__m_start = 1;
+  std::_Vector_base::pointer alias__m_finish = 2;
+  std::_Vector_base::pointer alias__m_end_of_storage = 3;
+}
+
+message std::_Vector_base::_Vector_impl {
+}
+
+message _Tr {
+  __gnu_cxx::__alloc_traits<_Tp_alloc_type> _tr = 1;
+}
+
+message std::vector {
+}
+
+message std::vector::_Temporary_value {
+  vector<_Tp, _Alloc> * alias__m_this = 1;
+  typename aligned_storage<sizeof(_Tp), alignof(_Tp)>::type alias___buf = 2;
+}
+
+message _Bit_type {
+  uint64 _bit_type = 1;
+}
+
+message std::_Bit_reference {
+  std::_Bit_type * alias__m_p = 1;
+  std::_Bit_type alias__m_mask = 2;
+}
+
+message std::_Bit_iterator_base {
+  std::_Bit_type * alias__m_p = 1;
+  uint32 alias__m_offset = 2;
+}
+
+message std::_Bit_iterator {
+}
+
+message std::_Bit_const_iterator {
+}
+
+message std::_Bvector_base {
+  std::_Bvector_base::_Bvector_impl alias__m_impl = 1;
+}
+
+message _Bit_alloc_type {
+  typename __gnu_cxx::__alloc_traits<_Alloc>::template rebind<_Bit_type>::other _bit_alloc_type = 1;
+}
+
+message _Bit_alloc_traits {
+  typename __gnu_cxx::__alloc_traits<_Bit_alloc_type> _bit_alloc_traits = 1;
+}
+
+message _Bit_pointer {
+  typename _Bit_alloc_traits::pointer _bit_pointer = 1;
+}
+
+message std::_Bvector_base::_Bvector_impl_data {
+  std::_Bit_iterator alias__m_start = 1;
+  std::_Bit_iterator alias__m_finish = 2;
+  std::_Bvector_base::_Bit_pointer alias__m_end_of_storage = 3;
+}
+
+message std::_Bvector_base::_Bvector_impl {
+}
+
+message Json::Exception {
+  Json::String alias_msg_ = 1;
+}
+
+message Json::RuntimeError {
+}
+
+message Json::LogicError {
+}
+
+message Json::StaticString {
+  string alias_c_str_ = 1;
+}
+
+message Json::Value {
+  union ValueHolder alias_value_ = 1;
+  (unnamed alias_bits_ = 2;
+  Json::Value::Comments alias_comments_ = 3;
+  ptrdiff_t alias_start_ = 4;
+  ptrdiff_t alias_limit_ = 5;
+}
+
+message Json::Value::CZString {
+  string alias_cstr_ = 1;
+  Json::Value::CZString::(anonymous union at ../include/json/value.h:289:5) alias_ = 2;
+}
+
+message Json::Value::CZString::StringStorage {
+  uint32 alias_policy_ = 1;
+  uint32 alias_length_ = 2;
+}
+
+message Json::Value::CZString::(anonymous) {
+  Json::Value::ArrayIndex alias_index_ = 1;
+  Json::Value::CZString::StringStorage alias_storage_ = 2;
+}
+
+message ObjectValues {
+  std::map<CZString, Value> objectvalues = 1;
+}
+
+message Json::Value::ValueHolder {
+  Json::Value::LargestInt alias_int_ = 1;
+  Json::Value::LargestUInt alias_uint_ = 2;
+  double alias_real_ = 3;
+  bool alias_bool_ = 4;
+  string alias_string_ = 5;
+  Json::Value::ObjectValues * alias_map_ = 6;
+}
+
+message Json::Value::(anonymous) {
+  uint32 alias_value_type_ = 1;
+  uint32 alias_allocated_ = 2;
+}
+
+message Json::Value::Comments {
+  std::unique_ptr<Array> alias_ptr_ = 1;
+}
+
+message Json::PathArgument {
+  Json::String alias_key_ = 1;
+  Json::ArrayIndex alias_index_ = 2;
+  Json::PathArgument::Kind alias_kind_ = 3;
+}
+
+message Json::Path {
+  Json::Path::Args alias_args_ = 1;
+}
+
+message Json::ValueIteratorBase {
+  Value::ObjectValues::iterator alias_current_ = 1;
+  bool alias_isnull_ = 2;
+}
+
+message Json::ValueConstIterator {
+}
+
+message Json::ValueIterator {
+}
+
+message Json::StreamWriter {
+  Json::OStream * alias_sout_ = 1;
+}
+
+message Json::StreamWriter::Factory {
+}
+
+message Json::StreamWriterBuilder {
+  Json::Value alias_settings_ = 1;
+}
+
+message Json::Writer {
+}
+
+message Json::FastWriter {
+  Json::String alias_document_ = 1;
+  bool alias_yamlcompatibilityenabled_ = 2;
+  bool alias_dropnullplaceholders_ = 3;
+  bool alias_omitendinglinefeed_ = 4;
+}
+
+message Json::StyledWriter {
+  Json::StyledWriter::ChildValues alias_childvalues_ = 1;
+  Json::String alias_document_ = 2;
+  Json::String alias_indentstring_ = 3;
+  uint32 alias_rightmargin_ = 4;
+  uint32 alias_indentsize_ = 5;
+  bool alias_addchildvalues_ = 6;
+}
+
+message Json::StyledStreamWriter {
+  Json::StyledStreamWriter::ChildValues alias_childvalues_ = 1;
+  Json::OStream * alias_document_ = 2;
+  Json::String alias_indentstring_ = 3;
+  uint32 alias_rightmargin_ = 4;
+  Json::String alias_indentation_ = 5;
+  bool alias_addchildvalues_ = 6;
+  bool alias_indented_ = 7;
+}
+
+message _Cmp {
+  decltype(__comp) _cmp = 1;
+}
+
+message std::uniform_int_distribution {
+  std::uniform_int_distribution::param_type alias__m_param = 1;
+}
+
+message std::uniform_int_distribution::param_type {
+  _IntType alias__m_a = 1;
+  _IntType alias__m_b = 2;
+}
+
+message distribution_type {
+  uniform_int_distribution<_IntType> distribution_type = 1;
+}
+
+message _Gresult_type {
+  typename _UniformRandomBitGenerator::result_type _gresult_type = 1;
+}
+
+message __utype {
+  typename make_unsigned<result_type>::type __utype = 1;
+}
+
+message __uctype {
+  typename common_type<_Gresult_type, __utype>::type __uctype = 1;
+}
+
+message _RevIterator1 {
+  reverse_iterator<_BidirectionalIterator1> _reviterator1 = 1;
+}
+
+message _RevIterator2 {
+  reverse_iterator<_BidirectionalIterator2> _reviterator2 = 1;
+}
+
+message _InputValueType {
+  typename iterator_traits<_InputIterator>::value_type _inputvaluetype = 1;
+}
+
+message _RItTraits {
+  iterator_traits<_RandomAccessIterator> _rittraits = 1;
+}
+
+message _TmpBuf {
+  _Temporary_buffer<_BidirectionalIterator, _ValueType> _tmpbuf = 1;
+}
+
+message __ud_type {
+  typename std::make_unsigned<_DistanceType>::type __ud_type = 1;
+}
+
+message __distr_type {
+  typename std::uniform_int_distribution<__ud_type> __distr_type = 1;
+}
+
+message __p_type {
+  typename __distr_type::param_type __p_type = 1;
+}
+
+message _Gen {
+  typename remove_reference<_UniformRandomNumberGenerator>::type _gen = 1;
+}
+
+message __uc_type {
+  typename common_type<typename _Gen::result_type, __ud_type>::type __uc_type = 1;
+}
+
+message _IntSize {
+  decltype(std::__size_to_integer(__n)) _intsize = 1;
+}
+
+message float_t {
+  float float_t = 1;
+}
+
+message double_t {
+  double double_t = 1;
+}
+
+message __iseqsig_type {
+}
+
+message _T3 {
+  decltype(((__x) + (__y) + 0.F)) _t3 = 1;
+}
+
+message std::bad_function_call {
+}
+
+message std::__is_location_invariant {
+}
+
+message std::_Nocopy_types {
+  bytes alias__m_object = 1;
+  bytes alias__m_const_object = 2;
+  void (*)() alias__m_function_pointer = 3;
+  void (std::_Undefined_class::*)() alias__m_member_pointer = 4;
+}
+
+message std::_Any_data {
+  std::_Nocopy_types alias__m_unused = 1;
+  char[16] alias__m_pod_data = 2;
+}
+
+message std::_Function_base {
+  std::_Any_data alias__m_functor = 1;
+  std::_Function_base::_Manager_type alias__m_manager = 2;
+}
+
+message std::_Function_base::_Base_manager {
+}
+
+message std::_Function_handler {
+}
+
+message std::_Target_handler {
+}
+
+message std::function {
+  std::function<type-parameter-0-0 (type-parameter-0-1...)>::_Invoker_type alias__m_invoker = 1;
+}
+
+message std::function<type-parameter-0-0 (type-parameter-0-1...)>::_Callable {
+}
+
+message std::_Placeholder {
+}
+
+message std::_Mem_fn_base {
+  _MemFunPtr alias__m_pmf = 1;
+}
+
+message std::_Mem_fn {
+}
+
+message std::is_bind_expression {
+}
+
+message std::is_placeholder {
+}
+
+message std::_Mu {
+}
+
+message _Indexes {
+  typename _Build_index_tuple<sizeof...(_Args)>::__type _indexes = 1;
+}
+
+message std::_Bind {
+  _Functor alias__m_f = 1;
+  tuple<_Bound_args...> alias__m_bound_args = 2;
+}
+
+message _Bound_indexes {
+  typename _Build_index_tuple<sizeof...(_Bound_args)>::__type _bound_indexes = 1;
+}
+
+message std::_Bind_result {
+  _Functor alias__m_f = 1;
+  tuple<_Bound_args...> alias__m_bound_args = 2;
+}
+
+message std::_Bind_check_arity {
+}
+
+message std::_Bind_helper {
+}
+
+message __func_type {
+  typename decay<_Func>::type __func_type = 1;
+}
+
+message __helper_type {
+  _Bind_helper<false, _Func, _BoundArgs...> __helper_type = 1;
+}
+
+message std::_Bindres_helper {
+}
+
+message __functor_type {
+  typename decay<_Func>::type __functor_type = 1;
+}
+
+message std::istream_iterator {
+  std::istream_iterator::istream_type * alias__m_stream = 1;
+  _Tp alias__m_value = 2;
+  bool alias__m_ok = 3;
+}
+
+message std::ostream_iterator {
+  std::ostream_iterator::ostream_type * alias__m_stream = 1;
+  _CharT * alias__m_string = 2;
+}
+
+message Json::Features {
+  bool alias_allowcomments_ = 1;
+  bool alias_strictroot_ = 2;
+  bool alias_allowdroppednullplaceholders_ = 3;
+  bool alias_allownumerickeys_ = 4;
+}
+
+message std::stack {
+  _Sequence alias_c = 1;
+}
+
+message Json::Reader {
+  Json::Reader::Nodes alias_nodes_ = 1;
+  Json::Reader::Errors alias_errors_ = 2;
+  Json::String alias_document_ = 3;
+  Json::Reader::Location alias_begin_ = 4;
+  Json::Reader::Location alias_end_ = 5;
+  Json::Reader::Location alias_current_ = 6;
+  Json::Reader::Location alias_lastvalueend_ = 7;
+  Json::Value * alias_lastvalue_ = 8;
+  Json::String alias_commentsbefore_ = 9;
+  Json::Features alias_features_ = 10;
+  bool alias_collectcomments_ = 11;
+}
+
+message Json::Reader::StructuredError {
+  ptrdiff_t alias_offset_start = 1;
+  ptrdiff_t alias_offset_limit = 2;
+  Json::String alias_message = 3;
+}
+
+message Json::Reader::Token {
+  Json::Reader::TokenType alias_type_ = 1;
+  Json::Reader::Location alias_start_ = 2;
+  Json::Reader::Location alias_end_ = 3;
+}
+
+message Json::Reader::ErrorInfo {
+  Json::Reader::Token alias_token_ = 1;
+  Json::String alias_message_ = 2;
+  Json::Reader::Location alias_extra_ = 3;
+}
+
+message Json::CharReader {
+}
+
+message Json::CharReader::Factory {
+}
+
+message Json::CharReaderBuilder {
+  Json::Value alias_settings_ = 1;
+}
+
+message std::__numeric_limits_base {
+}
+
+message std::numeric_limits {
+}
+
+message std::set {
+  std::set::_Rep_type alias__m_t = 1;
+}
+
+message value_compare {
+  _Compare value_compare = 1;
+}
+
+message _Key_alloc_type {
+  typename __gnu_cxx::__alloc_traits<_Alloc>::template rebind<_Key>::other _key_alloc_type = 1;
+}
+
+message std::multiset {
+  std::multiset::_Rep_type alias__m_t = 1;
+}
+
