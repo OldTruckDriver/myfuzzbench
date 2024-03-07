@@ -4,8 +4,8 @@ sudo docker build -t io/library/self/dispatcher-image:latest .
 
 PYTHONPATH=. python3 experiment/run_experiment.py \
 --experiment-config experiment-config.yaml \
---benchmark  update_jsoncpp \
---experiment-name upjsoncpp \
+--benchmark  freetype2_ftfuzzer proto_freetype2 \
+--experiment-name upft2 \
 --fuzzers libfuzzer \
 --no-seeds \
 --no-dictionaries
