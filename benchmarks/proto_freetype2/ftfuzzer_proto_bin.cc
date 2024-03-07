@@ -137,36 +137,92 @@
 
   class FT_Proto_Class {
   public:
-      // Static member function to convert FT_Byte_Proto to vector
-      static void ConvertFTByteProtoToVector(const FT_Proto& ft_proto, vector<vector<FT_Byte>>& result) {
-        for (const FT_Byte_Proto& ft_byte_proto : ft_proto.ft_byte()) {
-            vector<FT_Byte> ft_bytes(ft_byte_proto.ftbyte().begin(), ft_byte_proto.ftbyte().end());
-            result.push_back(ft_bytes);
-        }
-}
-
-      // Static member function to convert FT_Long_Proto to FT_Long
-      static FT_Long ConvertFT_Long(const FT_Long_Proto& proto_long) {
-          return static_cast<FT_Long>(proto_long.ftlong());
+      // Static member function to convert FT_Proto to vector
+      static void ConvertFTProtoToVector(const FT_Proto& ft_proto, vector<vector<FT_Byte>>& result) {
+          for (const FT_Byte_Proto& ft_byte_proto : ft_proto.ft_byte()) {
+              vector<FT_Byte> ft_bytes(ft_byte_proto.ftbyte().begin(), ft_byte_proto.ftbyte().end());
+              result.push_back(ft_bytes);
+          }
       }
   };
+  static int
+  archive_read_entry_data(struct archive* ar, vector<FT_Byte>* vw) {
+    int r;
+    const FT_Byte* buff;
+    size_t size;
+    int64_t offset;
 
-  
+    for (;;) {
+        r = archive_read_data_block(ar, reinterpret_cast<const void**>(&buff), &size, &offset);
+        if (r == ARCHIVE_EOF)
+            return ARCHIVE_OK;
+        if (r != ARCHIVE_OK)
+            return r;
+
+        vw->insert(vw->end(), buff, buff + size);
+    }
+  }
+
+  static void parse_data(const uint8_t* data, size_t size, FT_Proto& ft_proto) {
+    struct archive_entry* entry;
+    int r;
+
+    unique_ptr<struct archive, decltype(archive_read_free)*> a(archive_read_new(), archive_read_free);
+
+    // activate reading of uncompressed tar archives
+    archive_read_support_format_tar(a.get());
+
+    if (!(r = archive_read_open_memory(a.get(), const_cast<void*>(static_cast<const void*>(data)), size))) {
+        unique_ptr<struct archive, decltype(archive_read_close)*> a_open(a.get(), archive_read_close);
+
+        // read files contained in archive
+        for (;;) {
+            r = archive_read_next_header(a_open.get(), &entry);
+            if (r == ARCHIVE_EOF)
+                break;
+            if (r != ARCHIVE_OK)
+                break;
+
+            vector<FT_Byte> entry_data;
+            r = archive_read_entry_data(a.get(), &entry_data);
+            if (r != ARCHIVE_OK)
+                break;
+
+            // Add the entry data to the FT_Proto message
+            FT_Byte_Proto* ft_byte_proto = ft_proto.add_ft_byte();
+            // for (const auto& byte : entry_data) {
+            //   ft_byte_proto->add_ftbyte(byte);
+            // }
+            ft_byte_proto->mutable_ftbyte()->Add(entry_data.begin(), entry_data.end());
+        }
+    }
+
+    // If no files in the archive, treat the input data as a single file
+    if (ft_proto.ft_byte_size() == 0) {
+        FT_Byte_Proto* ft_byte_proto = ft_proto.add_ft_byte();
+        ft_byte_proto->mutable_ftbyte()->Add(data, data + size);
+    }
+  }
+
+
   DEFINE_BINARY_PROTO_FUZZER(const FT_Proto &ft_proto)
   {
     assert( !InitResult );
 
-    vector<vector<FT_Byte>> font_data;
-    FT_Proto_Class::ConvertFTByteProtoToVector(ft_proto, font_data);
-    FT_Long file_size = FT_Proto_Class::ConvertFT_Long(ft_proto.ft_size());
-    FT_Long face_index = FT_Proto_Class::ConvertFT_Long(ft_proto.ft_index());
+    FT_Proto parsed_proto;
+    parse_data(reinterpret_cast<const uint8_t*>(ft_proto.SerializeAsString().data()),
+               ft_proto.SerializeAsString().size(),
+               parsed_proto);
 
-    if (font_data.size() < 1) {
+    vector<vector<FT_Byte>> files;
+    FT_Proto_Class::ConvertFTProtoToVector(parsed_proto, files);
+
+    if (files.empty()) {
         return;
     }
 
     // const FT_Byte* font_data_ptr = font_data.data();
-//    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
+  //  const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
     FT_Face         face;
     FT_Int32        load_flags  = FT_LOAD_DEFAULT;
 #if 0
@@ -182,50 +238,58 @@
     
 
     if ( FT_New_Memory_Face( library,
-                             font_data[0].data(),
-                             (FT_Long)font_data[0].size(),
+                             files[0].data(),
+                             (FT_Long)files[0].size(),
                              -1,
                              &face ) )
       return;
     long  num_faces = face->num_faces;
     FT_Done_Face( face );
+
     // loop over up to 20 arbitrarily selected faces
     // from index range [0;num-faces-1]
     long  max_face_cnt = num_faces < 20
                            ? num_faces
                            : 20;
+
     Random  faces_pool( (int)max_face_cnt, (int)num_faces );
+
     for ( long  face_cnt = 0;
           face_cnt < max_face_cnt;
           face_cnt++ )
     {
       long  face_index = faces_pool.get() - 1;
+
       // get number of instances
       if ( FT_New_Memory_Face( library,
-                               font_data[0].data(),
-                               (FT_Long)font_data[0].size(),
+                               files[0].data(),
+                               (FT_Long)files[0].size(),
                                -( face_index + 1 ),
                                &face ) )
         continue;
       long  num_instances = face->style_flags >> 16;
       FT_Done_Face( face );
+
       // loop over the face without instance (index 0)
       // and up to 20 arbitrarily selected instances
       // from index range [1;num_instances]
       long  max_instance_cnt = num_instances < 20
                                  ? num_instances
                                  : 20;
+
       Random  instances_pool( (int)max_instance_cnt, (int)num_instances );
+
       for ( long  instance_cnt = 0;
             instance_cnt <= max_instance_cnt;
             instance_cnt++ )
       {
         long  instance_index = 0;
+
         if ( !instance_cnt )
         {
           if ( FT_New_Memory_Face( library,
-                                   font_data[0].data(),
-                                   (FT_Long)font_data[0].size(),
+                                   files[0].data(),
+                                   (FT_Long)files[0].size(),
                                    face_index,
                                    &face ) )
             continue;
@@ -233,41 +297,49 @@
         else
         {
           instance_index = instances_pool.get();
+
           if ( FT_New_Memory_Face( library,
-                                   font_data[0].data(),
-                                   (FT_Long)font_data[0].size(),
+                                   files[0].data(),
+                                   (FT_Long)files[0].size(),
                                    ( instance_index << 16 ) + face_index,
                                    &face ) )
             continue;
         }
+
         // if we have more than a single input file coming from an archive,
         // attach them (starting with the second file) using the order given
         // in the archive
         for ( size_t  files_index = 1;
-              files_index < font_data.size();
+              files_index < files.size();
               files_index++ )
         {
           FT_Open_Args  open_args = {};
           open_args.flags         = FT_OPEN_MEMORY;
-          open_args.memory_base   = font_data[files_index].data();
-          open_args.memory_size   = (FT_Long)font_data[files_index].size();
+          open_args.memory_base   = files[files_index].data();
+          open_args.memory_size   = (FT_Long)files[files_index].size();
+
           // the last archive element will be eventually used as the
           // attachment
           FT_Attach_Stream( face, &open_args );
         }
+
         // loop over an arbitrary size for outlines
         // and up to ten arbitrarily selected bitmap strike sizes
         // from the range [0;num_fixed_sizes - 1]
         int  max_size_cnt = face->num_fixed_sizes < 10
                               ? face->num_fixed_sizes
                               : 10;
+
         Random sizes_pool( max_size_cnt, face->num_fixed_sizes );
+
         for ( int  size_cnt = 0;
               size_cnt <= max_size_cnt;
               size_cnt++ )
         {
           FT_Int32  flags = load_flags;
+
           int  size_index = 0;
+
           if ( !size_cnt )
           {
             // set up 20pt at 72dpi as an arbitrary size
@@ -280,15 +352,19 @@
             // bitmap strikes are not active for font variations
             if ( instance_index )
               continue;
+
             size_index = sizes_pool.get() - 1;
+
             if ( FT_Select_Size( face, size_index ) )
               continue;
             flags |= FT_LOAD_COLOR;
           }
+
           // test MM interface only for a face without a selected instance
           // and without a selected bitmap strike
           if ( !instance_index && !size_cnt )
             setIntermediateAxis( face );
+
           // loop over all glyphs
           for ( unsigned int  glyph_index = 0;
                 glyph_index < (unsigned int)face->num_glyphs;
@@ -296,18 +372,23 @@
           {
             if ( FT_Load_Glyph( face, glyph_index, flags ) )
               continue;
+
             // Rendering is the most expensive and the least interesting part.
             //
             // if ( FT_Render_Glyph( face->glyph, render_mode) )
             //   continue;
             // FT_GlyphSlot_Embolden( face->glyph );
+
 #if 0
             FT_Glyph  glyph;
             if ( !FT_Get_Glyph( face->glyph, &glyph ) )
               FT_Done_Glyph( glyph );
+
             FT_Outline*  outline = &face->glyph->outline;
             FT_Matrix    rot30   = { 0xDDB4, -0x8000, 0x8000, 0xDDB4 };
+
             FT_Outline_Transform( outline, &rot30 );
+
             FT_BBox  bbox;
             FT_Outline_Get_BBox( outline, &bbox );
 #endif
@@ -316,6 +397,7 @@
         FT_Done_Face( face );
       }
     }
+
     return;
   }
 // END

@@ -5,12 +5,6 @@ message FT_Byte_Proto {
   repeated uint32 ftbyte = 1;
 }
 
-message FT_Long_Proto {
-  int64 ftlong = 1;
-}
-
 message FT_Proto {
   repeated FT_Byte_Proto ft_byte = 1;
-  FT_Long_Proto ft_size = 2;
-  FT_Long_Proto ft_index = 3;
 }

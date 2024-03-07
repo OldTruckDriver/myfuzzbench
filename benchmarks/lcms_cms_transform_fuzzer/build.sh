@@ -18,6 +18,6 @@ cd Little-CMS
 ./configure
 make -j $(nproc)
 echo "my_variable: $FUZZER_LIB"
-$CXX $CXXFLAGS $SRC/cms_transform_fuzzer.cc -I include/ src/.libs/liblcms2.a \
+$CXX $CXXFLAGS $SRC/cms_transform_fuzzer.cc -I $SRC/Little-CMS/include/ $SRC/Little-CMS/src/.libs/liblcms2.a -fsanitize=fuzzer,address \
     $FUZZER_LIB -o $OUT/cms_transform_fuzzer
 # cp -r /opt/seeds $OUT/

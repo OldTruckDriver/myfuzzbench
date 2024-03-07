@@ -33,6 +33,6 @@ cd freetype2
 make clean
 make all -j $(nproc)
 
-$CXX $CXXFLAGS -std=c++11 -I include -I . src/tools/ftfuzzer/ftfuzzer.cc \
-    objs/.libs/libfreetype.a $FUZZER_LIB -L /usr/local/lib -larchive \
-    -o $OUT/ftfuzzer
+$CXX $CXXFLAGS -std=c++11 -I include -I . $SRC/ftfuzzer.cc \
+    $SRC/freetype2/objs/.libs/libfreetype.a $FUZZER_LIB -fsanitize=fuzzer,address -L /usr/local/lib -larchive \
+    -o $OUT/ftfuzzer -pthread
