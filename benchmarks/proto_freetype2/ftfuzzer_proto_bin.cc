@@ -30,6 +30,7 @@
 // #include "freetype2/include/freetype/ftdriver.h"
 // #include <freetype/ftdriver.h>
 #include <ft2build.h>
+#include <iostream>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
 #include FT_CACHE_H
@@ -139,12 +140,14 @@
   public:
       // Static member function to convert FT_Byte_Proto to vector
       static void ConvertFTByteProtoToVector(const FT_Proto& ft_proto, vector<vector<FT_Byte>>& result) {
-        for (const FT_Byte_Proto& ft_byte_proto : ft_proto.ft_byte()) {
-            vector<FT_Byte> ft_bytes(ft_byte_proto.ftbyte().begin(), ft_byte_proto.ftbyte().end());
-            result.push_back(ft_bytes);
-        }
+          for (const FT_Byte_Proto& ft_byte_proto : ft_proto.ft_byte()) {
+              vector<FT_Byte> ft_bytes;
+              for (const std::string& str : ft_byte_proto.ftbyte()) {
+                  ft_bytes.insert(ft_bytes.end(), str.begin(), str.end());
+              }
+              result.push_back(ft_bytes);
+          }
       }
-
   };
 
   
@@ -183,7 +186,10 @@
                              -1,
                              &face ) )
       return;
+
+    
     long  num_faces = face->num_faces;
+    
     FT_Done_Face( face );
     // loop over up to 20 arbitrarily selected faces
     // from index range [0;num-faces-1]
@@ -191,11 +197,14 @@
                            ? num_faces
                            : 20;
     Random  faces_pool( (int)max_face_cnt, (int)num_faces );
+    // std::cout << max_face_cnt << std::endl; 
+    // std::cout << num_faces << std::endl;
     for ( long  face_cnt = 0;
           face_cnt < max_face_cnt;
           face_cnt++ )
     {
       long  face_index = faces_pool.get() - 1;
+      // std::cout << "1111111111111111111" << std::endl; 
       // get number of instances
       if ( FT_New_Memory_Face( library,
                                font_data[0].data(),
@@ -203,6 +212,7 @@
                                -( face_index + 1 ),
                                &face ) )
         continue;
+      std::cout << "2222222222222222222222222" << std::endl; 
       long  num_instances = face->style_flags >> 16;
       FT_Done_Face( face );
       // loop over the face without instance (index 0)

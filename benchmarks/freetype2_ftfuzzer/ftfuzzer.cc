@@ -31,7 +31,7 @@
 
 
 #include <ft2build.h>
-
+#include <iostream>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
 #include FT_CACHE_H
@@ -276,13 +276,14 @@
                            : 20;
 
     Random  faces_pool( (int)max_face_cnt, (int)num_faces );
-
+    // std::cout << max_face_cnt << std::endl; 
+    // std::cout << num_faces << std::endl;
     for ( long  face_cnt = 0;
           face_cnt < max_face_cnt;
           face_cnt++ )
     {
       long  face_index = faces_pool.get() - 1;
-
+      // std::cout << "11111111111111111111111" << std::endl;
       // get number of instances
       if ( FT_New_Memory_Face( library,
                                files[0].data(),
@@ -290,6 +291,7 @@
                                -( face_index + 1 ),
                                &face ) )
         continue;
+      // std::cout << "2222222222222222222222222222222222222" << std::endl;
       long  num_instances = face->style_flags >> 16;
       FT_Done_Face( face );
 
