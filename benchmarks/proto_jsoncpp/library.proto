@@ -4127,6 +4127,12 @@ message Json::Value::CZString::StringStorage {
   uint32 alias_length_ = 2;
 }
 
+message StringStorage_Proto {
+  bytes policy_ = 1;
+  int length_ = 2;
+}
+
+
 message Json::Value::CZString::(anonymous) {
   Json::Value::ArrayIndex alias_index_ = 1;
   Json::Value::CZString::StringStorage alias_storage_ = 2;

@@ -15,6 +15,17 @@
 #
 ################################################################################
 
+cd ..
+cd libfuzzer
+./build.sh
+cd ..
+cd jsoncpp
+
+rm -rf genfiles && mkdir genfiles && $SRC/LPM/external.protobuf/bin/protoc proto.proto --cpp_out=genfiles
+$CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I $SRC/LPM/external.protobuf/include
+
+
+
 mkdir -p build
 cd build
 cmake -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
@@ -23,9 +34,32 @@ cmake -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
 make
 
 # Compile fuzzer.
-$CXX $CXXFLAGS -I../include $LIB_FUZZING_ENGINE \
-    ../src/test_lib_json/fuzz.cpp -o $OUT/jsoncpp_fuzzer \
-    lib/libjsoncpp.a
+$CXX $CXXFLAGS -std=c++14 -I../.. -I../include -I ../genfiles -I ../../LPM/external.protobuf/include -I ../src/test_lib_json/ -I ../../libprotobuf-mutator/ -I../genfiles/proto.pb.o \
+                -I../../LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a -I ../../LPM/src/libprotobuf-mutator.a lib/libjsoncpp.a ../../LPM/external.protobuf/lib/lib*.a \
+                -lz -lm -lpthread -L./lib -ljsoncpp \
+                  -L../../LPM/external.protobuf/lib -lprotobuf \
+                  -L../../abseil-cpp/build/lib -labsl_base -labsl_log_internal_globals -labsl_log_internal_format \
+                  -labsl_log_internal_check_op -labsl_log_internal_conditions -labsl_log_internal_message \
+                  -labsl_log_internal_nullguard -labsl_log_internal_proto -labsl_log_severity -labsl_strings -labsl_strings_internal \
+                  -fsanitize=fuzzer,address -Wl,--end-group \
+                ../../libfuzzer/libFuzzer.a ../jsoncpp_proto_bin.cc -o $OUT/jsoncpp_fuzzer
+
+
 
 # Add dictionary.
 cp $SRC/jsoncpp/src/test_lib_json/fuzz.dict $OUT/jsoncpp_fuzzer.dict
+
+
+$CXX $CXXFLAGS -std=c++14 -I../include -I../genfiles -I../../LPM/external.protobuf/include \
+     -I../src/test_lib_json -I../../libprotobuf-mutator -I../genfiles/proto.pb.o -I../../LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a -I ../../LPM/src/libprotobuf-mutator.a lib/libjsoncpp.a ../../LPM/external.protobuf/lib/lib*.a\
+     -lz -lm -lpthread -L./lib -ljsoncpp \
+     -L../../LPM/external.protobuf/lib -lprotobuf \
+     -L../../abseil-cpp/build/lib -labsl_base -labsl_log_internal_globals -labsl_log_internal_format \
+     -labsl_log_internal_check_op -labsl_log_internal_conditions -labsl_log_internal_message \
+     -labsl_log_internal_nullguard -labsl_log_internal_proto -labsl_log_severity -labsl_strings -labsl_strings_internal \
+     -fsanitize=fuzzer,address \
+     lib/libjsoncpp.a \
+     ../../LPM/external.protobuf/lib/lib*.a \
+     ../../libfuzzer/libFuzzer.a \
+     ../jsoncpp_proto_bin.cc \
+     -o $OUT/jsoncpp_fuzzer

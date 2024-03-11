@@ -15,32 +15,12 @@ namespace Json {
 class Exception;
 }
 
-static bits_ ConverterProto2Bit(const Bits_proto &bits_proto){
-    bits_ bits;
-    bits.value_type_ = 8;
 
-}
-
-static LargestUInt ConvertProtoLargestUInt(const LargestUInt_Proto& proto_uint) {
-    return static_cast<LargestUInt>(proto_uint.alias_uint());
-}
 
 extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
   Json::CharReaderBuilder builder;
   Json::Value value;
 
-  CZString = proto.czstring;
-  value = .czstring = CZString;
-  map<CZString, Value>;
-  value->map = map;
-  builder.value = value;
-  map protobuf
-  builder
-  build  value
-  bits
-  prtrdiff
-
-  map<czstring, value>
 
   if (size < sizeof(uint32_t)) {
     return 0;
@@ -53,19 +33,17 @@ extern "C" int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
   data += sizeof(uint32_t);
   size -= sizeof(uint32_t);
 
-
-
-//  builder.settings_["failIfExtra"] = hash_settings & (1 << 0);
-//  builder.settings_["allowComments_"] = hash_settings & (1 << 1);
-//  builder.settings_["strictRoot_"] = hash_settings & (1 << 2);
-//  builder.settings_["allowDroppedNullPlaceholders_"] = hash_settings & (1 << 3);
-//  builder.settings_["allowNumericKeys_"] = hash_settings & (1 << 4);
-//  builder.settings_["allowSingleQuotes_"] = hash_settings & (1 << 5);
-//  builder.settings_["failIfExtra_"] = hash_settings & (1 << 6);
-//  builder.settings_["rejectDupKeys_"] = hash_settings & (1 << 7);
-//  builder.settings_["allowSpecialFloats_"] = hash_settings & (1 << 8);
-//  builder.settings_["collectComments"] = hash_settings & (1 << 9);
-//  builder.settings_["allowTrailingCommas_"] = hash_settings & (1 << 10);
+  builder.settings_["failIfExtra"] = hash_settings & (1 << 0);
+  builder.settings_["allowComments_"] = hash_settings & (1 << 1);
+  builder.settings_["strictRoot_"] = hash_settings & (1 << 2);
+  builder.settings_["allowDroppedNullPlaceholders_"] = hash_settings & (1 << 3);
+  builder.settings_["allowNumericKeys_"] = hash_settings & (1 << 4);
+  builder.settings_["allowSingleQuotes_"] = hash_settings & (1 << 5);
+  builder.settings_["failIfExtra_"] = hash_settings & (1 << 6);
+  builder.settings_["rejectDupKeys_"] = hash_settings & (1 << 7);
+  builder.settings_["allowSpecialFloats_"] = hash_settings & (1 << 8);
+  builder.settings_["collectComments"] = hash_settings & (1 << 9);
+  builder.settings_["allowTrailingCommas_"] = hash_settings & (1 << 10);
 
   std::unique_ptr<Json::CharReader> reader(builder.newCharReader());
 

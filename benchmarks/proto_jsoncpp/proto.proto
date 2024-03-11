@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+message CharReaderBuilder_Proto {
+  ValueProto settings = 1;
+}
+
+message ValueProto {
+  oneof value {
+  LargestIntProto int_value = 1;
+  LargestUIntProto uint_value = 2;
+  double real_value = 3;
+  bool bool_value = 4;
+  string string_value = 5;
+  ObjectValuesProto map_value = 6;
+  }
+  BitsProto bits = 7;
+  CommentsProto comments = 8;
+  int64 start = 9;
+  int64 limit = 10;
+}
+
+message CommentsProto {
+  ArrayProto array = 1;
+}
+
+message ArrayProto {
+  repeated ValueProto values = 1;
+}
+
+message BitsProto {
+  uint32 value_type = 1;
+  uint32 allocated = 2;
+}
+
+message ObjectValuesProto {
+  map<string, ValueProto> values = 1;
+}
+
+message LargestIntProto {
+  int64 value = 1;
+}
+
+message LargestUIntProto {
+  uint64 value = 1;
+}
