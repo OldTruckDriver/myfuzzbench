@@ -17,21 +17,17 @@
 #  error "a C++11 compiler is needed"
 #endif
 
+#include <iostream>
+
 #include <archive.h>
 #include <archive_entry.h>
-
 #include <assert.h>
 #include <stdint.h>
-
 #include <memory>
 #include <vector>
-
-
   using namespace std;
 
-
 #include <ft2build.h>
-#include <iostream>
 #include FT_FREETYPE_H
 #include FT_GLYPH_H
 #include FT_CACHE_H
@@ -244,8 +240,9 @@
     if ( size_ < 1 )
       return 0;
 
-    const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
-
+    // const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
+    vector<vector<FT_Byte>>  files;
+    files.emplace_back( data, data + size_ );
     FT_Face         face;
     FT_Int32        load_flags  = FT_LOAD_DEFAULT;
 #if 0
@@ -259,6 +256,14 @@
     // an unsupported NFNT bitmap font in a Mac dfont resource that holds
     // more than a single font.
 
+
+    for (const auto a : files){
+      for (const auto b : a){
+        std::cout << "Value of uint32: " << static_cast<int>(b) << std::endl;
+      }
+    }
+
+    
     // get number of faces
     if ( FT_New_Memory_Face( library,
                              files[0].data(),
@@ -266,6 +271,8 @@
                              -1,
                              &face ) )
       return 0;
+    std::cout << "111111111111111111111111111111111111111" << std::endl;
+
     long  num_faces = face->num_faces;
     FT_Done_Face( face );
 
@@ -276,14 +283,13 @@
                            : 20;
 
     Random  faces_pool( (int)max_face_cnt, (int)num_faces );
-    // std::cout << max_face_cnt << std::endl; 
-    // std::cout << num_faces << std::endl;
+
     for ( long  face_cnt = 0;
           face_cnt < max_face_cnt;
           face_cnt++ )
     {
       long  face_index = faces_pool.get() - 1;
-      // std::cout << "11111111111111111111111" << std::endl;
+
       // get number of instances
       if ( FT_New_Memory_Face( library,
                                files[0].data(),
@@ -291,7 +297,8 @@
                                -( face_index + 1 ),
                                &face ) )
         continue;
-      // std::cout << "2222222222222222222222222222222222222" << std::endl;
+      
+      std::cout << "222222222222222222222222222222222222222" << std::endl;
       long  num_instances = face->style_flags >> 16;
       FT_Done_Face( face );
 
@@ -318,6 +325,7 @@
                                    face_index,
                                    &face ) )
             continue;
+          std::cout << "333333333333333333333333333333333333333" << std::endl;
         }
         else
         {
@@ -330,6 +338,8 @@
                                    &face ) )
             continue;
         }
+
+        std::cout << "444444444444444444444444444444444444444444444444" << std::endl;
 
         // if we have more than a single input file coming from an archive,
         // attach them (starting with the second file) using the order given
@@ -347,6 +357,8 @@
           // attachment
           FT_Attach_Stream( face, &open_args );
         }
+
+        std::cout << "555555555555555555555555555555555555555555555" << std::endl;
 
         // loop over an arbitrary size for outlines
         // and up to ten arbitrarily selected bitmap strike sizes
@@ -385,6 +397,8 @@
             flags |= FT_LOAD_COLOR;
           }
 
+          std::cout << "666666666666666666666666666666666666666666666" << std::endl;
+
           // test MM interface only for a face without a selected instance
           // and without a selected bitmap strike
           if ( !instance_index && !size_cnt )
@@ -422,7 +436,7 @@
         FT_Done_Face( face );
       }
     }
-
+    std::cout << "8888888888888888888888888888888888888888888888888" << std::endl;
     return 0;
   }
 
