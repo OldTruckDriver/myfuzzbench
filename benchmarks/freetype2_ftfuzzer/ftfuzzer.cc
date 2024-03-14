@@ -39,7 +39,7 @@
 #include FT_OUTLINE_H
 #include FT_BBOX_H
 #include FT_MODULE_H
-#include FT_DRIVER_H
+// #include FT_DRIVER_H
 #include FT_MULTIPLE_MASTERS_H
 
 
@@ -56,7 +56,7 @@
         return;
 
       // try to activate Adobe's CFF engine; it might not be the default
-      unsigned int  cff_hinting_engine = FT_HINTING_ADOBE;
+      unsigned int  cff_hinting_engine = 1;
       FT_Property_Set( library,
                        "cff",
                        "hinting-engine", &cff_hinting_engine );
