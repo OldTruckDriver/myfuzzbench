@@ -21,8 +21,14 @@ cd libfuzzer
 cd ..
 cd jsoncpp
 
-rm -rf genfiles && mkdir genfiles && $SRC/LPM/external.protobuf/bin/protoc proto.proto --cpp_out=genfiles
-$CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I $SRC/LPM/external.protobuf/include
+git clone https://github.com/abseil/abseil-cpp.git
+cd abseil-cpp
+cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
+make -j$(nproc) && make install
+
+
+rm -rf genfiles && mkdir genfiles && /src/LPM/external.protobuf/bin/protoc proto.proto --cpp_out=genfiles
+$CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I/src/LPM/external.protobuf/include
 
 # rm -rf genfiles && mkdir genfiles && protoc proto.proto --cpp_out=genfiles
 # $CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I $SRC/LPM/external.protobuf/include
@@ -35,9 +41,9 @@ cmake -DCMAKE_CXX_COMPILER=$CXX -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
 make
 
 
-$CXX $CXXFLAGS ../jsoncpp_proto_bin.cc -std=c++14 -I../include -I../src/test_lib_json -I../genfiles -I/src/LPM/external.protobuf/include \
+$CXX $CXXFLAGS ../jsoncpp_proto_bin.cc -std=c++14 -I../include/json -I../src/test_lib_json -I../genfiles -I/src/LPM/external.protobuf/include \
       -I/src/ -I/src/libprotobuf-mutator \
-      -I/usr/local/lib -labsl_base -lpthread \
+      -lpthread \
       ../genfiles/proto.pb.o /src/libfuzzer/libFuzzer.a /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a \
       /src/LPM/external.protobuf/lib/lib*.a \
       /src/LPM/src/libprotobuf-mutator.a lib/libjsoncpp.a\
