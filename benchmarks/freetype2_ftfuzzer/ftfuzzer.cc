@@ -271,10 +271,9 @@
                              -1,
                              &face ) )
       return 0;
-    // std::cout << "111111111111111111111111111111111111111" << std::endl;
 
     long  num_faces = face->num_faces;
-    std::cout << num_faces << std::endl;
+    
     FT_Done_Face( face );
 
     // loop over up to 20 arbitrarily selected faces
@@ -299,7 +298,7 @@
                                &face ) )
         continue;
       
-      std::cout << "222222222222222222222222222222222222222" << std::endl;
+  
       long  num_instances = face->style_flags >> 16;
       FT_Done_Face( face );
 
@@ -326,7 +325,7 @@
                                    face_index,
                                    &face ) )
             continue;
-          std::cout << "333333333333333333333333333333333333333" << std::endl;
+
         }
         else
         {
@@ -340,7 +339,7 @@
             continue;
         }
 
-        std::cout << "444444444444444444444444444444444444444444444444" << std::endl;
+
 
         // if we have more than a single input file coming from an archive,
         // attach them (starting with the second file) using the order given
@@ -359,7 +358,6 @@
           FT_Attach_Stream( face, &open_args );
         }
 
-        std::cout << "555555555555555555555555555555555555555555555" << std::endl;
 
         // loop over an arbitrary size for outlines
         // and up to ten arbitrarily selected bitmap strike sizes
@@ -398,8 +396,6 @@
             flags |= FT_LOAD_COLOR;
           }
 
-          std::cout << "666666666666666666666666666666666666666666666" << std::endl;
-
           // test MM interface only for a face without a selected instance
           // and without a selected bitmap strike
           if ( !instance_index && !size_cnt )
@@ -437,7 +433,6 @@
         FT_Done_Face( face );
       }
     }
-    std::cout << "8888888888888888888888888888888888888888888888888" << std::endl;
     return 0;
   }
 
