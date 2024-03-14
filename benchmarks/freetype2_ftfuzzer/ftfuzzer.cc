@@ -257,11 +257,11 @@
     // more than a single font.
 
 
-    for (const auto a : files){
-      for (const auto b : a){
-        std::cout << "Value of uint32: " << static_cast<int>(b) << std::endl;
-      }
-    }
+    // for (const auto a : files){
+    //   for (const auto b : a){
+    //     std::cout << "Value of uint32: " << static_cast<int>(b) << std::endl;
+    //   }
+    // }
 
     
     // get number of faces
@@ -271,9 +271,10 @@
                              -1,
                              &face ) )
       return 0;
-    std::cout << "111111111111111111111111111111111111111" << std::endl;
+    // std::cout << "111111111111111111111111111111111111111" << std::endl;
 
     long  num_faces = face->num_faces;
+    std::cout << num_faces << std::endl;
     FT_Done_Face( face );
 
     // loop over up to 20 arbitrarily selected faces
@@ -283,7 +284,7 @@
                            : 20;
 
     Random  faces_pool( (int)max_face_cnt, (int)num_faces );
-
+    
     for ( long  face_cnt = 0;
           face_cnt < max_face_cnt;
           face_cnt++ )
