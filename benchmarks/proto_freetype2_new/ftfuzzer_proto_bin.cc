@@ -1,0 +1,354 @@
+// ftfuzzer.cc
+//
+//   A fuzzing function to test FreeType with libFuzzer.
+//
+// Copyright 2015-2018 by
+// David Turner, Robert Wilhelm, and Werner Lemberg.
+//
+// This file is part of the FreeType project, and may only be used,
+// modified, and distributed under the terms of the FreeType project
+// license, LICENSE.TXT.  By continuing to use, modify, or distribute
+// this file you indicate that you have read the license and
+// understand and accept it fully.
+// we use `unique_ptr', `decltype', and other gimmicks defined since C++11
+#if __cplusplus < 201103L
+#  error "a C++11 compiler is needed"
+#endif
+
+#include "genfiles/freetype2.pb.h"
+#include "libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h"
+// #include <freetype2/include/ft2build.h>
+// #include "converter.h"
+
+#include <archive.h>
+#include <archive_entry.h>
+#include <assert.h>
+#include <stdint.h>
+#include <memory>
+#include <vector>
+  using namespace std;
+// #include "freetype2/include/freetype/ftdriver.h"
+// #include <freetype/ftdriver.h>
+#include <ft2build.h>
+#include <iostream>
+#include FT_FREETYPE_H
+#include FT_GLYPH_H
+#include FT_CACHE_H
+#include FT_CACHE_CHARMAP_H
+#include FT_CACHE_IMAGE_H
+#include FT_CACHE_SMALL_BITMAPS_H
+#include FT_SYNTHESIS_H
+#include FT_ADVANCES_H
+#include FT_OUTLINE_H
+#include FT_BBOX_H
+#include FT_MODULE_H
+// #include FT_DRIVER_H
+// #include FT_HINTING_ADOBE
+#include FT_MULTIPLE_MASTERS_H
+  static FT_Library  library;
+  static int         InitResult;
+  struct FT_Global
+  {
+    FT_Global()
+    {
+      InitResult = FT_Init_FreeType( &library );
+      if ( InitResult )
+        return;
+      // try to activate Adobe's CFF engine; it might not be the default
+      unsigned int  cff_hinting_engine = 1;
+      FT_Property_Set( library,
+                       "cff",
+                       "hinting-engine", &cff_hinting_engine );
+    }
+    ~FT_Global()
+    {
+      FT_Done_FreeType( library );
+    }
+  };
+  FT_Global  global_ft;
+  // We want to select n values at random (without repetition),
+  // with 0 < n <= N.  The algorithm is taken from TAoCP, Vol. 2
+  // (Algorithm S, selection sampling technique)
+  struct Random
+  {
+    int  n;
+    int  N;
+    int  t; // total number of values so far
+    int  m; // number of selected values so far
+    uint32_t  r; // the current pseudo-random number
+    Random( int n_,
+            int N_ )
+    : n( n_ ),
+      N( N_ )
+    {
+      t = 0;
+      m = 0;
+      // Ideally, this should depend on the input file,
+      // for example, taking the sha256 as input;
+      // however, this is overkill for fuzzying tests.
+      r = 12345;
+    }
+    int get()
+    {
+      if ( m >= n )
+        return -1;
+    Redo:
+      // We can't use `rand': different C libraries might provide
+      // different implementations of this function.  As a replacement,
+      // we use a 32bit version of the `xorshift' algorithm.
+      r ^= r << 13;
+      r ^= r >> 17;
+      r ^= r << 5;
+      double  U = double( r ) / UINT32_MAX;
+      if ( ( N - t ) * U >= ( n - m ) )
+      {
+        t++;
+        goto Redo;
+      }
+      t++;
+      m++;
+      return t;
+    }
+  };
+
+  static void
+  setIntermediateAxis( FT_Face  face )
+  {
+    // only handle Multiple Masters and GX variation fonts
+    if ( !FT_HAS_MULTIPLE_MASTERS( face ) )
+      return;
+    // get variation data for current instance
+    FT_MM_Var*  variations_ptr = nullptr;
+    if ( FT_Get_MM_Var( face, &variations_ptr ) )
+      return;
+    unique_ptr<FT_MM_Var,
+               decltype ( free )*>  variations( variations_ptr, free );
+    vector<FT_Fixed>                coords( variations->num_axis );
+    // select an arbitrary instance
+    for ( unsigned int  i = 0; i < variations->num_axis; i++ )
+      coords[i] = ( variations->axis[i].minimum +
+                    variations->axis[i].def     ) / 2;
+    if ( FT_Set_Var_Design_Coordinates( face,
+                                        FT_UInt( coords.size() ),
+                                        coords.data() ) )
+      return;
+  }
+  // the interface function to the libFuzzer library
+
+
+    class FT_Proto_Class {
+    public:
+      // Static member function to convert FT_Proto to vector
+      static void ConvertFTProtoToVector(const FT_Proto &ft_proto,
+                                         vector<vector<FT_Byte>> &result) {
+        for (const FT_Input_Proto &ft_input_proto : ft_proto.ft_input()) {
+          if (ft_input_proto.has_raw_data()) {
+            const FT_Byte_Proto &ft_byte_proto = ft_input_proto.raw_data();
+            vector<FT_Byte> ft_bytes;
+            for (const std::string &str : ft_byte_proto.ftbyte()) {
+              ft_bytes.insert(ft_bytes.end(), str.begin(), str.end());
+            }
+            result.push_back(ft_bytes);
+          } else if (ft_input_proto.has_archive_data()) {
+            const FT_Archive_Proto &ft_archive_proto = ft_input_proto.archive_data();
+            vector<FT_Byte> ft_bytes;
+            for (const auto& str : ft_archive_proto.archive_data()) {
+                const auto* data = reinterpret_cast<const FT_Byte*>(str.data());
+                ft_bytes.insert(ft_bytes.end(), data, data + str.size());
+            }
+            result.push_back(ft_bytes);
+          }
+        }
+      }
+    };
+
+  
+  DEFINE_BINARY_PROTO_FUZZER(const FT_Proto &ft_proto)
+  {
+    assert( !InitResult );
+
+    vector<vector<FT_Byte>> files;
+    FT_Proto_Class::ConvertFTProtoToVector(ft_proto, files);
+
+    if (files.size() < 1) {
+        return;
+    }
+
+    FT_Face         face;
+    FT_Int32        load_flags  = FT_LOAD_DEFAULT;
+#if 0
+    FT_Render_Mode  render_mode = FT_RENDER_MODE_NORMAL;
+#endif
+
+    if ( FT_New_Memory_Face( library,
+                             files[0].data(),
+                             (FT_Long)files[0].size(),
+                             -1,
+                             &face ) )
+      return;
+
+
+    long  num_faces = face->num_faces;
+    FT_Done_Face( face );
+//    std::cout << num_faces << std::endl;
+    // loop over up to 20 arbitrarily selected faces
+    // from index range [0;num-faces-1]
+    long  max_face_cnt = num_faces < 20
+                           ? num_faces
+                           : 20;
+
+    Random  faces_pool( (int)max_face_cnt, (int)num_faces );
+    
+    
+    for ( long  face_cnt = 0;
+          face_cnt < max_face_cnt;
+          face_cnt++ )
+    { 
+      
+      long  face_index = faces_pool.get() - 1;
+      
+      // get number of instances
+      if ( FT_New_Memory_Face( library,
+                               files[0].data(),
+                               (FT_Long)files[0].size(),
+                               -( face_index + 1 ),
+                               &face ) )
+        continue;
+      
+      
+      long  num_instances = face->style_flags >> 16;
+      FT_Done_Face( face );
+
+      // loop over the face without instance (index 0)
+      // and up to 20 arbitrarily selected instances
+      // from index range [1;num_instances]
+      long  max_instance_cnt = num_instances < 20
+                                 ? num_instances
+                                 : 20;
+
+      Random  instances_pool( (int)max_instance_cnt, (int)num_instances );
+
+      for ( long  instance_cnt = 0;
+            instance_cnt <= max_instance_cnt;
+            instance_cnt++ )
+      {
+        long  instance_index = 0;
+
+        if ( !instance_cnt )
+        {
+          if ( FT_New_Memory_Face( library,
+                                   files[0].data(),
+                                   (FT_Long)files[0].size(),
+                                   face_index,
+                                   &face ) )
+            continue;
+
+        }
+        else
+        {
+          instance_index = instances_pool.get();
+
+          if ( FT_New_Memory_Face( library,
+                                   files[0].data(),
+                                   (FT_Long)files[0].size(),
+                                   ( instance_index << 16 ) + face_index,
+                                   &face ) )
+            continue;
+        }
+
+        // if we have more than a single input file coming from an archive,
+        // attach them (starting with the second file) using the order given
+        // in the archive
+        for ( size_t  files_index = 1;
+              files_index < files.size();
+              files_index++ )
+        {
+          FT_Open_Args  open_args = {};
+          open_args.flags         = FT_OPEN_MEMORY;
+          open_args.memory_base   = files[files_index].data();
+          open_args.memory_size   = (FT_Long)files[files_index].size();
+
+          // the last archive element will be eventually used as the
+          // attachment
+          FT_Attach_Stream( face, &open_args );
+        }
+
+        // loop over an arbitrary size for outlines
+        // and up to ten arbitrarily selected bitmap strike sizes
+        // from the range [0;num_fixed_sizes - 1]
+        int  max_size_cnt = face->num_fixed_sizes < 10
+                              ? face->num_fixed_sizes
+                              : 10;
+
+        Random sizes_pool( max_size_cnt, face->num_fixed_sizes );
+
+        for ( int  size_cnt = 0;
+              size_cnt <= max_size_cnt;
+              size_cnt++ )
+        {
+          FT_Int32  flags = load_flags;
+
+          int  size_index = 0;
+
+          if ( !size_cnt )
+          {
+            // set up 20pt at 72dpi as an arbitrary size
+            if ( FT_Set_Char_Size( face, 20 * 64, 20 * 64, 72, 72 ) )
+              continue;
+            flags |= FT_LOAD_NO_BITMAP;
+          }
+          else
+          {
+            // bitmap strikes are not active for font variations
+            if ( instance_index )
+              continue;
+
+            size_index = sizes_pool.get() - 1;
+
+            if ( FT_Select_Size( face, size_index ) )
+              continue;
+            flags |= FT_LOAD_COLOR;
+          }
+
+          // test MM interface only for a face without a selected instance
+          // and without a selected bitmap strike
+          if ( !instance_index && !size_cnt )
+            setIntermediateAxis( face );
+
+          // loop over all glyphs
+          for ( unsigned int  glyph_index = 0;
+                glyph_index < (unsigned int)face->num_glyphs;
+                glyph_index++ )
+          {
+            if ( FT_Load_Glyph( face, glyph_index, flags ) )
+              continue;
+
+            // Rendering is the most expensive and the least interesting part.
+            //
+            // if ( FT_Render_Glyph( face->glyph, render_mode) )
+            //   continue;
+            // FT_GlyphSlot_Embolden( face->glyph );
+
+#if 0
+            FT_Glyph  glyph;
+            if ( !FT_Get_Glyph( face->glyph, &glyph ) )
+              FT_Done_Glyph( glyph );
+
+            FT_Outline*  outline = &face->glyph->outline;
+            FT_Matrix    rot30   = { 0xDDB4, -0x8000, 0x8000, 0xDDB4 };
+
+            FT_Outline_Transform( outline, &rot30 );
+
+            FT_BBox  bbox;
+            FT_Outline_Get_BBox( outline, &bbox );
+#endif
+          }
+        }
+        FT_Done_Face( face );
+      }
+    }
+    return;
+  }
+
+
+// END

@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+message FT_Byte_Proto {
+  repeated bytes ftbyte = 1;
+}
+
+message FT_Archive_Proto {
+  repeated bytes archive_data = 1;
+}
+
+message FT_Input_Proto {
+  oneof input_type {
+    FT_Byte_Proto raw_data = 1;
+    FT_Archive_Proto archive_data = 2;
+  }
+}
+
+message FT_Proto {
+  repeated FT_Input_Proto ft_input = 1;
+}

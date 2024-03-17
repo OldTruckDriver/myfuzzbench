@@ -32,7 +32,7 @@ cd ..
 rm -rf genfiles && mkdir genfiles && /src/LPM/external.protobuf/bin/protoc proto.proto --cpp_out=genfiles
 $CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I/src/LPM/external.protobuf/include
 
-# rm -rf genfiles && mkdir genfiles && protoc proto.proto --cpp_out=genfiles
+# rm -rf genfiles && mkdir genfiles && protoc freetype2.proto --cpp_out=genfiles
 # $CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I $SRC/LPM/external.protobuf/include
 
 mkdir -p build

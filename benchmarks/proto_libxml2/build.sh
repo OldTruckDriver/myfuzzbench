@@ -38,7 +38,7 @@ make xml.o
 $CXX $CXXFLAGS \
     xml.o fuzz.o \
     -o $OUT/xml \
-    $LIB_FUZZING_ENGINE \
+    /src/libfuzzer/libFuzzer.a \
     ../.libs/libxml2.a -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic
 
 [ -e seed/xml ] || make seed/xml.stamp
