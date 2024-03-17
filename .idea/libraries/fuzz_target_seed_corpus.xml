@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="fuzz-target_seed_corpus">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/experiment/test_data/test_runner/fuzz-target_seed_corpus.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

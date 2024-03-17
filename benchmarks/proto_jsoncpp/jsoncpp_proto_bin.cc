@@ -18,9 +18,9 @@ namespace Json {
 class Exception;
 }
 
-void ParseFromJsonString(const std::string& json_string, CharReaderBuilder_Proto& proto) {
-  google::protobuf::util::JsonStringToMessage(json_string, &proto);
-}
+//void ParseFromJsonString(const std::string& json_string, CharReaderBuilder_Proto& proto) {
+//  google::protobuf::util::JsonStringToMessage(json_string, &proto);
+//}
 
 // Function to convert ValueProto to Json::Value
 void ConvertValueProto(const ValueProto& value_proto, Json::Value& value) {
