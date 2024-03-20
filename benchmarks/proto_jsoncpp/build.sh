@@ -44,7 +44,7 @@ make
 
 
 $CXX $CXXFLAGS ../jsoncpp_proto_bin.cc -I../src/test_lib_json -I/src/LPM/external.protobuf/include \
--I/src/ -I/src/libprotobuf-mutator/ lib/libjsoncpp.a \
+-I/src/ -I/src/libprotobuf-mutator/ -I/src/LPM/ -I/src/jsoncpp/build/protobuf/src/ lib/libjsoncpp.a \
 -L/src/LPM/external.protobuf/lib -lprotobuf -fsanitize=fuzzer,address -o $OUT/jsoncpp_fuzzer
 
 #$CXX $CXXFLAGS ../jsoncpp_proto_bin.cc -std=c++14 -I../include/json -I../src/test_lib_json -I../genfiles -I/src/LPM/external.protobuf/include \

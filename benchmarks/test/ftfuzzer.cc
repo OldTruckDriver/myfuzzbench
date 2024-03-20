@@ -272,6 +272,7 @@
         std::cout << "Value of uint32: " << static_cast<int>(b) << std::endl;
       }
     }
+    
     // get number of faces
     if ( FT_New_Memory_Face( library,
                              files[0].data(),
