@@ -243,6 +243,7 @@
     // const vector<vector<FT_Byte>>&  files = parse_data( data, size_ );
     vector<vector<FT_Byte>>  files;
     files.emplace_back( data, data + size_ );
+
     FT_Face         face;
     FT_Int32        load_flags  = FT_LOAD_DEFAULT;
 #if 0

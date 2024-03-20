@@ -13,6 +13,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+rm -rf $SRC/genfiles && mkdir $SRC/genfiles && $SRC/LPM/external.protobuf/bin/protoc proto.proto --cpp_out=genfiles
+$CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I $SRC/LPM/external.protobuf/include
+
+cd libfuzzer && ./build.sh && cd ..
+
+cd libxml2
+
 if [ "$SANITIZER" = undefined ]; then
     export CFLAGS="$CFLAGS -fsanitize=unsigned-integer-overflow -fno-sanitize-recover=unsigned-integer-overflow"
     export CXXFLAGS="$CXXFLAGS -fsanitize=unsigned-integer-overflow -fno-sanitize-recover=unsigned-integer-overflow"
@@ -29,19 +36,21 @@ export V=1
     --without-python
 make -j$(nproc)
 
-cd fuzz
-make clean-corpus
-make fuzz.o
-
-make xml.o
+#cd fuzz
+#make clean-corpus
+#make fuzz.o
+#
+#make xml.o
 # Link with $CXX
-$CXX $CXXFLAGS \
-    xml.o fuzz.o \
+$CXX $CXXFLAGS ../target.cc -std=c++14 -I/src/ -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ -I/src/libxml2/include \
+    /src/genfiles/proto.pb.o \
+    /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a /src/LPM/src/libprotobuf-mutator.a -Wl,--start-group \
+    /src/LPM/external.protobuf/lib/lib*.a -Wl,--end-group \
     -o $OUT/xml \
     /src/libfuzzer/libFuzzer.a \
-    ../.libs/libxml2.a -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic
+    /src/libxml2/.libs/libxml2.a -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic -lpthread -fsanitize=fuzzer,address
 
-[ -e seed/xml ] || make seed/xml.stamp
-zip -j $OUT/xml_seed_corpus.zip seed/xml/*
+#[ -e seed/xml ] || make seed/xml.stamp
+#zip -j $OUT/xml_seed_corpus.zip seed/xml/*
 
-cp *.dict *.options $OUT/
+#cp *.dict *.options $OUT/

@@ -19,77 +19,81 @@
 #include "libxml/parser.h"
 #include "libxml/HTMLparser.h"
 #include "libxml/tree.h"
+#include "genfiles/proto.pb.h"
+#include "libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h"
 
 
 
-
-void ignore (void * ctx, const char * msg, ...) {}
+void ignoreXmlError(void* ctx, const char* msg, ...) {}
 
 
 
 
 using namespace std;
 
+// ...
+
 class XmlConverter {
 public:
-    static void GenerateXml(const XmlDocument& document) {
-        cout << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" << endl;
-        GenerateElement(document.root(), 0);
+    static void GenerateXml(const XmlDocument& document, std::string& xml_data) {
+        xml_data += "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
+        GenerateElement(document.root(), 0, xml_data);
     }
 
 private:
-    static void GenerateElement(const XmlElement& element, int indent) {
-        PrintIndent(indent);
-        cout << "<" << element.name();
+    static void GenerateElement(const XmlElement& element, int indent, std::string& xml_data) {
+        PrintIndent(indent, xml_data);
+        xml_data += "<" + element.name();
 
         // Print attributes
         for (const string& attr : element.attributes()) {
-            cout << " " << attr << "=\"value\"";
+            xml_data += " " + attr + "=\"value\"";
         }
 
         if (element.child_elements_size() == 0 && element.text().empty()) {
-            cout << "/>" << endl;
+            xml_data += "/>\n";
         } else {
-            cout << ">" << endl;
+            xml_data += ">\n";
 
             // Print text content
             if (!element.text().empty()) {
-                PrintIndent(indent + 1);
-                cout << element.text() << endl;
+                PrintIndent(indent + 1, xml_data);
+                xml_data += element.text() + "\n";
             }
 
             // Print child elements recursively
             for (const XmlElement& child : element.child_elements()) {
-                GenerateElement(child, indent + 1);
+                GenerateElement(child, indent + 1, xml_data);
             }
 
-            PrintIndent(indent);
-            cout << "</" << element.name() << ">" << endl;
+            PrintIndent(indent, xml_data);
+            xml_data += "</" + element.name() + ">\n";
         }
     }
 
-    static void PrintIndent(int indent) {
-        for (int i = 0; i < indent; i++) {
-            cout << "  ";
-        }
+    static void PrintIndent(int indent, std::string& xml_data) {
+        xml_data += std::string(indent * 2, ' ');
     }
 };
 
+
 DEFINE_BINARY_PROTO_FUZZER(const XmlDocument& document) {
+
+  xmlSetGenericErrorFunc(NULL, &ignoreXmlError);
+
   std::string xml_data;
-  document.SerializeToString(&xml_data);
+  XmlConverter::GenerateXml(document, xml_data);
 
-  // Write the XML data to a file
-  std::ofstream xml_file("generated.xml");
-  xml_file << xml_data;
-  xml_file.close();
+  if (auto doc = xmlReadMemory(xml_data.c_str(), xml_data.size(), NULL, NULL, 0)) {
+      xmlFreeDoc(doc);
 
-  xmlSetGenericErrorFunc(NULL, &ignore);
-  if (auto doc = xmlReadFile("generated.xml", NULL, 0))
-    xmlFreeDoc(doc);
-
-  // Remove the generated XML file
-  std::remove("generated.xml");
+      std::cout << "!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+        std::cout << "!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+        std::cout << "!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+        std::cout << "!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+        std::cout << "!!!!!!!!!!!!!!!!!!!!!" << std::endl;
+  }
 
   return;
 }
+

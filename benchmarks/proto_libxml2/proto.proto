@@ -10,3 +10,4 @@ message XmlElement {
 message XmlDocument {
   XmlElement root = 1;
 }
+
