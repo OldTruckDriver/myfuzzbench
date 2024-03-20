@@ -267,7 +267,11 @@
     FT_Render_Mode  render_mode = FT_RENDER_MODE_NORMAL;
 #endif
 
-
+    for (const auto a : font_data){
+      for (const auto b : a){
+        std::cout << "Value of uint32: " << static_cast<int>(b) << std::endl;
+      }
+    }
     // get number of faces
     if ( FT_New_Memory_Face( library,
                              files[0].data(),

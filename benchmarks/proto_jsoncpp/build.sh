@@ -21,12 +21,12 @@ cd libfuzzer
 cd ..
 cd jsoncpp
 
-git clone https://github.com/abseil/abseil-cpp.git
-cd abseil-cpp
-git checkout lts_2023_08_02
-cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
-make -j$(nproc) && make install
-cd ..
+# git clone https://github.com/abseil/abseil-cpp.git
+# cd abseil-cpp
+# git checkout lts_2023_08_02
+# cmake -DCMAKE_INSTALL_PREFIX=/usr/local ..
+# make -j$(nproc) && make install
+# cd ..
 
 
 rm -rf genfiles && mkdir genfiles && /src/LPM/external.protobuf/bin/protoc proto.proto --cpp_out=genfiles
@@ -44,8 +44,8 @@ make
 
 
 $CXX $CXXFLAGS ../jsoncpp_proto_bin.cc -I../src/test_lib_json -I/src/LPM/external.protobuf/include \
--I/src/ -I/src/libprotobuf-mutator/ -I/src/LPM/ -I/src/jsoncpp/build/protobuf/src/ \
-/src/jsoncpp/abseil-cpp/lib/libjsoncpp.a -L/src/LPM/external.protobuf/lib -lprotobuf -fsanitize=fuzzer,address
+-I/src/ -I/src/libprotobuf-mutator/ lib/libjsoncpp.a \
+-L/src/LPM/external.protobuf/lib -lprotobuf -fsanitize=fuzzer,address -o $OUT/jsoncpp_fuzzer
 
 #$CXX $CXXFLAGS ../jsoncpp_proto_bin.cc -std=c++14 -I../include/json -I../src/test_lib_json -I../genfiles -I/src/LPM/external.protobuf/include \
 #      -I/src/ -I/src/libprotobuf-mutator \
