@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <stdint.h> 
 #include <libxml/parser.h>
+#include <libxml/parserInternals.h>
 
 #ifdef __cplusplus
 extern "C" {
