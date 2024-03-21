@@ -9,6 +9,7 @@
 #include <libxml/tree.h>
 #include <libxml/xmlIO.h>
 #include "fuzz.h"
+#include <parserInternals.h>
 
 typedef struct {
     const char *data;
