@@ -153,8 +153,8 @@ DEFINE_BINARY_PROTO_FUZZER(const XmlDocument& document) {
                 int errNo;
 
                 xmlSaveDoc(save, doc);
-                // errNo = xmlSaveFinish(save);
-                errNo = xmlSaveFlush(save);
+                errNo = xmlSaveFinish(save);
+                // errNo = xmlSaveFlush(save);
                 xmlFuzzCheckMallocFailure("xmlSaveDoc",
                                           errNo == XML_ERR_NO_MEMORY);
             }
@@ -218,8 +218,8 @@ DEFINE_BINARY_PROTO_FUZZER(const XmlDocument& document) {
             }
             for (j = 0; j < 10; j++)
                 xmlTextReaderRead(reader);
-            // error = xmlTextReaderGetLastError(reader);
-            xmlCtxtResetLastError(reader);
+            error = xmlTextReaderGetLastError(reader);
+            // xmlCtxtResetLastError(reader);
             xmlFuzzCheckMallocFailure("xmlTextReaderRead",
                                       error->code == XML_ERR_NO_MEMORY);
             xmlFreeTextReader(reader);
