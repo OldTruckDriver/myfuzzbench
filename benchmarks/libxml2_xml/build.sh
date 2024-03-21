@@ -35,11 +35,11 @@ make fuzz.o
 
 make xml.o
 # Link with $CXX
-$CXX $CXXFLAGS \
+$CXX $CXXFLAGS -std=c++14 \
     xml.o fuzz.o \
     -o $OUT/xml \
     $LIB_FUZZING_ENGINE \
-    ../.libs/libxml2.a -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic
+    ../.libs/libxml2.a -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic -lpthread
 
 [ -e seed/xml ] || make seed/xml.stamp
 zip -j $OUT/xml_seed_corpus.zip seed/xml/*
