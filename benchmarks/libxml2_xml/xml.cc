@@ -28,7 +28,7 @@ LLVMFuzzerTestOneInput(const char *data, size_t size) {
     const char *docBuffer, *docUrl;
     size_t maxAlloc, docSize;
     int opts;
-
+    
     xmlFuzzDataInit(data, size);
     opts = (int) xmlFuzzReadInt(4);
     /*
