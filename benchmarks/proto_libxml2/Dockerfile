@@ -37,4 +37,4 @@ RUN (mkdir LPM && \
     ninja)
 
 #WORKDIR libxml2
-COPY target.cc build.sh proto.proto $SRC/
+COPY target.cc fuzz.cc fuzz.h build.sh proto.proto $SRC/
