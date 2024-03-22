@@ -36,13 +36,13 @@ export V=1
     --without-python
 make -j$(nproc)
 
-#cd fuzz
-#make clean-corpus
-#make fuzz.o
-#
+cd fuzz
+make clean-corpus
+make fuzz.o
+
 #make xml.o
 # Link with $CXX
-$CXX $CXXFLAGS /src/fuzz.cc /src/xml.cc  -std=c++14 -I/src/ -I/src/libxml2/include -I/src/libxml2/include/libxml \
+$CXX $CXXFLAGS /src/xml.cc fuzz.o  -std=c++14 -I/src/ -I/src/libxml2/include -I/src/libxml2/include/libxml \
     -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ \
     /src/genfiles/proto.pb.o \
     /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a /src/LPM/src/libprotobuf-mutator.a -Wl,--start-group \

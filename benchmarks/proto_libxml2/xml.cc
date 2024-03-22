@@ -153,6 +153,7 @@ DEFINE_BINARY_PROTO_FUZZER(const XmlDocument& document) {
                 int errNo;
 
                 xmlSaveDoc(save, doc);
+                
                 errNo = xmlSaveFinish(save);
                 // errNo = xmlSaveFlush(save);
                 xmlFuzzCheckMallocFailure("xmlSaveDoc",
@@ -186,6 +187,7 @@ DEFINE_BINARY_PROTO_FUZZER(const XmlDocument& document) {
             }
 
             xmlParseChunk(ctxt, NULL, 0, 1);
+            std::cout << "!!!!!!!!!!!!" << std::endl;
             xmlFuzzCheckMallocFailure("xmlParseChunk",
                                       ctxt->errNo == XML_ERR_NO_MEMORY);
             xmlFreeDoc(ctxt->myDoc);
