@@ -44,8 +44,8 @@ make -j$(nproc)
 
 # make xml.o
 # Link with $CXX
-$CXX $CXXFLAGS /src/xml.cc  -std=c++14 -I/src/ -I/src/libxml2/include \
-    -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ -I/src/libxml2/fuzz \
+$CXX $CXXFLAGS /src/xml.cc  -std=c++14 -I/src/libxml2/fuzz -I/src/libxml2/include \
+    -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ -I/src/ \ 
     /src/genfiles/proto.pb.o \
     /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a /src/LPM/src/libprotobuf-mutator.a -Wl,--start-group \
     /src/LPM/external.protobuf/lib/lib*.a -Wl,--end-group \
