@@ -26,7 +26,8 @@ export V=1
     --without-ftp \
     --without-http \
     --without-legacy \
-    --without-python
+    --without-python \
+    --with-fuzz --with-coverage
 make -j$(nproc)
 
 cd fuzz

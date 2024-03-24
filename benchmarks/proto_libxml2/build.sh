@@ -16,6 +16,8 @@
 rm -rf $SRC/genfiles && mkdir $SRC/genfiles && $SRC/LPM/external.protobuf/bin/protoc proto.proto --cpp_out=genfiles
 $CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I $SRC/LPM/external.protobuf/include
 
+
+
 cd libfuzzer && ./build.sh && cd ..
 
 cd libxml2
@@ -40,10 +42,10 @@ cd fuzz
 make clean-corpus
 make fuzz.o
 
-#make xml.o
+# make xml.o
 # Link with $CXX
-$CXX $CXXFLAGS /src/xml.cc fuzz.o  -std=c++14 -I/src/ -I/src/libxml2/include -I/src/libxml2/include/libxml \
-    -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ \
+$CXX $CXXFLAGS /src/xml.cc fuzz.o  -std=c++14 -I/src/ -I/src/libxml2/include \
+    -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ -I/src/libxml2/fuzz \
     /src/genfiles/proto.pb.o \
     /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a /src/LPM/src/libprotobuf-mutator.a -Wl,--start-group \
     /src/LPM/external.protobuf/lib/lib*.a -Wl,--end-group \
@@ -51,7 +53,7 @@ $CXX $CXXFLAGS /src/xml.cc fuzz.o  -std=c++14 -I/src/ -I/src/libxml2/include -I/
     /src/libfuzzer/libFuzzer.a \
     /src/libxml2/.libs/libxml2.a -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic -lpthread -fsanitize=fuzzer,address
 
-#[ -e seed/xml ] || make seed/xml.stamp
-#zip -j $OUT/xml_seed_corpus.zip seed/xml/*
+# [ -e seed/xml ] || make seed/xml.stamp
+# zip -j $OUT/xml_seed_corpus.zip seed/xml/*
 
-#cp *.dict *.options $OUT/
+# cp *.dict *.options $OUT/
