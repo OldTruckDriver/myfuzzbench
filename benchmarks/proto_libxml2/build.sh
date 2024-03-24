@@ -44,16 +44,20 @@ make -j$(nproc)
 
 # make xml.o
 # Link with $CXX
-$CXX $CXXFLAGS /src/xml.cc  -std=c++14 -I/src/libxml2/fuzz -I/src/libxml2/include \
-    -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ -I/src/ \ 
+$CXX $CXXFLAGS /src/xml.cc -std=c++14 -I/src/libxml2/fuzz -I/src/libxml2/include \
+    -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ -I/src/ \
     /src/genfiles/proto.pb.o \
-    /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a /src/LPM/src/libprotobuf-mutator.a -Wl,--start-group \
+    /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a \
+    /src/LPM/src/libprotobuf-mutator.a -Wl,--start-group \
     /src/LPM/external.protobuf/lib/lib*.a -Wl,--end-group \
-    -o $OUT/xml \
     /src/libfuzzer/libFuzzer.a \
-    /src/libxml2/.libs/libxml2.a -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic -lpthread -fsanitize=fuzzer,address
+    /src/libxml2/.libs/libxml2.a \
+    -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic -lpthread -fsanitize=fuzzer,address
+    -o $OUT/xml \
+    
 
 # [ -e seed/xml ] || make seed/xml.stamp
 # zip -j $OUT/xml_seed_corpus.zip seed/xml/*
 
 # cp *.dict *.options $OUT/
+ 
