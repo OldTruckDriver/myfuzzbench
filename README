@@ -4,7 +4,7 @@ sudo docker build -t io/library/self/dispatcher-image:latest .
 
 PYTHONPATH=. python3 experiment/run_experiment.py \
 --experiment-config experiment-config.yaml \
---benchmark json-c \
+--benchmark jsonc \
 --experiment-name fbjconc \
 --fuzzers libfuzzer \
 --no-seeds \
