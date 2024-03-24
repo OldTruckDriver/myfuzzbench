@@ -4,8 +4,8 @@ sudo docker build -t io/library/self/dispatcher-image:latest .
 
 PYTHONPATH=. python3 experiment/run_experiment.py \
 --experiment-config experiment-config.yaml \
---benchmark proto_libxml2 \
---experiment-name xml2 \
+--benchmark json-c \
+--experiment-name fbjconc \
 --fuzzers libfuzzer \
 --no-seeds \
 --no-dictionaries
