@@ -1,4 +1,4 @@
-# Copyright 2020 Google LLC
+# Copyright 2018 Google Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,30 +14,11 @@
 #
 ################################################################################
 
-FROM gcr.io/oss-fuzz-base/base-builder@sha256:87ca1e9e19235e731fac8de8d1892ebe8d55caf18e7aa131346fc582a2034fdd
-
-RUN apt-get update &&  \
-    apt-get upgrade -y && \
-    apt-get install -y \
-    make \
-    autoconf \
-    libtool \
-    wget \
-    libtool cmake ninja-build libbrotli-dev liblzma-dev libz-dev \
-    pkg-config zlib1g-dev iptables libc++-dev libc++abi-dev libpthread-stubs0-dev python3-pip
-
-RUN pip install -U meson
-
-
-
-RUN git clone git://git.sv.nongnu.org/freetype/freetype2.git
-
-RUN (cd freetype2 && meson build && cd build && ninja && cd ..)
-
-
-RUN git clone https://github.com/unicode-org/text-rendering-tests.git TRT
-RUN wget https://github.com/libarchive/libarchive/releases/download/v3.4.3/libarchive-3.4.3.tar.xz
-
+FROM gcr.io/oss-fuzz-base/base-builder
+RUN apt-get update && apt-get install -y make cmake \
+libtool cmake ninja-build libbrotli-dev liblzma-dev libz-dev \
+        pkg-config zlib1g-dev iptables libc++-dev libc++abi-dev libpthread-stubs0-dev
+RUN git clone --depth 1 https://github.com/json-c/json-c.git json-c
 RUN git clone --depth 1 https://github.com/google/libprotobuf-mutator.git 
 # proto_mutator
 RUN (mkdir LPM && \
@@ -45,6 +26,5 @@ RUN (mkdir LPM && \
     cmake ../libprotobuf-mutator -GNinja -DLIB_PROTO_MUTATOR_DOWNLOAD_PROTOBUF=ON \
     -DLIB_PROTO_MUTATOR_TESTING=OFF -DCMAKE_BUILD_TYPE=Release && \
     ninja)
-
-COPY * $SRC/
-COPY ftfuzzer_proto_bin.cc *.proto build.sh $SRC/
+WORKDIR json-c
+COPY build.sh *.cc *.dict proto.proto $SRC/

@@ -14,11 +14,11 @@
 # limitations under the License.
 
 rm -rf $SRC/genfiles && mkdir $SRC/genfiles && $SRC/LPM/external.protobuf/bin/protoc proto.proto --cpp_out=genfiles
-$CXX $CXXFLAGS -c genfiles/proto.pb.cc -DNDEBUG -o genfiles/proto.pb.o -I $SRC/LPM/external.protobuf/include
+$CXX $CXXFLAGS -c $SRC/genfiles/proto.pb.cc -DNDEBUG -o $SRC/genfiles/proto.pb.o -I $SRC/LPM/external.protobuf/include
 
 
 
-cd libfuzzer && ./build.sh && cd ..
+cd $SRC/libfuzzer && ./build.sh && cd ..
 
 cd libxml2
 
@@ -38,13 +38,13 @@ export V=1
     --without-python
 make -j$(nproc)
 
-# cd fuzz
-# make clean-corpus
-# make fuzz.o
+cd fuzz
+make clean-corpus
+make fuzz.o
 
 # make xml.o
 # Link with $CXX
-$CXX $CXXFLAGS /src/xml.cc -std=c++14 -I/src/libxml2/fuzz -I/src/libxml2/include \
+$CXX $CXXFLAGS /src/xml.cc fuzz.o -std=c++14 -I/src/libxml2/fuzz -I/src/libxml2/include \
     -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ -I/src/ \
     /src/genfiles/proto.pb.o \
     /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a \
@@ -52,8 +52,8 @@ $CXX $CXXFLAGS /src/xml.cc -std=c++14 -I/src/libxml2/fuzz -I/src/libxml2/include
     /src/LPM/external.protobuf/lib/lib*.a -Wl,--end-group \
     /src/libfuzzer/libFuzzer.a \
     /src/libxml2/.libs/libxml2.a \
-    -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic -lpthread -fsanitize=fuzzer,address
-    -o $OUT/xml \
+    -Wl,-Bstatic -lz -llzma -Wl,-Bdynamic -lpthread -fsanitize=fuzzer,address \
+    -o $OUT/xml
     
 
 # [ -e seed/xml ] || make seed/xml.stamp

@@ -203,13 +203,7 @@ xmlFuzzWriteInt(FILE *out, size_t v, int size) {
     shift = size * 8;
     while (shift > 0) {
         shift -= 8;
-        putc((v >> shift) & 255, out);
-    }
-}
-
-/**
- * xmlFuzzReadInt:
- * @size:  size of integer in bytes
+        pufuzz.c size of integer in bytes
  *
  * Read an integer from the fuzz data.
  */
