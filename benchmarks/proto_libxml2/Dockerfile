@@ -37,4 +37,4 @@ RUN (mkdir LPM && \
     ninja)
 
 #WORKDIR libxml2
-COPY xml.cc fuzz.cc fuzz.h build.sh proto.proto $SRC/
+COPY xml.cc build.sh proto.proto Makefile.am $SRC/

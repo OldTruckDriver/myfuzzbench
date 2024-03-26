@@ -21,6 +21,7 @@ $CXX $CXXFLAGS -c $SRC/genfiles/proto.pb.cc -DNDEBUG -o $SRC/genfiles/proto.pb.o
 cd $SRC/libfuzzer && ./build.sh && cd ..
 
 cd libxml2
+# cp $SRC/Makefile.am $SRC/libxml2/fuzz
 
 if [ "$SANITIZER" = undefined ]; then
     export CFLAGS="$CFLAGS -fsanitize=unsigned-integer-overflow -fno-sanitize-recover=unsigned-integer-overflow"
@@ -44,7 +45,7 @@ make fuzz.o
 
 # make xml.o
 # Link with $CXX
-$CXX $CXXFLAGS /src/xml.cc -std=c++14 -I/src/libxml2/fuzz -I/src/libxml2/include \
+$CXX $CXXFLAGS /src/xml.cc fuzz.o -std=c++14 -I/src/libxml2/fuzz -I/src/libxml2/include \
     -I/src/LPM/external.protobuf/include -I/src/libprotobuf-mutator/ -I/src/ \
     /src/genfiles/proto.pb.o \
     /src/LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a \
