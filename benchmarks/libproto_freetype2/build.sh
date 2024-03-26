@@ -51,9 +51,9 @@ make all -j $(nproc)
 cd ..
 
 
-$CXX $CXXFLAGS ftfuzzer_proto_bin.cc -std=c++14 -I. -I$SRC/freetype2/include -I$SRC/freetype2/src -I genfiles \
-                    -ILPM/external.protobuf/include \
-                    -Ilibprotobuf-mutator/ genfiles/freetype2.pb.o \
+$CXX $CXXFLAGS ftfuzzer_proto_bin.cc /src/libprotobuf-mutator/src/mutator.cc -std=c++14 -I. -I$SRC/freetype2/include -I$SRC/freetype2/src -I genfiles \
+                    -ILPM/external.protobuf/include -I/src/libprotobuf-mutator/src \
+                    -I/src/libprotobuf-mutator/ genfiles/freetype2.pb.o \
                     LPM/src/libfuzzer/libprotobuf-mutator-libfuzzer.a LPM/src/libprotobuf-mutator.a -Wl,--start-group \
                     LPM/external.protobuf/lib/lib*.a -Wl,--end-group \
                     $SRC/freetype2/objs/.libs/libfreetype.a $FUZZER_LIB \

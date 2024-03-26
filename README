@@ -4,8 +4,8 @@ sudo docker build -t io/library/self/dispatcher-image:latest .
 
 PYTHONPATH=. python3 experiment/run_experiment.py \
 --experiment-config experiment-config.yaml \
---benchmark libpng_libpng_read_fuzzer libpng-proto \
---experiment-name libpng \
+--benchmark libpng_libpng_read_fuzzer libpng-proto libproto_freetype2 \
+--experiment-name test \
 --fuzzers libfuzzer \
 --no-seeds \
 --no-dictionaries

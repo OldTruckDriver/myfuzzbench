@@ -16,7 +16,7 @@
 #endif
 
 #include "genfiles/freetype2.pb.h"
-#include "libprotobuf-mutator/src/libfuzzer/libfuzzer_macro.h"
+#include <libprotobuf-mutator/src/mutator.h>
 // #include <freetype2/include/ft2build.h>
 // #include "converter.h"
 
@@ -26,7 +26,9 @@
 #include <stdint.h>
 #include <memory>
 #include <vector>
+#include <mutator.h>
   using namespace std;
+  using namespace protobuf_mutator;
 // #include "freetype2/include/freetype/ftdriver.h"
 // #include <freetype/ftdriver.h>
 #include <ft2build.h>
@@ -151,15 +153,24 @@
   };
 
   
-  DEFINE_BINARY_PROTO_FUZZER(const FT_Proto &ft_proto)
+  extern "C" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)
   {
     assert( !InitResult );
 
+    
+    FT_Proto ft_proto;
+    if (!ft_proto.ParseFromArray(data, size)) {
+        // 如果解析失败，返回
+        return 0;
+    }
+    protobuf_mutator::Mutator mutator;
+    mutator.Mutate(&ft_proto, size);
+    
     vector<vector<FT_Byte>> files;
     FT_Proto_Class::ConvertFTByteProtoToVector(ft_proto, files);
-
+    // std::cout << "!!!!!" << std::endl;
     if (files.size() < 1) {
-        return;
+        return 0;
     }
 
     FT_Face         face;
@@ -173,7 +184,8 @@
                              (FT_Long)files[0].size(),
                              -1,
                              &face ) )
-      return;
+      return 0;
+    
 
 
     long  num_faces = face->num_faces;
@@ -335,7 +347,7 @@
         FT_Done_Face( face );
       }
     }
-    return;
+    return 0;
   }
 
 

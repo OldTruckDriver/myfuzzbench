@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+
+message FT_Byte_Proto {
+  repeated bytes ftbyte = 1;
+}
+
+message FT_Proto {
+  repeated FT_Byte_Proto ft_byte = 1;
+}
